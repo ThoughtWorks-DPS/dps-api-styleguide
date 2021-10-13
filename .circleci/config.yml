@@ -1,0 +1,102 @@
+version: 2.1
+
+on-push-main: &on-push-main
+  branches:
+    only: /main/
+  tags:
+    ignore: /(gh_pages)|(release-[0-9]+\.[0-9]+\.[0-9]+.*)/
+
+on-tag-main: &on-tag-main
+  branches:
+    ignore: /.*/
+  tags:
+    only: /release-[0-9]+\.[0-9]+\.[0-9]+.*/
+
+executors:
+  build-agent:
+    docker:
+      - image: docker.pkg.github.com/thoughtworks-dps/dps-di-circleci-java17-image/dps-di-circleci-java17-image:0.0.1
+        auth:
+          username: $GITHUB_USERNAME
+          password: $GITHUB_ACCESS_TOKEN
+  deploy-agent:
+    docker:
+      - image:  twdps/di-circleci-infra-image:stable
+
+defaults: &defaults
+  working_directory: ~/repo
+
+jobs:
+
+  build-styleguide:
+    executor: build-agent
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            # TODO: Is there a better way to do this?  perhaps based on git branch?
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: ./gradlew dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run:
+          name: Run tests
+          environment:
+            GRADLE_OPTS: -Xms512m -Xmx1024m
+          command: |
+            ./gradlew check
+
+  publish-styleguide:
+    executor: build-agent
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            # TODO: Is there a better way to do this?  perhaps based on git branch?
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: ./gradlew dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - add_ssh_keys:
+          fingerprints:
+            - "de:e5:86:52:df:44:a3:d9:9e:f6:ae:cf:c8:0f:07:1c"
+
+      - run:
+          name: Publish documentation to Github Pages
+          command: |
+             ./gradlew deployDocToGithubPages
+
+workflows:
+  version: 2
+  snapshot:
+    jobs:
+      - build-styleguide:
+          filters: *on-push-main
+  release:
+    jobs:
+      - build-styleguide:
+          filters: *on-tag-main
+      - publish-styleguide:
+          requires:
+            - build-styleguide
+          filters: *on-tag-main

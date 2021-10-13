@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 'api-styleguide'
+  description: 'API Style Guide'
+  annotations:
+    github.com/project-slug: 'thoughtworks-dps/dps-api-styleguide'
+    backstage.io/techdocs-ref: dir:./
+spec:
+  type: documentation
+  owner: 'thoughtworks-dps/dps-dev-portal'
+  lifecycle: experimental

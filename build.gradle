@@ -1,0 +1,35 @@
+buildscript {
+    dependencies {
+        classpath "io.twdps.starter:plugins:${starter_boot_version}"
+        classpath "io.twdps.starter:cookiecutter:${starter_boot_version}"
+        classpath "se.patrikerdes:gradle-use-latest-versions-plugin:${use_latest_versions_plugin_version}"
+        classpath "com.github.ben-manes:gradle-versions-plugin:${versions_plugin_version}"
+    }
+    // There's a conflict between versions of jgit between spotless and axion release plugin
+    configurations.classpath {
+        resolutionStrategy {
+            force 'org.eclipse.jgit:org.eclipse.jgit:5.7.0.202003110725-r'
+        }
+    }
+}
+
+plugins {
+    id("org.ajoberstar.grgit") version "${grgit_version}" apply false
+    id("net.rdrei.android.buildtimetracker") version "${buildtimetracker_version}" apply false
+    id("pl.allegro.tech.build.axion-release") version "${axion_release_plugin_version}"apply false
+    id("com.github.ben-manes.versions") version "${versions_plugin_version}" apply false
+    id("se.patrikerdes.use-latest-versions") version "${use_latest_versions_plugin_version}" apply false
+    id("io.twdps.starter.plugin.cookiecutter") version "${starter_boot_version}" apply false
+    id("com.github.johnrengelman.processes") version "${processes_plugin_version}" apply false
+    id("com.felipefzdz.gradle.shellcheck") version "${shellcheck_plugin_version}"apply false
+    id("org.barfuin.gradle.taskinfo") version "${taskinfo_plugin_version}"apply false
+    id("org.asciidoctor.jvm.pdf") version "${asciidoctor_plugin_version}" apply false
+    id("org.asciidoctor.jvm.gems") version "${asciidoctor_plugin_version}" apply false
+    id("org.asciidoctor.jvm.convert") version "${asciidoctor_plugin_version}" apply false
+    id("starter.java.build-utils-property-conventions") version "${starter_boot_version}"
+    id("starter.java.release-conventions") version "${starter_boot_version}"
+    id("starter.metrics.build-time-tracker-conventions") version "${starter_boot_version}"
+    id("starter.java.versions-conventions") version "${starter_boot_version}"
+    id("starter.java.build-utils-git-conventions") version "${starter_boot_version}"
+    id('starter.java.build-utils-fileset-conventions') version "${starter_boot_version}"
+}

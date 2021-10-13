@@ -1,0 +1,42 @@
+site_name: 'API Standards'
+site_description: 'Standards and Best Practices for providing business capabilities as API'
+
+theme:
+  name: mkdocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - java
+    - json
+    - bash
+
+repo_url: https://github.com/thoughtworks-dps/dps-api-styleguide/
+repo_name: GitHub
+edit_uri: edit/main/docs/
+
+nav:
+  - API Style / Design Guide:
+    - Introduction: unified/intro.md
+    - General Guidelines: unified/guidelines.md
+    - API Design Principles: unified/api-principles.md
+    - Service Design Principles: unified/service-principles.md
+    - Methods, Headers, and Statuses: unified/methods.md
+    - Resource Identifiers: unified/resources.md
+    - Controller Resources: unified/controller-resources.md
+    - Naming Conventions: unified/naming-conventions.md
+    - HTTP Request Standards: unified/requests.md
+    - HTTP Payload Standards: unified/payloads.md
+    - HTTP Response Standards: unified/responses.md
+    - Error Handling: unified/error-handling.md
+    - Security: unified/security.md
+    - Versioning Policy: unified/versioning.md
+    - Bulk Operations: unified/bulk.md
+    - Hypermedia: unified/hypermedia.md
+    - Glossary: unified/glossary.md
+    - Appendix: unified/appendix.md
+  - Documentation Requirements: unified/documentation.md
+
+# google_analytics: ['UA-########-#', 'dps-api-styleguide']
+
+#plugins:
+#  - techdocs-core
