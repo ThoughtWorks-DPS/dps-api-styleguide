@@ -126,7 +126,8 @@ HTTP/1.1 400 Bad Request
     }
   ],
   "debug_id": "123456789",
-  "message": "Invalid data provided"
+  "message": "Invalid data provided",
+  "information_link": "http://developer.foo.com/apidoc/blah#VALIDATION_ERROR"
 }
 ```
 
@@ -172,6 +173,7 @@ HTTP/1.1 200 OK
       ],
       "debug_id": "123456789",
       "message": "Invalid data provided"
+      "information_link": "http://developer.foo.com/apidoc/blah#VALIDATION_ERROR"
     },
     {
       "name": "VALIDATION_ERROR",
@@ -185,6 +187,7 @@ HTTP/1.1 200 OK
       ],
       "debug_id": "123456789",
       "message": "Invalid data provided"
+      "information_link": "http://developer.foo.com/apidoc/blah#VALIDATION_ERROR"
     }
   ]
 }
@@ -211,6 +214,7 @@ HTTP/1.1 200 OK
       ],
       "debug_id": "123456789",
       "message": "Invalid data provided"
+      "information_link": "http://developer.foo.com/apidoc/blah#VALIDATION_ERROR"
     },
     {
       "name": "VALIDATION_ERROR",
@@ -224,6 +228,7 @@ HTTP/1.1 200 OK
       ],
       "debug_id": "123456789",
       "message": "Invalid data provided"
+      "information_link": "http://developer.foo.com/apidoc/blah#VALIDATION_ERROR"
     }
   ]
 }

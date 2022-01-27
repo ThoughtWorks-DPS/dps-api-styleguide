@@ -500,7 +500,7 @@ See Sample Input Validation Error Response for examples of error handling.
 
 Any failed request validation **MUST** respond with `400 Bad Request` HTTP status.
 If clients attempt to modify read-only fields, this **MUST** also result in a `400 Bad Request`.
-If there are business rules (more than simple data-type or length constraints), the system **SHOULD** provide a specific error code and message (in addition to the 400) for that validation.
+If there are business rules (more than simple data-type or length constraints), the system **SHOULD** provide a specific error code and message (in addition to the `400 Bad Request`) for that validation.
 
 For situations which require interaction with APIs or processes outside of the current request, the `422 Unprocessable Entity` status code is appropriate.
 
