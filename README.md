@@ -15,3 +15,7 @@ The task `generateMarkdownDoc` uses the `./docs/styleguide.mdx` file as an index
 The `.mdx` file is just a list of filenames with optional numerical heading offset (i.e. 1, 2).  
 The offset will increase the headings in the file when output to the full document.
 Note, this is similar to capabilities in Asciidoc, except the script only supports positive heading offsets.
+
+## Java version
+
+This works best with Java 16 or newer.
