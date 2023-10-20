@@ -1,0 +1,1245 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../security/">
+      
+      
+        <link rel="next" href="../bulk/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Versioning Policy - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-versioning" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Versioning Policy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Versioning Policy
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Versioning Policy
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-versioning-strategy" class="md-nav__link">
+    API Versioning Strategy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-lifecycle" class="md-nav__link">
+    API Lifecycle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-versioning-identification" class="md-nav__link">
+    API Versioning Identification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backwards-api-compatibility" class="md-nav__link">
+    Backwards API Compatibility
+  </a>
+  
+    <nav class="md-nav" aria-label="Backwards API Compatibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backwards-payload-compatibility" class="md-nav__link">
+    Backwards Payload Compatibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumer-compatibility-guidelines" class="md-nav__link">
+    Consumer Compatibility Guidelines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-to-version" class="md-nav__link">
+    Plan to Version
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-of-life-policy" class="md-nav__link">
+    End of Life Policy
+  </a>
+  
+    <nav class="md-nav" aria-label="End of Life Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minor-api-version-eol" class="md-nav__link">
+    Minor API Version EOL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#major-api-version-eol" class="md-nav__link">
+    Major API Version EOL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-of-life-policy-replacement-major-api-version-introduction" class="md-nav__link">
+    End of Life Policy: Replacement Major API Version Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="End of Life Policy: Replacement Major API Version Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-case" class="md-nav__link">
+    Business Case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-design" class="md-nav__link">
+    API Design
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-strategy" class="md-nav__link">
+    Migration Strategy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecation-process" class="md-nav__link">
+    Deprecation Process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecation-documentation" class="md-nav__link">
+    Deprecation Documentation
+  </a>
+  
+    <nav class="md-nav" aria-label="Deprecation Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deprecating-an-http-method" class="md-nav__link">
+    Deprecating an HTTP Method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecating-a-query-parameter" class="md-nav__link">
+    Deprecating a query parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecating-a-header" class="md-nav__link">
+    Deprecating a header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecating-a-property-in-a-resource" class="md-nav__link">
+    Deprecating a property in a resource
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-deprecation-header" class="md-nav__link">
+    Adding a Deprecation header
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-versioning-strategy" class="md-nav__link">
+    API Versioning Strategy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-lifecycle" class="md-nav__link">
+    API Lifecycle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-versioning-identification" class="md-nav__link">
+    API Versioning Identification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backwards-api-compatibility" class="md-nav__link">
+    Backwards API Compatibility
+  </a>
+  
+    <nav class="md-nav" aria-label="Backwards API Compatibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backwards-payload-compatibility" class="md-nav__link">
+    Backwards Payload Compatibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumer-compatibility-guidelines" class="md-nav__link">
+    Consumer Compatibility Guidelines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-to-version" class="md-nav__link">
+    Plan to Version
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-of-life-policy" class="md-nav__link">
+    End of Life Policy
+  </a>
+  
+    <nav class="md-nav" aria-label="End of Life Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minor-api-version-eol" class="md-nav__link">
+    Minor API Version EOL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#major-api-version-eol" class="md-nav__link">
+    Major API Version EOL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-of-life-policy-replacement-major-api-version-introduction" class="md-nav__link">
+    End of Life Policy: Replacement Major API Version Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="End of Life Policy: Replacement Major API Version Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-case" class="md-nav__link">
+    Business Case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-design" class="md-nav__link">
+    API Design
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-strategy" class="md-nav__link">
+    Migration Strategy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecation-process" class="md-nav__link">
+    Deprecation Process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecation-documentation" class="md-nav__link">
+    Deprecation Documentation
+  </a>
+  
+    <nav class="md-nav" aria-label="Deprecation Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deprecating-an-http-method" class="md-nav__link">
+    Deprecating an HTTP Method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecating-a-query-parameter" class="md-nav__link">
+    Deprecating a query parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecating-a-header" class="md-nav__link">
+    Deprecating a header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecating-a-property-in-a-resource" class="md-nav__link">
+    Deprecating a property in a resource
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-deprecation-header" class="md-nav__link">
+    Adding a Deprecation header
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="api-versioning">API Versioning</h1>
+<p>This section describes how to version APIs.
+It describes API’s lifecycle states, enumerates versioning policy, describes backwards compatibility related guidelines and describes an End-Of-Life policy.</p>
+<hr />
+<h2 id="api-versioning-strategy">API Versioning Strategy</h2>
+<p>APIs should be designed so that they are extensible and backward compatible.
+An API is backward compatible if a new change to the API does not break existing API consumers.
+This minimizes the work required for consumers to utilize new releases of the API services.</p>
+<p>However, there are cases where API providers need to introduce breaking changes.
+In such cases, API versioning provides the flexibility to roll out a new version of the API containing breaking changes.
+The following strategies help consumers migrate to new versions of the API in an efficient and cost-effective manner.</p>
+<h2 id="api-lifecycle">API Lifecycle</h2>
+<p>An API Version has its own lifecycle as it starts with planned improvements.
+As it progresses through its maturity cycle, consumers test it, use it, and eventually migrate away from it.
+Ultimately the API Version is replaced with an updated API and is retired from service.</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PLANNED</td>
+<td>API has been scheduled for development. API release plans have been established.</td>
+</tr>
+<tr>
+<td>BETA</td>
+<td>API is operational and is available to selected new subscribers in production for the purposes of testing, validating, and rolling out a new API.</td>
+</tr>
+<tr>
+<td>LIVE</td>
+<td>API is operational and is available to new subscribers in production. API version is fully supported.</td>
+</tr>
+<tr>
+<td>DEPRECATED</td>
+<td>API is operational and available at runtime to existing subscribers for a fixed period of time. API version is fully supported, including bug fixes addressed in a backwards compatible way. API version is not available to new subscribers.</td>
+</tr>
+<tr>
+<td>RETIRED</td>
+<td>API is unpublished from production and no longer available at runtime to any subscribers. The footprint of all deployed applications entering this state must be completely removed from production and stage environments.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="api-versioning-identification">API Versioning Identification</h2>
+<p>APIs are versioned products and <strong>MUST</strong> adhere to the following versioning principles.</p>
+<ul>
+<li>API specifications <strong>MUST</strong> follow the versioning scheme where the <code>v</code> introduces the version, the major is an ordinal starting with 1 for the first LIVE release, and minor is an ordinal starting with 0 for the first minor release of any major release.</li>
+<li>Every time there is an incremental change to an API, whether or not backward compatible, the API specification <strong>MUST</strong> be versioned.<ul>
+<li>This allows the change to be labeled, documented, reviewed, discussed, published and communicated.</li>
+</ul>
+</li>
+<li>API endpoints <strong>MUST</strong> only reflect the major version.</li>
+<li>API specification versions reflect interface changes and <strong>MAY</strong> be separate from service implementation versioning schemes.</li>
+<li>A minor API version <strong>MUST</strong> maintain backward compatibility with all previous minor versions, within the same major version.</li>
+<li>A major API version <strong>MAY</strong> maintain backward compatibility with a previous major version.</li>
+<li>For a given functionality set, there <strong>MUST</strong> be only one API version in the LIVE state at any given time across all major and minor versions. <ul>
+<li>This ensures that subscribers always understand which versioned API product they should be using. For example, v1.2 RETIRED, v1.3 DEPRECATED, or v2.0 LIVE.</li>
+</ul>
+</li>
+</ul>
+<h2 id="backwards-api-compatibility">Backwards API Compatibility</h2>
+<p>APIs <strong>SHOULD</strong> be designed in a forward and extensible way to maintain compatibility and avoid duplication of resources, functionality and excessive versioning.</p>
+<p>APIs <strong>MUST</strong> adhere to the following principles to be considered backwards compatible:</p>
+<ul>
+<li>All changes <strong>MUST</strong> be additive.</li>
+<li>All changes <strong>MUST</strong> be optional.</li>
+<li>The semantics of an existing parameter, entire representation, or resource <strong>MUST NOT</strong> be changed.</li>
+<li>Existing URI attributes such as query parameter keys or path parameters <strong>MUST NOT</strong> be renamed.</li>
+<li>There <strong>MUST NOT</strong> be any change in the behavior of the API for request URIs without the newly added query parameters.</li>
+<li>Query-parameters and request body parameters <strong>MUST</strong> be unordered.</li>
+<li>All additional query parameters on resource URIs <strong>MUST</strong> be optional.</li>
+<li>Additional functionality for an existing resource <strong>MUST</strong> be implemented either:<ul>
+<li>As an optional extension, or</li>
+<li>As an operation on a new child resource, or</li>
+<li>By altering a request body, while still accepting all the previous, existing request variations, if an existing operation (e.g. resource creation) cannot be reasonably extended.</li>
+</ul>
+</li>
+<li>The API implementation (service) <strong>MUST</strong> recognize a previously valid value for a request parameter and <strong>SHOULD NOT</strong> throw an error when used.</li>
+<li>There <strong>MUST NOT</strong> be any change in the HTTP status codes returned by the URIs.</li>
+<li>There <strong>MUST NOT</strong> be any change in the HTTP verbs (e.g. GET, POST, PUT or PATCH) supported earlier by the URI.<ul>
+<li>The URI <strong>MAY</strong> however support a new HTTP verb.</li>
+</ul>
+</li>
+<li>There <strong>MUST NOT</strong> be any change in the name and type of the request or response headers of a URI.<ul>
+<li>Additional headers <strong>MAY</strong> be added, provided they’re optional.</li>
+</ul>
+</li>
+</ul>
+<h3 id="backwards-payload-compatibility">Backwards Payload Compatibility</h3>
+<p>Ensure that the previous JSON API schema is extensible.
+There are simple traps in JSON that make an API contract impossible to evolve without making breaking changes.
+One common pitfall is returning a raw JSON array from an API endpoint.
+Without an object wrapper, there’s no ability to later add metadata like paging without breaking the contract.
+Similarly, when working with international context (or expect to), use objects for monetary amounts in order to support adding currency without breaking the contract.
+It is also common to use objects for strings (messages) which may need to be internationalized with additional locale-specific translations.</p>
+<ul>
+<li>An existing property in a JSON object of an API response <strong>MUST</strong> continue to be returned with the same name and JSON type (number, integer, string, array, object).</li>
+<li>If the value of a response field is an array, then the type of the contents in the array <strong>MUST NOT</strong> change.</li>
+<li>If the value of the response field is an object, then the compatibility policy <strong>MUST</strong> apply to the JSON object as a whole.</li>
+<li>New properties added to the request body <strong>MUST NOT</strong> be mandatory.</li>
+<li>If the property of an object is a URI, then it <strong>MUST</strong> have the same stability mentioned as URIs.</li>
+<li>For an API returning <a href="../hypermedia/">HATEOAS</a> links as part of the representation, the values of rel and href <strong>MUST</strong> remain the same.</li>
+<li>For primitive types, unless there is a constraint described in the API documentation (e.g. length of the string, possible values for an ENUM type), clients <strong>MUST</strong> not assume that the values are constrained in any way.</li>
+<li>For ENUM types, there <strong>MUST NOT</strong> be any change in already supported enumerated values or meaning of these values.</li>
+<li>New properties <strong>MAY</strong> be added to a representation any time, but it <strong>SHOULD NOT</strong> alter the meaning of an existing property.</li>
+<li>New properties that are added <strong>MUST NOT</strong> be mandatory.</li>
+<li>Previously mandatory fields <strong>MUST</strong> be present in the response.</li>
+</ul>
+<h3 id="consumer-compatibility-guidelines">Consumer Compatibility Guidelines</h3>
+<p>Being able to make changes to an API in a backward compatible manner requires that API providers add new fields and expect API consumers not to break when they do so.
+API consumers need to follow these guidelines in order to support backward compatible API providers:</p>
+<ul>
+<li>Be tolerant with unknown fields in the payload (see Martin Fowler’s <a href="https://martinfowler.com/bliki/TolerantReader.html">"TolerantReader"</a> post), that is to say, ignore deserialization of new fields but do not eliminate them from the payload if needed for subsequent PUT requests.</li>
+<li>Be prepared to handle HTTP status codes not explicitly specified in endpoint definitions.</li>
+<li>Follow the redirect when the server returns HTTP status code 301 (Moved Permanently)</li>
+<li>Support redirection in case a URL has to change 301 (Moved Permanently).</li>
+</ul>
+<h2 id="plan-to-version">Plan to Version</h2>
+<p>The following guidelines should be applied when breaking changes require a new version of the APIs:</p>
+<ul>
+<li><em>Put the API version in the URL</em> – While header-based versioning is arguably more RESTful, it’s also less obvious.
+  Keeping the version in the URL allows the API consumer to open it in a browser, send it in email, and bookmark it.
+  It’s also immediately visible in logs.</li>
+<li><em>Use only the major version</em> – API versioning <strong>MUST</strong> follow a scheme where the v introduces the version, and the major is an ordinal starting with 1 for the first release version.
+  For example; http://api.example.com/v1/users.
+  Minor versions <strong>SHOULD NOT</strong> be supported because it adds versioning overhead and brings no value to the API consumers.</li>
+<li><em>Use a version number</em> – There are popular APIs who use a different identifier (e.g. Twilio uses a date).
+  This is both less obvious and exposes information that should not matter to the API consumer.</li>
+<li><em>Always start with a versioned URL</em> – It can seem convenient for an API provider to start without a version and only add it in when needed.
+  The down side of this approach is that it’s less obvious, requires out-of-band information to be understood, and provides an inconsistent experience to API consumers.
+  In the unlikely event that the API provider starts with an unversioned URL and later needs to version, they <strong>SHOULD</strong> treat the unversioned URL as an alias for v1, so that both URLs route to the same implementation.</li>
+<li><em>Manage multiple concurrent versions as separate instances</em> – Multiple concurrent versions <strong>SHOULD</strong> be managed as separately running instances of a service with a router in front, rather than multiple versions managed concurrently in the same codebase.
+  This approach avoids any accidental breaking changes of older versions while refactoring code.</li>
+</ul>
+<p>When releasing a new version of the API, take this opportunity to re-evaluate the optionality of parameters and properties which have been added.
+If there will be breaking changes, this is an opportunity to rationalize optional properties.
+Removing legacy options, making the API clear, consistent and easy to use will benefit users while also simplifying code and removing accumulated tech debt.</p>
+<h2 id="end-of-life-policy">End of Life Policy</h2>
+<p>The End-of-Life (EOL) policy regulates how API versions move from the LIVE to the RETIRED state.
+It is designed to ensure a consistent and reasonable transition period for API customers who need to migrate from the old to the new API version while enabling a healthy process to retire technical debt.</p>
+<h3 id="minor-api-version-eol">Minor API Version EOL</h3>
+<p>Per versioning policy, minor API versions <strong>MUST</strong> be backwards compatible with preceding minor versions within the same major version.
+Thus, minor API versions are RETIRED immediately after a newer minor version of the same major version becomes LIVE.
+This change should have no impact on existing subscribers so there is no need to transition through a DEPRECATED state to facilitate client migration.</p>
+<h3 id="major-api-version-eol">Major API Version EOL</h3>
+<p>Per versioning policy, major API versions <strong>MAY</strong> be backwards compatible with preceding major versions.
+As such, the following rules apply when retiring a major API version.</p>
+<ul>
+<li>A major API version <strong>MUST NOT</strong> be in the DEPRECATED state until a replacement service is LIVE that provides a clear customer migration path for all functionality that will be retained moving forward.
+This <strong>SHOULD</strong> include documentation and, as appropriate, migration tools and sample code that provide customers what they need to make a clean migration.</li>
+<li>The deprecated API version <strong>MUST</strong> be in the DEPRECATED state for a minimum period of time to give client customers adequate notice to migrate.
+Deprecation of API versions with external clients <strong>SHOULD</strong> be considered on a case-by-case basis and may require additional deprecation time and/or constraints to minimize impact on customer base.</li>
+<li>If a versioned API in LIVE or DEPRECATED state has no clients, it <strong>MAY</strong> move to the RETIRED state immediately.</li>
+</ul>
+<h3 id="end-of-life-policy-replacement-major-api-version-introduction">End of Life Policy: Replacement Major API Version Introduction</h3>
+<p>Since a new major API version that results in deprecation of a pre-existing API version is a significant business investment decision, API owners <strong>MUST</strong> justify the new major version before beginning significant design and development work.
+API owners <strong>SHOULD</strong> explore all possible alternatives to introducing a new major API version with the objective of minimizing the impact on customers before deciding to introduce a new version.</p>
+<p>Justification <strong>SHOULD</strong> include the following:</p>
+<h4 id="business-case">Business Case</h4>
+<ul>
+<li>Customer value delivered by a new version that is not possible with the existing version.</li>
+<li>Cost-benefit analysis of deprecated version versus the new version.</li>
+<li>Explanation of alternatives to introducing a new major version and why those were not chosen.</li>
+<li>If a backwards incompatible change is required to address a critical security issue, items 1 and 2 (above) are not required.</li>
+</ul>
+<h4 id="api-design">API Design</h4>
+<ul>
+<li>A domain model of all resources in the new API version and how they compare to the domain model of the previous major API version.</li>
+<li>Description of APIs operations and use cases they implement.</li>
+<li>Definition of service level objectives for performance and availability that are equal or better to the major API version to be deprecated.</li>
+</ul>
+<h4 id="migration-strategy">Migration Strategy</h4>
+<ul>
+<li>Number of existing customers impacted; internal, external, and partners.</li>
+<li>Communication and support plan to inform existing customers of new version, value, and migration path.</li>
+</ul>
+<h3 id="background">Background</h3>
+<p>When defining your API, you must make a lot of material decisions that have long lasting implications.
+The objective is to make a long-lived, durable, and reusable API.
+You are trying to get it “right”.
+Practically speaking, however, you are not going to succeed every time.
+In fact, <a href="https://hbr.org/2017/09/the-surprising-power-of-online-experiments">evidence</a> suggests you will be wrong more often then you are right.
+New requirements come in.
+Your understanding of the problem changes.
+What probably looked like a good decision at the time, may now limit your ability to elegantly extend your API to satisfy your new understanding.
+Lightweight decisions made in the past now seem somewhat heavy as the implications come into focus.
+Maintaining backward compatibility is a persistent challenge.</p>
+<p>One option is to create a new major version of your API.
+This allows you to leave past decisions behind and start fresh.
+Unfortunately, it also means that all of your clients now need to migrate to new endpoints for any of the new work to deliver customer value.
+This is hard.
+Many clients will not move without good incentives.
+There is a lot of overhead in managing the customer migration.
+You also need to support two sets of interfaces for quite some time.</p>
+<p>The other consideration is that your API product may have multiple endpoints, but the breaking changes that you want to make only affect one.
+Making your customers migrate their applications for all the API endpoints just so you can “fix” one small part is a pretty heavyweight and expensive change.
+While pure and simple from a philosophical and engineering point of view, it is often unjustifiable from an ROI standpoint.
+The goal of this guideline is to find a middle ground that provides a more practical path forward when minor changes are needed, but which is still consistent, in spirit, with the API Versioning Policy.</p>
+<h3 id="deprecation-process">Deprecation Process</h3>
+<p>As the API evolves, a need may arise to deprecate an API version, an API endpoint or a field in the API.
+The goal of deprecation is to progress to a state in which there are no consumers using the version, endpoint or field to be deprecated.
+Once this state is reached, the API version can be retired and removed from production.</p>
+<p>The following requirements should be applied when deprecating an API;</p>
+<ul>
+<li>An API developer <strong>SHOULD</strong> be able to deprecate an API Element in a minor version of an API.</li>
+<li>An API specification <strong>MUST</strong> highlight one or more deprecated elements of the API so the API consumers are aware.</li>
+<li>An API provider <strong>MUST</strong> inform API consumers regarding deprecated elements present in request and/or response at runtime so that tools can recognize this, log warnings and highlight the usage of deprecated elements as needed.</li>
+<li>Deprecated API Elements <strong>MUST</strong> remain supported for the life of the major version.</li>
+</ul>
+<p>The requirements listed above can be addressed by documenting deprecated elements via the API specification.
+Listed below are a couple of examples that illustrate deprecation of elements when using <a href="https://swagger.io/specification/">OpenAPI Specification 3.1</a></p>
+<h3 id="deprecation-documentation">Deprecation Documentation</h3>
+<p>The most important part of deprecation is providing documentation for the user to understand what/when parts of the API will be deprecated.
+The API Documentation must include not only what is being deprecated, but when.
+The timeline should be selected to be sufficient to allow consumers to migrate their systems onto the new API.</p>
+<h4 id="deprecating-an-http-method">Deprecating an HTTP Method</h4>
+<p>Deprecating an endpoint involves adding “deprecated: true” attribute to the endpoint method as shown below:</p>
+<pre><code class="language-yaml">openapi: 3.1
+...
+paths:
+  /appeals:
+    get:
+      description: Deprecated endpoint to retrieve appeals
+      deprecated: true
+</code></pre>
+<h4 id="deprecating-a-query-parameter">Deprecating a query parameter</h4>
+<pre><code class="language-yaml">openapi: 3.1
+...
+paths:
+  /appeals:
+    get:
+      description: Retrieve appeals status
+      parameters:
+        - name: fromDate
+          in: query
+          description: Deprecated Start date of appeal
+          deprecated: true
+</code></pre>
+<h4 id="deprecating-a-header">Deprecating a header</h4>
+<pre><code class="language-yaml">openapi: 3.1
+...
+paths:
+  /appeals:
+    get:
+      description: Retrieve appeals status
+      parameters:
+        - name: ORG-Authorization-Token
+          in: header
+          description: Deprecated ORG-Authorization-Token Header
+          deprecated: true
+</code></pre>
+<h4 id="deprecating-a-property-in-a-resource">Deprecating a property in a resource</h4>
+<pre><code class="language-yaml">openapi: 3.1
+...
+paths:
+  /appeals:
+    get:
+      description: Retrieve appeals status
+      responses:
+        200:
+          description: Successful Appeal
+          content:
+            application/json:
+              schema:
+                \$ref: &quot;#/components/schemas/Appeal&quot;
+components:
+  schemas:
+    Appeal:
+      description: Appeal status schema
+      properties:
+        appealType:
+          type: string
+          description: The decision review option chosen by the appellant
+          deprecated: true
+</code></pre>
+<h3 id="adding-a-deprecation-header">Adding a Deprecation header</h3>
+<p>During the deprecation phase, the API provider should add a Deprecation HTTP response header.
+See draft: <a href="https://tools.ietf.org/html/draft-dalal-deprecation-header">RFC Deprecation HTTP Header</a>).
+A Sunset HTTP response header can be added (see <a href="https://tools.ietf.org/html/rfc8594#section-3">RFC 8594</a>) on a resource that will be deprecated.
+The deprecation header can either be set to true if a feature is retired, or carry a deprecation timestamp, at which point a replacement will become available and consumers must not on-board any longer.</p>
+<blockquote>
+<p>NOTE: Applications consuming this header <strong>MUST</strong> not take any action based on the value of the header at this time.
+Instead, we recommend that these applications <strong>SHOULD</strong> take action based only on the existence of the header in the response.</p>
+</blockquote>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

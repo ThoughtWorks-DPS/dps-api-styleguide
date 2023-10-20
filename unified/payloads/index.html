@@ -1,0 +1,1555 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../requests/">
+      
+      
+        <link rel="next" href="../responses/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>HTTP Payload Standards - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#http-payload-standards" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              HTTP Payload Standards
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          HTTP Payload Standards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        HTTP Payload Standards
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#request-response-body" class="md-nav__link">
+    Request / Response Body
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-schema" class="md-nav__link">
+    JSON Schema
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-contract-description" class="md-nav__link">
+    API Contract Description
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    $schema
+  </a>
+  
+    <nav class="md-nav" aria-label="$schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#readonly" class="md-nav__link">
+    readOnly:
+  </a>
+  
+    <nav class="md-nav" aria-label="readOnly:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-syntax-guidance" class="md-nav__link">
+    Advanced Syntax Guidance
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Syntax Guidance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allof" class="md-nav__link">
+    allOf
+  </a>
+  
+    <nav class="md-nav" aria-label="allOf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extend-object" class="md-nav__link">
+    Extend object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anyofoneof" class="md-nav__link">
+    anyOf/oneOf
+  </a>
+  
+    <nav class="md-nav" aria-label="anyOf/oneOf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anyofoneof-problems-example" class="md-nav__link">
+    anyOf/oneOf Problems: Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-types" class="md-nav__link">
+    JSON Types
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-primitive-types" class="md-nav__link">
+    JSON Primitive Types
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON Primitive Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    Enumeration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number" class="md-nav__link">
+    Number
+  </a>
+  
+    <nav class="md-nav" aria-label="Number">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" class="md-nav__link">
+    Null
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-properties" class="md-nav__link">
+    Additional Properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-types" class="md-nav__link">
+    Common Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quantity" class="md-nav__link">
+    Quantity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address" class="md-nav__link">
+    Address
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#money" class="md-nav__link">
+    Money
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentage-interest-rate-or-apr" class="md-nav__link">
+    Percentage, Interest rate, or APR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internationalization" class="md-nav__link">
+    Internationalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-time-and-timezone" class="md-nav__link">
+    Date, Time and Timezone
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-time-common-types" class="md-nav__link">
+    Date Time Common Types
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumerated-codes" class="md-nav__link">
+    Enumerated Codes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i18n-enumerated-codes" class="md-nav__link">
+    I18n Enumerated Codes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#request-response-body" class="md-nav__link">
+    Request / Response Body
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-schema" class="md-nav__link">
+    JSON Schema
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-contract-description" class="md-nav__link">
+    API Contract Description
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    $schema
+  </a>
+  
+    <nav class="md-nav" aria-label="$schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#readonly" class="md-nav__link">
+    readOnly:
+  </a>
+  
+    <nav class="md-nav" aria-label="readOnly:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-syntax-guidance" class="md-nav__link">
+    Advanced Syntax Guidance
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Syntax Guidance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allof" class="md-nav__link">
+    allOf
+  </a>
+  
+    <nav class="md-nav" aria-label="allOf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extend-object" class="md-nav__link">
+    Extend object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anyofoneof" class="md-nav__link">
+    anyOf/oneOf
+  </a>
+  
+    <nav class="md-nav" aria-label="anyOf/oneOf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anyofoneof-problems-example" class="md-nav__link">
+    anyOf/oneOf Problems: Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-types" class="md-nav__link">
+    JSON Types
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-primitive-types" class="md-nav__link">
+    JSON Primitive Types
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON Primitive Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    Enumeration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number" class="md-nav__link">
+    Number
+  </a>
+  
+    <nav class="md-nav" aria-label="Number">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" class="md-nav__link">
+    Null
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-properties" class="md-nav__link">
+    Additional Properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-types" class="md-nav__link">
+    Common Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quantity" class="md-nav__link">
+    Quantity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address" class="md-nav__link">
+    Address
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#money" class="md-nav__link">
+    Money
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentage-interest-rate-or-apr" class="md-nav__link">
+    Percentage, Interest rate, or APR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internationalization" class="md-nav__link">
+    Internationalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-time-and-timezone" class="md-nav__link">
+    Date, Time and Timezone
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-time-common-types" class="md-nav__link">
+    Date Time Common Types
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumerated-codes" class="md-nav__link">
+    Enumerated Codes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i18n-enumerated-codes" class="md-nav__link">
+    I18n Enumerated Codes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="http-payload-standards">HTTP Payload Standards</h1>
+<hr />
+<h2 id="request-response-body">Request / Response Body</h2>
+<p>All request and response bodies across any REST resource operation are expected to serialize data according to the JSON Data Interchange Format described in <a href="https://tools.ietf.org/html/rfc7159">RFC 7159</a> and <a href="http://json.org/">JavaScript Object Notation (JSON)</a>.
+JSON is built upon four primitive types (<code>string</code>, <code>number</code>, <code>boolean</code>, and <code>null</code>) and on two structures [5]:</p>
+<ol>
+<li><em>Object</em> - A collection of name/value pairs.
+   In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array.</li>
+<li><em>Array</em> - An ordered list of values.
+   In most languages, this is realized as an array, vector, list, or sequence.
+   JSON responses must always return a JSON object (and not e.g. an array) as a top level data structure to support future extensibility [2].
+   Potential extensibility might include metadata such as paging, as an example.</li>
+</ol>
+<h2 id="json-schema">JSON Schema</h2>
+<p><a href="http://json-schema.org/">JSON Schema</a> is a vocabulary that allows you to annotate and validate JSON documents.
+As of the writing of this style guide, the latest JSON Schema is version <a href="http://json-schema.org/draft/2020-12/json-schema-core.html">2020-12</a>.
+OpenAPI spec defines an API’s contract interface and the <a href="https://swagger.io/specification/">OpenAPI Schema Object</a> is based on the JSON Schema.
+This enables the API provider to communicate JSON schema validation rules via OpenAPI spec.
+Refer to both of these specifications when documenting the contract interface for consumers.</p>
+<blockquote>
+<p>NOTE: json-schema.org seems to have dropped the Hypermedia specification from the 2012-12 version of the spec.
+This document continues to refer to the <a href="http://json-schema.org/draft/2019-09/json-schema-hypermedia.html">2019-09 version</a>.
+YMMV.</p>
+</blockquote>
+<h3 id="api-contract-description">API Contract Description</h3>
+<p>There are various options available to define the API’s contract interface (API specification or API description).
+Examples are: <a href="http://swagger.io/specification">OpenAPI</a> (fka Swagger), <a href="https://developers.google.com/discovery/v1/reference/apis#method_discovery_apis_getRest">Google Discovery Document</a>, <a href="http://raml.org/">RAML</a>, <a href="https://apiblueprint.org/">API BluePrint</a> and so on.
+OpenAPI is a vendor neutral API description format.
+The OpenAPI <a href="http://swagger.io/specification/#schemaObject">Schema Object</a> (or OpenAPI JSON) is an extended subset of the <a href="https://json-schema.org/">JSON Schema Specification</a>.
+In addition, there are extensions provided by the specification to allow for more complete documentation.</p>
+<p>It is <strong>RECOMMENDED</strong> to use the latest version of the OpenAPI specification.
+At the time of this writing, the latest version is v3.1.</p>
+<p>We have used OpenAPI to describe the API specification throughout this document.</p>
+<h3 id="schema">$schema</h3>
+<p>Use <code>$schema</code> to indicate the version of JSON schema used by each JSON type you define as shown below.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema#&quot;,
+  &quot;name&quot;: &quot;Order&quot;,
+  &quot;description&quot;: &quot;An order transaction.&quot;,
+  &quot;properties&quot;: {
+     ...
+  }
+}
+</code></pre>
+<p>In case your JSON type uses links, media and other such keywords or schemas such as for linkDescription that are defined in <a href="http://json-schema.org/draft/2019-09/json-schema-hypermedia.html">http://json-schema.org/draft/2019-09/json-schema-hypermedia.html</a>, you should provide the value for <code>$schema</code> accordingly as shown below.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2019-09/hyper-schema#&quot;,
+  &quot;name&quot;: &quot;Linked-Order&quot;,
+  &quot;description&quot;: &quot;An order transaction using HATEOAS links.&quot;,
+  &quot;properties&quot;: {
+    ...
+  }
+}
+</code></pre>
+<p>If you are unsure about the specific schema version to refer to, it would be safe to refer <a href="https://json-schema.org/draft/2019-09/hyper-schema#">https://json-schema.org/draft/2019-09/hyper-schema#</a> schema since it would cover the hypermedia aspects of any JSON schema.</p>
+<h4 id="readonly">readOnly:</h4>
+<p>When resources contain immutable fields, PUT/PATCH operations can still be utilized to update that resource.
+To indicate immutable fields in the resource, the readOnly field can be specified on the immutable fields.</p>
+<h5 id="example">Example:</h5>
+<pre><code class="language-json">&quot;properties&quot;: {
+  &quot;id&quot;: {
+    &quot;type&quot;: &quot;string&quot;,
+    &quot;description&quot;: &quot;Identifier of the resource.&quot;,
+    &quot;readOnly&quot;: true
+  }
+}
+</code></pre>
+<h3 id="advanced-syntax-guidance">Advanced Syntax Guidance</h3>
+<p>Be aware that anyOf/allOf/oneOf syntax can cause issues with tooling, as code generators, documentation tools and validation of these keywords is often not implemented.</p>
+<h4 id="allof">allOf</h4>
+<p>The allOf keyword <strong>MUST</strong> only be used for the purposes listed here.</p>
+<h5 id="extend-object">Extend object</h5>
+<p>The allOf keyword in JSON Schema <strong>SHOULD</strong> be used for extending objects.
+In draft-03, this was implemented with the extends keyword, which has been deprecated in draft-04.</p>
+<p>Example:</p>
+<p>A common need is to extend a common type with additional fields.
+In this example, we will extend the <a href="https://schema.org/address">address</a> with a typefield.</p>
+<pre><code class="language-json">&quot;shipping_address&quot;: { 
+  &quot;\$ref&quot;: &quot;v1/schema/address.json&quot; 
+}
+</code></pre>
+<p>Using the allOf keyword, we can combine both the common type address schema and an extra schema snippet for the address type:</p>
+<pre><code class="language-json">&quot;shipping_address&quot;: {
+  &quot;allOf&quot;: [
+  // Here, we include our &quot;core&quot; address schema...
+
+    { &quot;\$ref&quot;: &quot;v1/schema/address.json&quot; },
+    // ...and then extend it with stuff specific to a shipping
+    // address
+    {
+      &quot;properties&quot;: {
+        &quot;type&quot;: { &quot;enum&quot;: [ &quot;residential&quot;, &quot;business&quot; ] }
+      },
+      &quot;required&quot;: [&quot;type&quot;]
+    }
+  ]
+}
+</code></pre>
+<h4 id="anyofoneof">anyOf/oneOf</h4>
+<p>The anyOf and oneOf keywords <strong>SHOULD NOT</strong> be used to design APIs.
+A variety of problems occur from these keywords:</p>
+<ul>
+<li>Codegen tools do not have an accurate way to generate models/objects from these definitions.</li>
+<li>Developer portals would have significant difficulty in clearly explaining to API consumers the meaning of these relationships.</li>
+<li>Consumers using statically typed languages (e.g. C#, Java) have a more complex experience trying to conditionally deserialize objects which change based on some element.</li>
+<li>Custom deserialization code is required to represent objects based on the response, standard libraries do not accommodate this out of the box.</li>
+<li>Flat structures which combine all possible fields in an object are automatically deserialized properly.</li>
+</ul>
+<h5 id="anyofoneof-problems-example">anyOf/oneOf Problems: Example:</h5>
+<pre><code class="language-json">{
+  &quot;activityType&quot;: {
+    &quot;description&quot;: &quot;The entity type of the item. One of 'PAYMENT', 'MONEY-REQUEST', 'RECURRING-PAYMENT-PROFILE', 'ORDER', 'PAYOUT', 'SUBSCRIPTION', 'INVOICE'&quot;,
+    &quot;type&quot;: &quot;string&quot;,
+    &quot;enum&quot;: [
+      &quot;PAYMENT&quot;,
+      &quot;MONEY-REQUEST&quot;
+    ]
+  },
+  &quot;extensions&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;description&quot;: &quot;Extension to core activity fields&quot;,
+    &quot;oneOf&quot;: [
+      { &quot;$ref&quot;: &quot;v1/schema/extended_properties.json#/definitions/payment_properties&quot; },
+      { &quot;$ref&quot;: &quot;v1/schema/extended_properties.json#/definitions/money_request_properties&quot; }
+    ]
+  }
+}
+</code></pre>
+<p>In order for an API consumer to deserialize this response (where POJO/POCO objects are used), standard mechanisms would not work.
+Because the extensions field can change on any given response, the consumer is forced to create a composite object to represent both <code>payment_properties.json</code> and <code>money_request_properties.json</code>.</p>
+<p>A better approach:</p>
+<pre><code class="language-json">{
+  &quot;activityType&quot;: {
+    &quot;description&quot;: &quot;The entity type of the item. One of 'PAYMENT', 'MONEY-REQUEST', 'RECURRING-PAYMENT-PROFILE', 'ORDER', 'PAYOUT', 'SUBSCRIPTION', 'INVOICE'&quot;,
+    &quot;type&quot;: &quot;string&quot;,
+    &quot;enum&quot;: [
+      &quot;PAYMENT&quot;,
+      &quot;MONEY-REQUEST&quot;
+    ]
+  },
+  &quot;payment&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;description&quot;: &quot;Payment-specific activity.&quot;,
+    &quot;$ref&quot;: &quot;v1/schema/payment.json&quot;
+  },
+  &quot;moneyRequest&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;description&quot;: &quot;Money request-specific activity.&quot;,
+    &quot;$ref&quot;: &quot;v1/schema/money_request.json&quot;
+  }
+}
+</code></pre>
+<p>In this scenario, both <code>payment</code> and <code>moneyRequest</code> are in the definition.
+However, in practice, only one field would be serialized based on the <code>activityType</code>.</p>
+<p>For API consumers, this is a very predictable response, and allows for easy deserialization through standard libraries, without writing custom deserializers.</p>
+<h2 id="json-types">JSON Types</h2>
+<p>This section provides guidelines related to usage of <a href="https://docs.google.com/document/d/1hOkwz-fboULkiPOHPfvR8w3YvQTyQDhW9Lp-NJ7JzNE/edit#heading=h.7twav2snr1s2">JSON primitive types</a> as well as commonly useful JSON types for address, name, currency, money, country, phone, among other things.</p>
+<h3 id="json-primitive-types">JSON Primitive Types</h3>
+<p>JSON Schema 2020-12 <strong>SHOULD</strong> be used to define all fields in APIs.
+As such, the following notes about the JSON Schema primitive types <strong>SHOULD</strong> be respected.
+Following are the guidelines governing use of JSON primitive type representations.</p>
+<h4 id="string">String</h4>
+<p>At a minimum, strings <strong>SHOULD</strong> always explicitly define a <code>minLength</code> and <code>maxLength</code>.
+There are several reasons for doing so.</p>
+<ul>
+<li>Without a maximum length, it is impossible to reliably define a database column to store a given string.</li>
+<li>Without a maximum and minimum, it is also impossible to predict whether a change in length will break backwards-compatibility with existing clients.</li>
+<li>Finally, without a minimum length, it is often possible for clients to send an empty string when they should not be allowed to do so.</li>
+</ul>
+<p>APIs <strong>MAY</strong> avoid defining <code>minLength</code> and <code>maxLength</code> only if the string value is from another system of record that has refused to provide any information on these values.
+This decision must be documented in the schema.</p>
+<p>API authors <strong>SHOULD</strong> consider practical limitations when defining <code>maxLength</code>.
+For example, when using the <code>VARCHAR2</code> type, modern versions of Oracle can safely store a Unicode string of no more than 1,000 characters.
+(The size limit is <a href="https://docs.oracle.com/cd/B28359_01/server.111/b28320/limits001.htm">4,000</a> bytes and each Unicode character may take up to four bytes for storage).</p>
+<p><code>string</code> <strong>SHOULD</strong> utilize the pattern property as appropriate, especially when defining enumerated values or numbers.
+However, it is <strong>RECOMMENDED</strong> not to overly constrain fields without a valid technical reason.</p>
+<h4 id="enumeration">Enumeration</h4>
+<p>The JSON Schema enum keyword is difficult to use safely.
+It is not possible to add new values to an enum in a schema that describes a service response without breaking backwards compatibility.
+In that scenario, clients will often reject responses with values that are not in the older copy of the schema that they possess.
+This is usually not the desired behavior.
+Clients should usually handle unknown values more gracefully, but since you can’t control nor verify their behavior, it is not safe to add new enum values.</p>
+<p>For the reasons stated above, the schema author <strong>MUST</strong> comply with the following guidelines while using an enum with the JSON type string.</p>
+<ul>
+<li>The keyword enum <strong>SHOULD</strong> be used only when the set of values are fixed and would never change in future.</li>
+<li>If you anticipate adding new values to the enum array in future, avoid using the keyword enum.
+  You <strong>SHOULD</strong> instead use a string type and document all acceptable values for the string.
+  When using a string type to express enumerated values, you <strong>SHOULD</strong> enforce naming conventions through a pattern field.</li>
+<li>If there is no technical reason to do otherwise – for instance, a pre-existing database column of smaller size – <code>maxLength</code> should be set to 255.
+  <code>minLength</code> should be set to 1 to prevent clients sending the empty string.</li>
+<li>All possible values of an enum field <strong>SHOULD</strong> be precisely defined in the documentation.
+  If there is not enough space in the description field to do so, you <strong>SHOULD</strong> use the API’s user guide to define them.</li>
+</ul>
+<p>Given below is the JSON snippet for enforcing naming conventions and length constraints.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;string&quot;,
+  &quot;minLength&quot;: 1,
+  &quot;maxLength&quot;: 255,
+  &quot;pattern&quot;: &quot;^[0-9A-Z_]+\$&quot;,
+  &quot;description&quot;: &quot;A description of the field. The possible values are OPTION_ONE and OPTION_TWO.&quot;
+}
+</code></pre>
+<h4 id="number">Number</h4>
+<p>There are a number of difficulties associated with number type in JSON.</p>
+<p>JSON itself defines a number very simply: it is an unbounded, fixed-point value.
+This is illustrated well by the railroad diagram for number at <a href="http://json.org/">JSON</a>.
+There is only one number type in JSON; there is no separate integer type.</p>
+<p>JSON Schema diverges from JSON and defines two number types: number and integer.
+This is purely a convenience for schema validation; the JSON number type is used to implement both.
+Just as in JSON, both types are unbounded unless the schema author provides explicit minimum and maximum values.</p>
+<p>Many programming languages do not safely handle unbounded values in JSON.
+JavaScript is an excellent example.
+A JSON deserializer is provided as part of the <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript</a> specification.
+However, it requires that all JSON numbers are deserialized into the only number type supported by JavaScript – 64-bit floating point.
+This means that attempting to deserialize any JSON number larger than about 2<sup>53</sup> in a JavaScript client will result in an exception.</p>
+<p>To ensure the greatest degree of cross-client compatibility possible, schema authors <strong>SHOULD</strong>:</p>
+<ul>
+<li>Never use the JSON Schema number type.
+  Some languages may interpret it as a fixed-point value, and some as floating-point.
+  Always use string to represent a decimal value.</li>
+<li>Only define integer types for values that can be represented in a 32-bit signed integer, that is to say, values between ((2<sup>31</sup>) - 1) and -(2<sup>31</sup>).
+  This ensures compatibility across a wide range of programming languages and circumstances.
+  For example, array indices in JavaScript are signed 32-bit integers.</li>
+<li>When using an integer type, always provide an explicit minimum and a maximum.
+  This not only allows backwards-incompatible changes to be detected, it also guarantees that all values can fit in a 32-bit signed integer.
+  If there are no technical reasons to do otherwise, the maximum and minimum should be defined as 2147483647 (((2<sup>31</sup>) - 1)) and -2147483648 (-(2<sup>31</sup>)) or 0 respectively.
+  Common sense should be used to determine whether to allow negative values.</li>
+<li>Business logic that could change in the future generally <strong>SHOULD NOT</strong> be used to determine boundaries; business rules can easily change and break backwards compatibility.</li>
+</ul>
+<p>If there is any possibility that the value could not be represented by a signed 32-bit integer, now or in the future, not use the JSON Schema integer type.
+Use a string instead.</p>
+<h5 id="examples">Examples:</h5>
+<p>This integer type might be used to define an array index or page count, or perhaps the number of months an account has been open.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;integer&quot;,
+  &quot;minimum&quot;: 0,
+  &quot;maximum&quot;: 2147483647
+}
+</code></pre>
+<p>When using a string type to represent a number, authors <strong>MUST</strong> provide boundaries on size using <code>minLength</code> and <code>maxLength</code>, and constrain the definition of the string to only represent numbers using pattern.</p>
+<p>For example, this definition only allows positive integers and zero, with a maximum value of 999999:</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;string&quot;,
+  &quot;pattern&quot;: &quot;^[0-9]+\$&quot;,
+  &quot;minLength&quot;: 1,
+  &quot;maxLength&quot;: 6
+}
+</code></pre>
+<p>The following definition allows the representation of fixed-point decimal values both positive or negative, with a maximum length of 32 and no requirements on scale:</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;string&quot;,
+  &quot;pattern&quot;: &quot;^(-?[0-9]+|-?([0-9]+)?[.][0-9]+)$&quot;,
+  &quot;maxLength&quot;: 32,
+  &quot;minLength&quot;: 1,
+}
+</code></pre>
+<h4 id="array">Array</h4>
+<p>JSON defines an array as unbounded.
+Although practical limits are often much lower due to memory constraints, many programming languages do place maximum theoretical limits on the size of arrays.
+For example, JavaScript is limited to the length of a 32-bit unsigned integer by the ECMA-262 specification.
+Java is <a href="https://stackoverflow.com/questions/3038392/do-java-arrays-have-a-maximum-size#3039805">limited to about Integer.MAX_VALUE - 8</a>, which is less than half of JavaScript.</p>
+<p>To ensure maximum compatibility across languages and encourage paginated APIs, <code>maxItems</code> <strong>SHOULD</strong> always be defined by schema authors.
+<code>maxItems</code> <strong>SHOULD NOT</strong> have a value greater than can be represented by a 16-bit signed integer, in other words, 32767 or (2<sup>15</sup>) - 1).</p>
+<p>Note that developers <strong>MAY</strong> choose to set a smaller value; the value 32767 is a default choice to be used when no better choice is available.
+However, developers <strong>SHOULD</strong> design their API for growth.</p>
+<p>For example, although a paginated API may only support a maximum of 100 results per page today, performance improvements may allow developers to improve that to 1,000 results next year.
+Therefore, <code>maxItems</code> <strong>SHOULD NOT</strong> be used to communicate maximum page size.
+<code>minItems</code> <strong>SHOULD</strong> also be defined.
+In most situations, its value will be either 0 or 1.</p>
+<h4 id="null">Null</h4>
+<p>APIs <strong>MUST NOT</strong> produce or consume null values.</p>
+<p><code>null</code> is a primitive type in JSON.
+When validating a JSON document against JSON Schema, a property’s value can be nullonly when it is explicitly allowed by the schema, using the type keyword (e.g. <code>{"type": "null"}</code>).
+Since in an API type will always need to be defined to some other value such as object or string, and these standards prohibit using schema composition keywords such as anyOf or oneOf that allow multiple types, if an API produces or consumes null values, it is unlikely that, according to the API’s own schemas, this is actually valid data.</p>
+<p>In addition, in JSON, a property that doesn’t exist or is missing in the object is considered to be undefined; this is conceptually separate from a property that is defined with a value of null, but many programming languages have difficulty drawing this distinction.
+For example, a property my_property defined as <code>{"type": "null"}</code> is represented as</p>
+<pre><code class="language-json">{
+  &quot;myProperty&quot;: null
+}
+</code></pre>
+<p>While a property that is undefined would not be present in the object:</p>
+<pre><code class="language-json">{ }
+</code></pre>
+<p>In most strongly typed languages, such as Java, there is no concept of an undefined type, which means that for all undefined fields in a JSON object, a deserializer would return the value of such types as null when you try to retrieve them.
+Similarly, some Java-based JSON serializers serialize fields to JSON null by default, even though it is not possible for the serializer to determine whether the author of the Java object intended for that property to be defined with a value of null, or simply undefined.
+In Jackson, for example, this behavior is moderated through use of the <a href="https://fasterxml.github.io/jackson-annotations/javadoc/2.8/com/fasterxml/jackson/annotation/JsonInclude.html">JsonInclude</a> annotation.</p>
+<p>On the other hand, the <code>org.json</code> library defines an object called NULL to distinguish between null and undefined.</p>
+<p>Eschewing JSON null completely helps avoid many of these subtle cross-language compatibility traps.</p>
+<h4 id="additional-properties">Additional Properties</h4>
+<p>Setting of <a href="http://json-schema.org/latest/json-schema-validation.html#anchor134">additionalProperties</a> to false in schema objects breaks backward compatibility in those clients that use an API’s JSON schemas (defined by its contract) to validate the API requests and responses.
+For the same reason, the schema author <strong>MUST</strong> not explicitly set the <code>additionalProperties</code> to false.</p>
+<p>The API implementation <strong>SHOULD</strong> instead enforce the conformance of requests and responses to an API contract by hard validating the requests and responses against the defined API contract at run-time.</p>
+<h3 id="common-types">Common Types</h3>
+<p>Resource representations in API <strong>MUST</strong> reuse the <a href="http://json-schema.org/draft/2020-12/json-schema-core.html">common data type</a> definitions where possible.
+The following sections provide some details about some of these common types.</p>
+<h4 id="quantity">Quantity</h4>
+<p>Future-proof quantities by including a unit-of-measure (UOM).
+It is recommended to adopt a standard set of measurement unit representations, for example <a href="https://ucum.org">UCUM</a>.</p>
+<pre><code class="language-json">{
+  &quot;amount&quot;: &quot;4.093&quot;,
+  &quot;uom&quot;: &quot;lbs&quot;
+}
+</code></pre>
+<h4 id="address">Address</h4>
+<p>We recommend using <a href="https://schema.org/address">address</a> for all requirements related to address.
+The <code>address</code> is</p>
+<ul>
+<li>backward compatible with <a href="http://www.htmlandcssbook.com/extras/introduction-to-hcard/">hCard</a> address microformats,</li>
+<li>forward compatible with Google open-source address validation metadata (i18n-api) and W3 HTML5.1 autofill fields,</li>
+<li>allows mapping to and from many address normalization services (ANS) such as AddressDoctor.</li>
+</ul>
+<p>Please refer to <a href="http://swagger.io/specification/#schemaObject">README for Address</a> for more details about the address type, guidance on how to map it to i18n-api’s address and W3 HTML5.1’s autofill fields.</p>
+<h4 id="money">Money</h4>
+<p>Money is a standard type to represent amounts.
+The Common Type <a href="https://schema.org/MonetaryAmount">MonetaryAmount</a> provides common definition of money.</p>
+<p>Data-type integrity rules:</p>
+<ul>
+<li>Both <code>currency</code> and <code>value</code> <strong>MUST</strong> exist for this type to be valid.</li>
+<li>Some currencies such as “JPY” do not have sub-currency, which means the decimal portion of the value should be “.0”.</li>
+<li>An amount <strong>MUST NOT</strong> be negative.
+  For example a $5 bill is never negative.
+  Negative or positive is an internal notion in association with a particular account/transaction and in respect of the type of the transaction performed.</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;value&quot;: &quot;210.93&quot;,
+  &quot;currency&quot;: &quot;USD&quot;
+}
+</code></pre>
+<h4 id="percentage-interest-rate-or-apr">Percentage, Interest rate, or APR</h4>
+<p>Percentages and interest rates are very common when dealing with money.
+One of the most common examples is annual percentage rate, or APR.
+These interest rates <strong>SHOULD</strong> always be represented according to the following rules:</p>
+<ul>
+<li>The Common Type <a href="https://schema.org/annualPercentageRate">annualPercentageRate</a> <strong>MUST</strong> be used.
+  This ensures that the rate is represented as a fixed-point decimal.</li>
+<li>All validation rules defined in the type <strong>MUST</strong> be followed.</li>
+<li>The value <strong>MUST</strong> be represented as a percentage.</li>
+<li>Example: if the interest rate is 19.99%, the value returned by the API <strong>MUST</strong> be 19.99.</li>
+<li>The field’s JSON schema description field <strong>SHOULD</strong> inform clients how the representation works.</li>
+<li>Example: “The interest rate is represented as a percentage.
+  For example, an interest rate of 19.99% would be serialized as 19.99.”</li>
+<li>It is the responsibility of the client to transform this value into a format suitable for display to the end-user.
+  For example, some countries use the comma ( , ) as a decimal separator instead of the period ( . ).
+  Services <strong>MUST NOT</strong> vary the format of values passed to or from a service based on end-user display concerns.</li>
+</ul>
+<h4 id="internationalization">Internationalization</h4>
+<p>The following common types <strong>MUST</strong> be used with regard to global country, currency, language and locale.</p>
+<ul>
+<li>Country code - All APIs and services <strong>MUST</strong> use the <a href="http://www.iso.org/iso/country_codes.htm">ISO 3166-1 alpha-2</a> two letter country code standard.</li>
+<li>Currency code - Currency type <strong>MUST</strong> use the three letter currency code as defined in <a href="http://www.currency-iso.org/">ISO 4217</a>.
+  For quick reference on currency codes, see http://en.wikipedia.org/wiki/ISO_4217.</li>
+<li>Language code - Language type uses <a href="https://tools.ietf.org/html/bcp47">BCP-47</a> language tag.</li>
+<li>Locale code - Locale type defines the concept of locale, which is composed of country_code and language.
+  Optionally, IANA timezone can be included to further define the locale.</li>
+<li>Province code - Province type provides detailed definition of province or state, based on <a href="https://en.wikipedia.org/wiki/ISO_3166-2">ISO-3166-2</a> country subdivisions, with room for variant local, international, and abbreviated representations of province names.
+  Useful for logistics, statistics, and building state pull-downs for on-boarding.</li>
+</ul>
+<h4 id="date-time-and-timezone">Date, Time and Timezone</h4>
+<p>When dealing with date and time, all APIs <strong>MUST</strong> conform to the following guidelines.</p>
+<ul>
+<li>The date and time string <strong>MUST</strong> conform to the date-time universal format defined in section 5.6 of <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a>.
+  In use cases where you would require only a subset of the fields (e.g full-date or full-time) from the RFC3339 date-timeformat, you <strong>SHOULD</strong> use the Date Time Common Types to express these.</li>
+<li>All APIs <strong>MUST</strong> only emit <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a> time (aka <a href="https://en.wikipedia.org/wiki/List_of_military_time_zones">Zulu time</a> or <a href="https://en.wikipedia.org/wiki/Greenwich_Mean_Time">GMT</a>) in the responses.</li>
+<li>When processing requests, an API <strong>SHOULD</strong> accept date-time or time fields that contain an offset from UTC.
+  For example, 2016-09-28T18:30:41.000+05:00 <strong>SHOULD</strong> be accepted as equivalent to 2016-09-28T13:30:41.000Z.
+  This helps ensure compatibility with third parties who may not be capable of normalizing values to UTC before sending requests.
+  In such cases the offset <strong>SHOULD</strong> only be used to calculate the equivalent UTC time before it is persisted in the system (because of known platform/language/DB interoperability issues).
+  A UTC offset <strong>MUST NOT</strong> be used to derive anything else.</li>
+<li>If the business logic requires expressing the timezone of an event, it is <strong>RECOMMENDED</strong> that you capture the timezone explicitly by using a separate request/response field.
+  You <strong>SHOULD NOT</strong> use offset to derive the timezone information.
+  The offset alone is insufficient to accurately transform the stored UTC time back to a local time later.
+  The reason is that a UTC offset might be same for many geographical regions and based on the time of the year there may be additional factors such as daylight savings.
+  For example, an offset UTC-05:00 represents Eastern Standard Time during winter, Central Dayight Time during summer, and year-round offset for Panama, Columbia, and Peru.</li>
+<li>The timezone string <strong>MUST</strong> be per <a href="https://www.iana.org/time-zones">IANA timezone database</a> (aka Olson database or tzdata or zoneinfo database), for example America/Los_Angeles for Pacific Time, or Europe/Berlin for Central European Time.</li>
+<li>When expressing <a href="https://www.w3.org/International/wiki/FloatingTime">floating</a> time values that are not tied to specific time zones such as user’s date of birth, expiry date, publication date etc.
+  in requests or responses, an API <strong>SHOULD NOT</strong> associate it with a timezone.
+  The reason is that a UTC offset changes the meaning of a floating time value.
+  For example, all countries with timezones west of prime meridian would consider a floating time value to be the previous day.</li>
+</ul>
+<h4 id="date-time-common-types">Date Time Common Types</h4>
+<p>The following common formats <strong>MUST</strong> be used to express various date-time formats in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> standard formats:</p>
+<ul>
+<li><code>YYYY-MM-DD'T'hh:mm:ss.nnnZ</code> <strong>SHOULD</strong> be used to express an RFC3339 date-time.</li>
+<li><code>YYYY-MM-DD</code> <strong>SHOULD</strong> be used to express full-date from RFC 3339.</li>
+<li><code>hh:mm:ss.nnnZ</code> <strong>SHOULD</strong> be used to express full-time from RFC3339.</li>
+<li><code>YYYY-MM</code> <strong>SHOULD</strong> be used to express a floating date that contains only the month and year.
+  For example, card expiry date (2016-09).</li>
+<li>Time zone code <strong>MUST</strong> be used for expressing timezone of a RFC3339 date-time or a full-time field.</li>
+</ul>
+<h3 id="enumerated-codes">Enumerated Codes</h3>
+<p>Provide human-readable descriptions, as well as machine-readable codes.</p>
+<pre><code class="language-json">{
+  &quot;shippingMethod&quot;: {
+    &quot;code&quot;: &quot;02&quot;,
+    &quot;description&quot;: &quot;Road Del Unmtr/Pkg 送货&quot;
+  }
+}
+</code></pre>
+<h3 id="i18n-enumerated-codes">I18n Enumerated Codes</h3>
+<p>Provide internationalized human-readable descriptions, as well as machine-readable codes</p>
+<pre><code class="language-json">{
+  &quot;shippingMethod&quot;: {
+    &quot;code&quot;: &quot;02&quot;,
+    &quot;description&quot;: {
+      &quot;en&quot;: &quot;Road Del Unmtr/Pkg&quot;,
+      &quot;jp&quot;: &quot;送货&quot;
+    }
+  }
+}
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

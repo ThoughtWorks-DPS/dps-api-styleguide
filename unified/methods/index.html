@@ -1,0 +1,1155 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../service-principles/">
+      
+      
+        <link rel="next" href="../resources/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Methods, Headers, and Statuses - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#http-methods-headers-and-statuses" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Methods, Headers, and Statuses
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Methods, Headers, and Statuses
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Methods, Headers, and Statuses
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-resources-and-http-methods" class="md-nav__link">
+    Data Resources And HTTP Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Resources And HTTP Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-capabilities-and-resource-modeling" class="md-nav__link">
+    Business Capabilities and Resource Modeling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-methods" class="md-nav__link">
+    HTTP Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing" class="md-nav__link">
+    Processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    Data Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serialization" class="md-nav__link">
+    Serialization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-and-output-strictness" class="md-nav__link">
+    Input and Output Strictness
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-header-policies" class="md-nav__link">
+    HTTP Header Policies
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Header Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    Assumptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policies" class="md-nav__link">
+    Policies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-standard-headers" class="md-nav__link">
+    HTTP Standard Headers
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Standard Headers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accept" class="md-nav__link">
+    Accept
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accept-charset" class="md-nav__link">
+    Accept-Charset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-language" class="md-nav__link">
+    Content-Language
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-type" class="md-nav__link">
+    Content-Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    Link
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    Location
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefer" class="md-nav__link">
+    Prefer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etag" class="md-nav__link">
+    ETag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-match" class="md-nav__link">
+    If-Match
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-custom-headers" class="md-nav__link">
+    HTTP Custom Headers
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Custom Headers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-key" class="md-nav__link">
+    Idempotency-Key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-header-propagation" class="md-nav__link">
+    HTTP Header Propagation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-resources-and-http-methods" class="md-nav__link">
+    Data Resources And HTTP Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Resources And HTTP Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-capabilities-and-resource-modeling" class="md-nav__link">
+    Business Capabilities and Resource Modeling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-methods" class="md-nav__link">
+    HTTP Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing" class="md-nav__link">
+    Processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    Data Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serialization" class="md-nav__link">
+    Serialization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-and-output-strictness" class="md-nav__link">
+    Input and Output Strictness
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-header-policies" class="md-nav__link">
+    HTTP Header Policies
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Header Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    Assumptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policies" class="md-nav__link">
+    Policies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-standard-headers" class="md-nav__link">
+    HTTP Standard Headers
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Standard Headers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accept" class="md-nav__link">
+    Accept
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accept-charset" class="md-nav__link">
+    Accept-Charset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-language" class="md-nav__link">
+    Content-Language
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-type" class="md-nav__link">
+    Content-Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    Link
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    Location
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefer" class="md-nav__link">
+    Prefer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etag" class="md-nav__link">
+    ETag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-match" class="md-nav__link">
+    If-Match
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-custom-headers" class="md-nav__link">
+    HTTP Custom Headers
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Custom Headers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-key" class="md-nav__link">
+    Idempotency-Key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-header-propagation" class="md-nav__link">
+    HTTP Header Propagation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="http-methods-headers-and-statuses">HTTP Methods, Headers, and Statuses</h1>
+<hr />
+<h2 id="data-resources-and-http-methods">Data Resources And HTTP Methods</h2>
+<p>Various business capabilities of an organization are exposed through APIs as a set of resources.</p>
+<h3 id="business-capabilities-and-resource-modeling">Business Capabilities and Resource Modeling</h3>
+<p>Functionality <strong>MUST NOT</strong> be duplicated across APIs.
+Resources (e.g. user account, credit card, etc.) are expected to be re-used as needed across use-cases.</p>
+<h3 id="http-methods">HTTP Methods</h3>
+<p>Most services will fall easily into the standard data resource model where primary operations can be represented by the acronym CRUD (Create, Read, Update, and Delete).
+These map very well to standard HTTP verbs.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>To retrieve a resource.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>To create a resource, or to execute a complex operation on a resource.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>To delete a resource.</td>
+</tr>
+<tr>
+<td>PATCH*</td>
+<td>To perform a partial update to a resource.</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>To update a resource.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>NOTE: We recommend against using PATCH because of the potential complications arising from the semantics and race conditions of a partial record update.
+In general, we prefer using PUT to ensure atomic updates to a resource, and matching version numbers or last-updated timestamps to avoid race conditions. </p>
+</blockquote>
+<h3 id="processing">Processing</h3>
+<p>The actual operation invoked <strong>MUST</strong> match the HTTP method semantics as defined in the table above.</p>
+<ul>
+<li>The GET method <strong>MUST NOT</strong> have side effects.</li>
+<li>It <strong>MUST NOT</strong> change the state of an underlying resource.</li>
+<li>The POST method <strong>SHOULD</strong> be used to create a new resource in a collection.
+Example: To add a credit card on file, <code>POST https://api.example.com/v1/vault/credit-cards</code></li>
+<li>Idempotency semantics: If this is a subsequent execution of the same invocation (including the <code>Idempotency-Key</code> header) and the resource was already created, then the request <strong>SHOULD</strong> be idempotent.</li>
+<li>The POST method <strong>SHOULD</strong> be used to create a new sub-resource and establish its relationship with the main resource.
+Example: To refund a payment with transaction ID 12345: <code>POST https://api.example.com/v1/payments/12345/refund</code></li>
+<li>The POST method <strong>MAY</strong> be used in complex operations, along with the name of the operation.
+This is also known as the <a href="https://learning.oreilly.com/library/view/RESTful+Web+Services+Cookbook/9780596809140/ch01.html#recipe-when-to-use-custom-http-methods">controller pattern</a> and is considered an exception to the RESTful model.
+It is more applicable in cases when resources represent a business process, and operations are the steps or actions to be performed as part of it.
+For more information, please refer to <a href="https://learning.oreilly.com/library/view/RESTful+Web+Services+Cookbook/9780596809140/ch02.html#recipe-how-to-use-controllers">section 2.6</a> of the <a href="https://learning.oreilly.com/library/view/RESTful+Web+Services+Cookbook/9780596809140">RESTful Web Services Cookbook</a>.</li>
+<li>The PUT method <strong>SHOULD</strong> be used to update resource attributes or to establish a relationship from a resource to an existing sub-resource; it updates the main resource with a reference to the sub-resource.</li>
+</ul>
+<p>Unless otherwise noted, request and response bodies <strong>MUST</strong> be sent using <a href="http://json.org/">JavaScript Object Notation (JSON)</a>.
+JSON is a light-weight data representation for an object composed of unordered key-value pairs.
+JSON can represent four primitive types (strings, numbers, booleans, and null) and two structured types (objects and arrays).
+When processing an API method call, the following guidelines <strong>SHOULD</strong> be followed.</p>
+<h3 id="data-model">Data Model</h3>
+<p>The data model for representation <strong>MUST</strong> conform to the JSON Data Interchange Format as described in <a href="https://tools.ietf.org/html/rfc7159">RFC 7159</a>.</p>
+<h3 id="serialization">Serialization</h3>
+<ul>
+<li>Resource endpoints <strong>MUST</strong> support <code>application/json</code> as content type.</li>
+<li>If an <code>Accept</code> header is sent and <code>application/json</code> is not an acceptable response, a <code>406 Not Acceptable</code> error <strong>MUST</strong> be returned.</li>
+</ul>
+<h3 id="input-and-output-strictness">Input and Output Strictness</h3>
+<p>APIs <strong>MUST</strong> be strict in the information they produce, and they <strong>SHOULD</strong> be strict in what they consume as well.</p>
+<p>Since we are dealing with programming interfaces, we need to avoid guessing the meaning of what is being sent to us as much as possible.
+Given that integration is typically a one-time task for a developer and we provide good documentation, we need to be strict with using the data that is being received.
+<a href="https://en.wikipedia.org/wiki/Robustness_principle">Postel’s law</a> must be weighed against the many dangers of permissive parsing.</p>
+<p>In order to improve developer experience, the APIs <strong>SHOULD</strong> provide feedback if we don’t understand the fields that the user is sending us.</p>
+<h2 id="http-header-policies">HTTP Header Policies</h2>
+<p>The purpose of HTTP headers is to provide metadata information about the body or the sender of the message in a uniform, standardized, and isolated way.</p>
+<h3 id="assumptions">Assumptions</h3>
+<p>Service Consumers and Service Providers:</p>
+<ul>
+<li><strong>SHOULD NOT</strong> expect that a particular HTTP header is available.
+  It is possible that an intermediary component in the call chain can drop an HTTP header.
+  This is the reason business logic <strong>SHOULD NOT</strong> be based on HTTP headers.</li>
+<li><strong>SHOULD NOT</strong> assume the value of a header has not been changed as part of HTTP message transmission.</li>
+</ul>
+<p>Infrastructure Components (Web-services framework, Client invocation library, Enterprise Service Bus (ESB), Load Balancers (LB), etc.
+involved in HTTP message delivery):</p>
+<ul>
+<li><strong>MAY</strong> return an error based on availability and validity of a particular header without transmitting the message forward.
+  For example, an authentication or authorization error for a request based on client identity and credentials.</li>
+<li><strong>MAY</strong> add, remove, or change a value of an HTTP header.</li>
+</ul>
+<h3 id="policies">Policies</h3>
+<p>The guidelines below should be applied when adding HTTP headers to client requests or server responses.</p>
+<ul>
+<li>If available, HTTP standard headers <strong>MUST</strong> be used instead of creating a custom header.</li>
+<li>HTTP header names are NOT case sensitive.</li>
+<li>HTTP headers <strong>SHOULD</strong> only be used for the purpose of handling cross-cutting concerns such as Authorization.</li>
+<li>API implementations <strong>SHOULD NOT</strong> introduce or depend on headers.</li>
+<li>API implementations <strong>MUST NOT</strong> use headers in a way that changes the behaviour of HTTP methods</li>
+<li>API implementations <strong>MUST NOT</strong> use headers to communicate business logic or service logic (e.g. paging response info, PII query parameters)</li>
+</ul>
+<h3 id="http-standard-headers">HTTP Standard Headers</h3>
+<p>These are headers defined or referenced from HTTP/1.1 specification (<a href="http://tools.ietf.org/html/rfc7231#page-33">RFC 7231</a>).
+Their purpose, syntax, values, and semantics are well-defined and understood by many infrastructure components.</p>
+<h4 id="accept"><code>Accept</code></h4>
+<p>This request header specifies the media types that the API client is capable of handling in the response.
+Systems issuing the HTTP request <strong>SHOULD</strong> send this header.
+Systems handling the request <strong>SHOULD</strong> NOT assume it is available.</p>
+<p>It is assumed throughout these API guidelines that APIs accept <code>application/json</code>.</p>
+<h4 id="accept-charset"><code>Accept-Charset</code></h4>
+<p>This request header specifies what character sets the API client is capable of handling in the response.
+The value of <code>Accept-Charset</code> <strong>SHOULD</strong> include utf-8.</p>
+<h4 id="content-language"><code>Content-Language</code></h4>
+<p>This request/response header is used to specify the language of the content.
+The default locale is en-US.
+API clients <strong>SHOULD</strong> identify the language of the data using Content-Language header.
+APIs <strong>MUST</strong> provide this header in the response.</p>
+<p>Example:
+<code>Content-Language: en-US</code></p>
+<h4 id="content-type"><code>Content-Type</code></h4>
+<p>This request/response header indicates the media type of the request or response body.</p>
+<ul>
+<li>API client <strong>MUST</strong> include with request if the request contains a body, e.g. it is a POST request.</li>
+<li>API developer <strong>MUST</strong> include it with response if a response body is included (not used with 204 responses).</li>
+<li>If the content is a text-based type, such as JSON, the <code>Content-Type</code> <strong>MUST</strong> include a character-set parameter.</li>
+<li>The character-set <strong>MUST</strong> be <code>UTF-8</code>.</li>
+<li>The only supported media type for now is application/json.</li>
+</ul>
+<p>Example:</p>
+<p>(in HTTP request) <code>Accept: application/json; Accept-Charset: utf-8</code></p>
+<p>(in HTTP response) <code>Content-Type: application/json; charset=utf-8</code></p>
+<h4 id="link"><code>Link</code></h4>
+<p>According to Web Linking <a href="https://tools.ietf.org/html/rfc5988">RFC 5988</a>, a link is a typed connection between two resources that are identified by Internationalised Resource Identifiers (IRIs).
+The Link <code>entity-header</code> field provides a means for serializing one or more links in HTTP headers.</p>
+<p>APIs <strong>SHOULD</strong> be built with a design assumption that neither an API, nor an API client’s business logic should depend on information provided in the headers.
+Headers must only be used to carry cross-cutting concern information such as security, traceability, monitoring, etc.
+Therefore, usage of the Link header is prohibited with response codes 201 or 3xx.
+Consider using <a href="../hypermedia/">HATEOAS</a> links in the response body instead.</p>
+<h4 id="location"><code>Location</code></h4>
+<p>This <code>response-header</code> field is used to redirect the recipient to a location other than the Request-URI for completion of the request or identification of a new resource.</p>
+<p>APIs <strong>SHOULD</strong> be built with a design assumption that neither an API, nor an API client’s business logic should depend on information provided in the headers.
+Headers must only be used to carry cross-cutting concern information such as security, traceability, monitoring, etc.</p>
+<p>Therefore, usage of the Location header is prohibited with response codes 201 or 3xx.
+Consider using <a href="../hypermedia/">HATEOAS</a> links in the response body instead.</p>
+<h4 id="prefer"><code>Prefer</code></h4>
+<p>The <a href="https://tools.ietf.org/html/rfc7240">Prefer</a> request header field is used to indicate that a particular server behavior(s) is preferred by the client but is not required for successful completion of the request.
+It is an end to end field and <strong>MUST</strong> be forwarded by a proxy if the request is forwarded unless <code>Prefer</code> is explicitly identified as being hop by hop using the Connection header field.
+Following token values are possible to use for APIs provided an API documentation explicitly indicates support for <code>Prefer</code>.</p>
+<p><code>Prefer: respond-async</code>: API client prefers that API server processes its request asynchronously.</p>
+<p>Server returns a <code>202 Accepted</code> response and processes the request asynchronously.
+API server could use a webhook to inform the client subsequently, or the client may call GET to get the response at a later time.
+Refer to Asynchronous Operations for more details.</p>
+<p><code>Prefer: read-consistent</code>: API client prefers that API server returns response from a durable store with consistent data.
+For APIs that are not offering any optimization preferences for their clients, this behavior would be the default and it would not require the client to set this token.</p>
+<p><code>Prefer: read-eventual-consistent</code>: API client prefers that API server returns response from either cache or presumably eventually consistent datastore if applicable.
+If there is a miss in finding the data from either of these two types of sources, the API server might return response from a consistent, durable datastore.</p>
+<p><code>Prefer: read-cache</code>: API client prefers that API server returns response from cache if available.
+If the cache hit is a miss, the server could return response from other sources such as eventual consistent datastore or a consistent, durable datastore.</p>
+<p><code>Prefer: return=representation</code>: API client prefers that API server include an entity representing the current state of the resource in the response to a successful request.
+This preference is intended to provide a means of optimizing communication between the client and server by eliminating the need for a subsequent GET request to retrieve the current representation of the resource following a creation (POST) modification operation (PUT or PATCH).</p>
+<p><code>Prefer: return=minimal</code>: API client indicates that the server returns only a minimal response to a successful request.
+The determination of what constitutes an appropriate “minimal” response is solely at the discretion of the server.</p>
+<h4 id="etag"><code>ETag</code></h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag">Entity tags (ETag)</a> is a good approach to make update requests idempotent.
+ETags are generated by the server based on the current resource representation.</p>
+<h4 id="if-match"><code>If-Match</code></h4>
+<p>Using the <code>If-Match</code> header with the current <code>ETag</code> value representing the current resource state allows the server to provide idempotent operations and avoid race conditions.
+The server would only execute the update if the <code>If-Match</code> value matches current <code>ETag</code> for the resource.</p>
+<h3 id="http-custom-headers">HTTP Custom Headers</h3>
+<p>There are instances where custom headers may be required to send additional information such as a Correlation Id or Request Id to the server/client.
+With respect to HTTP custom header naming conventions, the X- prefix has been deprecated (see <a href="https://tools.ietf.org/html/rfc6648">RFC 6648</a>) and it is now recommended to simply name custom headers with something of relevance without the X- prefix, for example;</p>
+<pre><code>Idempotency-Key: cf172aa2-fddf-11ea-adc1-0242ac120002
+</code></pre>
+<h4 id="idempotency-key"><code>Idempotency-Key</code></h4>
+<p>API consumers <strong>MAY</strong> choose to send this header with a unique ID identifying the request header for tracking purpose.</p>
+<p>Such a header can be used internally for logging and tracking purpose too.
+It is <strong>RECOMMENDED</strong> to send this header back as a response header if response is asynchronous or as request header of a webhook as applicable.</p>
+<h3 id="http-header-propagation">HTTP Header Propagation</h3>
+<p>When services receive request headers, they <strong>MUST</strong> pass on relevant custom headers in addition to the HTTP standard headers in requests/messages dispatched to secondary systems.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

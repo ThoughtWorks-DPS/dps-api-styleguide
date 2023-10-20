@@ -1,0 +1,1958 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../resources/">
+      
+      
+        <link rel="next" href="../naming-conventions/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Controller Resources - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#controller-resources" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Controller Resources
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Controller Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Controller Resources
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#risks" class="md-nav__link">
+    Risks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    Benefits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naming-of-a-controller-resource" class="md-nav__link">
+    Naming Of A Controller Resource
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-methods-for-controller-resources" class="md-nav__link">
+    HTTP Methods For Controller Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-status-codes-for-controller-resources" class="md-nav__link">
+    HTTP Status Codes For Controller Resources
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Status Codes For Controller Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#200-ok" class="md-nav__link">
+    200 OK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#201-created" class="md-nav__link">
+    201 Created
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#204-no-content" class="md-nav__link">
+    204 No Content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complex-operation-sub-resource" class="md-nav__link">
+    Complex Operation - Sub-Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Complex Operation - Sub-Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    Example Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-request-for-mixed-use-of-put" class="md-nav__link">
+    Example Request (for mixed use of PUT):
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complex-operation-composite" class="md-nav__link">
+    Complex Operation - Composite
+  </a>
+  
+    <nav class="md-nav" aria-label="Complex Operation - Composite">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_1" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_1" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_1" class="md-nav__link">
+    Example Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complex-operation-transient" class="md-nav__link">
+    Complex Operation - Transient
+  </a>
+  
+    <nav class="md-nav" aria-label="Complex Operation - Transient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_2" class="md-nav__link">
+    URI Template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-request_2" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_2" class="md-nav__link">
+    Example Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complex-operation-search" class="md-nav__link">
+    Complex Operation - Search
+  </a>
+  
+    <nav class="md-nav" aria-label="Complex Operation - Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    Pagination
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_3" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_3" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_3" class="md-nav__link">
+    Example Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource-oriented-alternative" class="md-nav__link">
+    Resource-Oriented Alternative
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-upload" class="md-nav__link">
+    File Upload
+  </a>
+  
+    <nav class="md-nav" aria-label="File Upload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standalone-operation" class="md-nav__link">
+    Standalone Operation
+  </a>
+  
+    <nav class="md-nav" aria-label="Standalone Operation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-file-upload-response" class="md-nav__link">
+    Sample file upload response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-request_4" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-attachment" class="md-nav__link">
+    As Attachment
+  </a>
+  
+    <nav class="md-nav" aria-label="As Attachment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-of-a-multipartrelated-request" class="md-nav__link">
+    Example of a multipart/related request:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hateoas-use-cases" class="md-nav__link">
+    HATEOAS Use Cases
+  </a>
+  
+    <nav class="md-nav" aria-label="HATEOAS Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#patterns" class="md-nav__link">
+    Patterns
+  </a>
+  
+    <nav class="md-nav" aria-label="Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-1-api-with-a-top-level-entry-point" class="md-nav__link">
+    Pattern 1: API with a top level entry point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-2-entry-point-for-complex-controller-style-operations" class="md-nav__link">
+    Pattern 2: Entry point for complex controller style operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-3-api-without-a-top-level-entry-point" class="md-nav__link">
+    Pattern 3: API without a top level entry point
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigating-a-collection" class="md-nav__link">
+    Navigating A Collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-resolution" class="md-nav__link">
+    Error Resolution
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Resolution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-controlled-flow" class="md-nav__link">
+    Service-controlled Flow
+  </a>
+  
+    <nav class="md-nav" aria-label="Service-controlled Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-pending-order" class="md-nav__link">
+    Example: Pending Order
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Pending Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_1" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-completed-order" class="md-nav__link">
+    Example: Completed Order
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Completed Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_2" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_2" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-operations" class="md-nav__link">
+    Asynchronous Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-bandwidth" class="md-nav__link">
+    Saving Bandwidth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#risks" class="md-nav__link">
+    Risks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    Benefits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naming-of-a-controller-resource" class="md-nav__link">
+    Naming Of A Controller Resource
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-methods-for-controller-resources" class="md-nav__link">
+    HTTP Methods For Controller Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-status-codes-for-controller-resources" class="md-nav__link">
+    HTTP Status Codes For Controller Resources
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Status Codes For Controller Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#200-ok" class="md-nav__link">
+    200 OK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#201-created" class="md-nav__link">
+    201 Created
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#204-no-content" class="md-nav__link">
+    204 No Content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complex-operation-sub-resource" class="md-nav__link">
+    Complex Operation - Sub-Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Complex Operation - Sub-Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    Example Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-request-for-mixed-use-of-put" class="md-nav__link">
+    Example Request (for mixed use of PUT):
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complex-operation-composite" class="md-nav__link">
+    Complex Operation - Composite
+  </a>
+  
+    <nav class="md-nav" aria-label="Complex Operation - Composite">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_1" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_1" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_1" class="md-nav__link">
+    Example Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complex-operation-transient" class="md-nav__link">
+    Complex Operation - Transient
+  </a>
+  
+    <nav class="md-nav" aria-label="Complex Operation - Transient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_2" class="md-nav__link">
+    URI Template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-request_2" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_2" class="md-nav__link">
+    Example Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complex-operation-search" class="md-nav__link">
+    Complex Operation - Search
+  </a>
+  
+    <nav class="md-nav" aria-label="Complex Operation - Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    Pagination
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_3" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_3" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_3" class="md-nav__link">
+    Example Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource-oriented-alternative" class="md-nav__link">
+    Resource-Oriented Alternative
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-upload" class="md-nav__link">
+    File Upload
+  </a>
+  
+    <nav class="md-nav" aria-label="File Upload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standalone-operation" class="md-nav__link">
+    Standalone Operation
+  </a>
+  
+    <nav class="md-nav" aria-label="Standalone Operation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-file-upload-response" class="md-nav__link">
+    Sample file upload response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-request_4" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-attachment" class="md-nav__link">
+    As Attachment
+  </a>
+  
+    <nav class="md-nav" aria-label="As Attachment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-of-a-multipartrelated-request" class="md-nav__link">
+    Example of a multipart/related request:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hateoas-use-cases" class="md-nav__link">
+    HATEOAS Use Cases
+  </a>
+  
+    <nav class="md-nav" aria-label="HATEOAS Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#patterns" class="md-nav__link">
+    Patterns
+  </a>
+  
+    <nav class="md-nav" aria-label="Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-1-api-with-a-top-level-entry-point" class="md-nav__link">
+    Pattern 1: API with a top level entry point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-2-entry-point-for-complex-controller-style-operations" class="md-nav__link">
+    Pattern 2: Entry point for complex controller style operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-3-api-without-a-top-level-entry-point" class="md-nav__link">
+    Pattern 3: API without a top level entry point
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigating-a-collection" class="md-nav__link">
+    Navigating A Collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-resolution" class="md-nav__link">
+    Error Resolution
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Resolution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-controlled-flow" class="md-nav__link">
+    Service-controlled Flow
+  </a>
+  
+    <nav class="md-nav" aria-label="Service-controlled Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-pending-order" class="md-nav__link">
+    Example: Pending Order
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Pending Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_1" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-completed-order" class="md-nav__link">
+    Example: Completed Order
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Completed Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_2" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_2" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-operations" class="md-nav__link">
+    Asynchronous Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-bandwidth" class="md-nav__link">
+    Saving Bandwidth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="controller-resources">Controller Resources</h1>
+<hr />
+<p>Controller (aka Procedural) resources challenge the fundamental notion or concept of resource orientation where resources usually represent mapping to a conceptual set of entities or things in a domain system.
+However, often API developers come across a situation where they are unable to model a service executing (part of) a business process as a pure RESTful service.
+Some examples of use cases for controller resources are:</p>
+<ul>
+<li>When it is required to execute a processing function on the server from a set of inputs (client provided input or based on data from the server's information store or from an external information store).</li>
+<li>When it is required to combine one or more operations and execute them in an <a href="https://en.wikipedia.org/wiki/Atomicity_(database_systems)">atomic</a> fashion (aka a composite controller operation).</li>
+<li>When you want to hide a multi-step business process operation from a client to avoid unnecessary coupling between a client and server.</li>
+</ul>
+<h2 id="risks">Risks</h2>
+<ul>
+<li>Design scalability<ul>
+<li>When overused, the number of URIs can grow very quickly, as all permutations of root-level action can increase rapidly over time.
+  This can also produce configuration complexity for routing/externalization.</li>
+<li>The URI cannot be extended past the action, which precludes any possibility of sub-resources.</li>
+</ul>
+</li>
+<li>Testability: highly compromised in comparison to Collection Resource oriented designs (due the lack of corresponding GET/read operations).</li>
+<li>History: the ability to retrieve history for the given actions is forced to live in another resource (e.g. <code>/action-resource-history</code>), or not at all.</li>
+</ul>
+<h2 id="benefits">Benefits</h2>
+<ul>
+<li>Avoids corrupting collection resource model with transient data (e.g. comments on state changes etc).</li>
+<li>Usability improvement: there are cases where a complex operation simplifies client interaction, where the client does not benefit from resource retrieval.</li>
+</ul>
+<p>For further reading on controller concepts, please refer to section 2.6 of the <a href="http://techbus.safaribooksonline.com/book/web-development/web-services/9780596809140">RESTful Web Services Cookbook</a>.
+Below are the set of guidelines for modelling controller resources.</p>
+<h2 id="naming-of-a-controller-resource">Naming Of A Controller Resource</h2>
+<p>Because a controller operation represents an action or a processing function in the server, it is more intuitive to express it using an English verb, i.e. the action itself as the resource name.</p>
+<p>Verbs such as 'activate', 'cancel', 'validate', 'accept', and 'deny' are usual suspects.
+There are many style options from which you can choose to define a controller resource.</p>
+<ul>
+<li>If the controller action is not associated with any resource context, you can express it as an independent resource at the namespace level (<code>/v1/credit/assess-eligibility</code>).
+This is typically only applicable for creating a variety of resources in an optimized operation.
+However, this is usually an anti-pattern.</li>
+<li>If the controller action is always in the context of a parent resource, then it should be expressed as a sub-resource (using a /) of the parent resource (e.g. <code>v1/identity/external-profiles/{id}/confirm</code>).</li>
+<li>When an action is in the context of a collection resource, express it as an independent resource at the namespace level.
+The controller resource name in such cases <strong>SHOULD</strong> be composed of the action (an English verb) that the controller represent and the name of the collection resource.
+For example, if you want to express a search operation for deposits, the controller resource <strong>SHOULD</strong> read as <code>v1/customer/search-deposits</code>.</li>
+</ul>
+<blockquote>
+<p>NOTE: A controller action is a terminal resource.
+A sub-resource for a controller resource is thus invalid.
+For this reason, you <strong>SHOULD NOT</strong> define a sub-resource to a controller resource.
+It is also important to scope a controller to the minimum possible level of nesting in order to avoid resource pollution as such resources are use-case or action centric.</p>
+</blockquote>
+<h2 id="http-methods-for-controller-resources">HTTP Methods For Controller Resources</h2>
+<p>In general, for most cases the HTTP POST method <strong>SHOULD</strong> be used as the default method for executing a controller operation.</p>
+<p>In scenarios where it is desired that the response of a controller operation be cache-able, GET <strong>SHOULD</strong> be used to execute the controller.
+For example, you can use a GET operation (<code>GET /calculate-shortest-path?from=x &amp;to=y</code>) to calculate the shortest path between two nodes (origin and destination).
+The result of the GET operation is a collection of routes and their maps, and ideally you would like to cache the map for future use (<code>GET /retrieve</code>).</p>
+<h2 id="http-status-codes-for-controller-resources">HTTP Status Codes For Controller Resources</h2>
+<p>In general, the following response codes can be used for a controller operation.</p>
+<h3 id="200-ok"><code>200 OK</code></h3>
+<p>This is the default status code for any controller operation.
+The response <strong>MUST</strong> contain a body that describes the result of a controller operation.</p>
+<h3 id="201-created"><code>201 Created</code></h3>
+<p>Use <code>201 Created</code> if the controller operation leads to creation of a resource.
+If a composite controller is used to create one or more resources and it is not possible to expresss them as a composite record, you <strong>MAY</strong> instead use <code>200 OK</code> as response code.</p>
+<h3 id="204-no-content"><code>204 No Content</code></h3>
+<p>Use <code>204 No Content</code> if the server declines to return anything as part of a controller action.
+Most of the out-of-band actions fall in this category. (e.g. <code>v1/users/{id}/notify</code>).</p>
+<p>For errors, appropriate <code>4XX</code> or <code>5XX</code> error codes <strong>MAY</strong> be returned.</p>
+<p>Following sections provide some examples for modeling controller resources to carry out various kinds of complex operations.</p>
+<h2 id="complex-operation-sub-resource">Complex Operation - Sub-Resource</h2>
+<blockquote>
+<p>NOTE: Use with caution</p>
+</blockquote>
+<p>For associated risks, see Controller Resource above.
+There are often situations in which a canonical resource needs to impart certain actions or state changes which are not appropriate in a PUT or PATCH.
+These URIs look like other <code>Sub-Resources</code>, but imply action.</p>
+<p>A good use for this pattern is when a particular state change requires a "comment" (e.g. cancellation "reason").
+Adding this comment, or other data such as location, would make the GET/PUT unnecessarily include those extra fields on every request/response.
+This action may change the status of the given resource implicitly.</p>
+<p>Additionally, when a resource identifier is required for an action, it's best to keep it in the URL.
+Some actions are business processes which are not innately a resource (and in some cases might not even change resource state).</p>
+<p>The response is typically <code>200 OK</code> and the resource itself, if there are changes expected in the resource the consumer needs to capture.
+However, if no resource state change occurs, <code>204 No Content</code> and no response body could also be considered appropriate.</p>
+<h3 id="uri-template">URI Template</h3>
+<p><code>POST /{version}/{namespace}/{resource}/{resource-id}/{complex-operation}</code></p>
+<h4 id="example-request">Example Request:</h4>
+<pre><code class="language-json">POST /v1/payments/billing-agreements/I-0LN988D3JACS/suspend
+{
+  &quot;note&quot;: &quot;Suspending the agreement.&quot;
+}
+</code></pre>
+<h4 id="example-response">Example Response:</h4>
+<p><code>204 No Content</code></p>
+<p>However, when state changes are imparted in this manner, it does not mean that all state changes for the given resource should use a complex operation.
+Simple state transitions (i.e. changes to a status field) should still utilize PUT/PATCH.
+It is completely appropriate to mix patterns using PUT/PATCH on a Collection Resource + Complex Operation, in order to minimize the number of operations.</p>
+<h3 id="example-request-for-mixed-use-of-put">Example Request (for mixed use of PUT):</h3>
+<pre><code class="language-json">PATCH /v1/payments/billing-agreements/I-0LN988D3JACS
+[
+  {
+    &quot;op&quot;: &quot;replace&quot;,
+    &quot;path&quot;: &quot;/&quot;,
+    &quot;value&quot;: {
+      &quot;description&quot;: &quot;New Description&quot;,
+      &quot;shipping_address&quot;: {
+        &quot;line1&quot;: &quot;2065 Hamilton Ave&quot;,
+        &quot;city&quot;: &quot;San Jose&quot;,
+        &quot;state&quot;: &quot;CA&quot;,
+        &quot;postal_code&quot;: &quot;95125&quot;,
+        &quot;country_code&quot;: &quot;US&quot;
+      }
+    }
+  }
+]
+</code></pre>
+<p>Keep in mind that if there is any need to see the history of these actions, a Sub-resource Collection is appropriate to show all of the prior executions of this action.
+In that case, the verb should be <a href="http://en.wikipedia.org/wiki/Reification_(computer_science)" title="), or changed to a plural noun (e.g. 'execute' would become 'executions">reified</a>.</p>
+<h2 id="complex-operation-composite">Complex Operation - Composite</h2>
+<p>This type of complex operation creates/updates/deletes multiple resources in one operation.
+This serves as both a performance and usability optimization, as well as adding better atomicity when values in the request might affect multiple resources at the same time.</p>
+<p>Note in the sample below, the capture and the payment are both potentially affected by refund.
+A PUT or PATCH operation on the capture resource would have unintended side effects on the payment resource.
+To encapsulate both of these changes, the 'refund' action is used.</p>
+<h3 id="uri-template_1">URI Template</h3>
+<p><code>POST /{version}/{namespace}/{action}</code></p>
+<h4 id="example-request_1">Example Request:</h4>
+<p><code>POST /v1/payments/captures/{capture-id}/refund</code></p>
+<h4 id="example-response_1">Example Response:</h4>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;REF-0P209507D6694645N&quot;,
+  &quot;create_time&quot;: &quot;2013-05-06T22:11:51Z&quot;,
+  &quot;update_time&quot;: &quot;2013-05-06T22:11:51Z&quot;,
+  &quot;state&quot;: &quot;completed&quot;,
+  &quot;amount&quot;: {
+    &quot;total&quot;: &quot;110.54&quot;,
+    &quot;currency&quot;: &quot;USD&quot;
+  },
+  &quot;capture_id&quot;: &quot;8F148933LY9388354&quot;,
+  &quot;parent_payment&quot;: &quot;PAY-8PT597110X687430LKGECATA&quot;,
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/refund/REF-0P209507D6694645N&quot;,
+      &quot;rel&quot;: &quot;self&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/payment/PAY-8PT597110X687430LKGECATA&quot;,
+      &quot;rel&quot;: &quot;parent_payment&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/capture/8F148933LY9388354&quot;,
+      &quot;rel&quot;: &quot;capture&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="complex-operation-transient">Complex Operation - Transient</h2>
+<p>This type of complex operation does not maintain state for the client, and creates no resources.
+This is about as RPC as it gets; other alternatives should be considered first.</p>
+<p>This is not usually utilized in sub-resources, as a sub-resource action would typically affect the parent resource.</p>
+<p>HTTP status <code>200 OK</code> is always appropriate.
+Response body contains calculated values, which could potentially change if run again.</p>
+<p>As with all actions, resource-oriented alternatives should be considered first.</p>
+<h3 id="uri-template_2">URI Template</h3>
+<p><code>POST /{version}/{namespace}/{action}</code></p>
+<h3 id="example-request_2">Example Request:</h3>
+<pre><code class="language-json">POST /v1/risk/evaluate-payment
+{
+  &quot;code&quot;: &quot;h43j5k6iop&quot;
+}
+</code></pre>
+<h3 id="example-response_2">Example Response</h3>
+<pre><code class="language-json">200 OK
+{
+  &quot;status&quot;: &quot;VALID&quot;
+}
+</code></pre>
+<h2 id="complex-operation-search">Complex Operation - Search</h2>
+<p>When Collection Resources are used, it is best to use query parameters on the collection to filter the set.
+However, there are some situations that demand a very complex search syntax, where query parameter filtering on a collection might present usability problems, security / privacy issues, or run up against theoretical query parameter length limitations.</p>
+<p>In these situations, POST can be utilized with a request object to specify the search parameters.</p>
+<h3 id="pagination">Pagination</h3>
+<p>Assuming pagination will be required with large response quantities, it is important to remember that the consumer will need to use POST on each subsequent page.
+As such, it's important to maintain paging in the query parameters (one of the rare exceptions where POST body + query parameters are utilized).</p>
+<p>Paging query parameters should follow the same conventions as in Collection Resources.
+This allows for hypermedia links to provide next, previous, first, last page relationships with paging specified in the URL.</p>
+<h3 id="uri-template_3">URI Template</h3>
+<p><code>POST /{version}/{namespace}/{search-resource}</code></p>
+<h4 id="example-request_3">Example Request:</h4>
+<pre><code class="language-json">POST /v1/factory/widgets-search
+{
+  &quot;created_before&quot;:&quot;1975-05-13&quot;,
+  &quot;status&quot;: &quot;ACTIVE&quot;,
+  &quot;vendor&quot;: &quot;Parts Inc.&quot;
+}
+</code></pre>
+<h4 id="example-response_3">Example Response:</h4>
+<pre><code class="language-json">200 OK
+{
+  &quot;items&quot;: [
+    &lt;&lt;lots of part objects here&gt;&gt;
+  ],
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.sandbox.factory.io/v1/factory/widgets-search?page=2&amp;page_size=10&quot;,
+      &quot;rel&quot;: &quot;next&quot;,
+      &quot;method&quot;: &quot;POST&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.sandbox.factory.io/v1/factory/widgets-search?page=124&amp;page_size=10&quot;,
+      &quot;rel&quot;: &quot;last&quot;,
+      &quot;method&quot;: &quot;POST&quot;
+    },
+  ]
+}
+</code></pre>
+<h2 id="resource-oriented-alternative">Resource-Oriented Alternative</h2>
+<p>A better pattern is to create a Collection Resource of actions and provide a history of those actions taken in <code>GET /{actions}</code>.
+This allows for future expansion of use cases around a resource model, instead of a single action-oriented, RPC-style URL.</p>
+<p>Additionally, for various use cases, filtering the resource collection of historical actions is usually desirable.
+This also feeds well into <a href="http://martinfowler.com/eaaDev/EventSourcing.html">event sourcing</a> concepts, where the history of a given event can drive further functionality.</p>
+<h2 id="file-upload">File Upload</h2>
+<p>Certains types of API operations require uploading a file (e.g. jpeg, png, pdf) as part of the API call.
+Services for such use cases, <strong>MUST NOT</strong> support or allow encoding the file content within a JSON body using Base64 encoding.</p>
+<p>For uploading a file, one of the following options <strong>SHOULD</strong> be used.</p>
+<h3 id="standalone-operation">Standalone Operation</h3>
+<p>Services supporting such an operation <strong>SHOULD</strong> provide a separate dedicated URI for uploading and retrieving the files.
+Clients of such services upload the files using the file upload URI and retrieve the file metadata as part of the response to an upload operation.</p>
+<p>Format of the file upload request <strong>SHOULD</strong> conform to multipart/form-data content type (<a href="https://www.ietf.org/rfc/rfc2388.txt">RFC 2388</a>).
+Example of a multipart/form-data request:</p>
+<p>The client first uploads the file using a file-upload URI provided by the service.</p>
+<pre><code>POST /v1/identity/limit-resolution-files
+
+Content-Type: multipart/form-data; boundary=--foo_bar_baz
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+MIME-Version: 1.0
+
+--foo_bar_baz
+Content-Type: text/plain
+Content-Disposition: form-data; name=&quot;title&quot;
+
+Identity Document
+--foo_bar_baz
+Content-Type: image/jpeg
+Content-Disposition: form-data; name=&quot;artifact&quot;; filename=&quot;passport.jpg&quot;
+
+...(binary bytes of the image)...
+--foo_bar_baz--
+</code></pre>
+<h4 id="sample-file-upload-response">Sample file upload response:</h4>
+<p>If the file upload is successful, the server responds with the metadata of the uploaded file.</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;file_egflf465vbk7468mvnb&quot;,
+  &quot;created_at&quot;: 748557607545,
+  &quot;size&quot; : 3457689458369,
+  &quot;url&quot; : &quot;https://api.foo.com/v1/files/file_egflf465vbk7468mvnb&quot;,
+  &quot;type&quot; : &quot;image/jpeg&quot;
+}
+</code></pre>
+<p>The client can use the uploaded file's URI (received in the above response) for any subsequent operation that requires the uploaded file as shown below.</p>
+<h4 id="example-request_4">Example Request:</h4>
+<pre><code class="language-json">POST /v1/identity/limits-resolutions
+Host: api.foo.com
+Content-Type: application/json
+Authorization: Bearer oauth2_token
+
+{
+  ...
+  &quot;identity_document_reference&quot; : &quot;https://api.foo.com/v1/files/file_egflf465vbk7468mvnb&quot;
+}
+</code></pre>
+<h3 id="as-attachment">As Attachment</h3>
+<p>This option <strong>SHOULD</strong> be used if you have to combine the uploading of a file with an API request body or parameters in one API request.
+For example, for the purpose of optimization or to process both the file upload and request data in an atomic manner.</p>
+<p>For such use cases, the request <strong>SHOULD</strong> either use content-type multipart/mixed or multipart/related (<a href="https://tools.ietf.org/html/rfc2387">RFC 2387</a>).
+Following is an example of such a request.</p>
+<h4 id="example-of-a-multipartrelated-request">Example of a multipart/related request:</h4>
+<p>The first part in the below multipart request is the request metadata, while the second part contains the binary file content</p>
+<pre><code>POST /v1/identity/limits-resolutions
+Host: api.foo.com
+Content-Type: multipart/related; boundary=--foo_bar_baz
+Authorization: Bearer oauth2_token
+
+--foo_bar_baz
+Content-Type: application/json; charset=UTF-8
+
+{
+...
+}
+
+--foo_bar_baz
+Content-Type: image/jpeg
+
+[JPEG_DATA]
+--foo_bar_baz--
+</code></pre>
+<h2 id="hateoas-use-cases">HATEOAS Use Cases</h2>
+<p>This section describes various use cases where HATEOAS could be used.
+See the <a href="../hypermedia/">Hypermedia</a> section for more detailed guidelines when implementing HATEOAS-style APIs.</p>
+<p>As a guiding principle, when adopting HATEOAS, every API <strong>SHOULD</strong> strive for a single entry point.
+Any response from this entry point will have <a href="https://en.wikipedia.org/wiki/HATEOAS">HATEOAS</a> links using which the client can navigate to all other methods on the same resource or related resources and sub-resources.</p>
+<h3 id="patterns">Patterns</h3>
+<p>Following are different patterns for defining such an API entry point.</p>
+<h4 id="pattern-1-api-with-a-top-level-entry-point">Pattern 1: API with a top level entry point</h4>
+<p>For most APIs, there's a natural top level object or a collection which can be the resources addressed by the entry point.
+For example, the API defined in the previous section has a collection resource /users which can be the entry point URI.</p>
+<h4 id="pattern-2-entry-point-for-complex-controller-style-operations">Pattern 2: Entry point for complex controller style operations</h4>
+<p>A complex multi step operation always has a logical entry point.
+For example, you want to build an API for a credit application process that involves multiple steps- a create application step, consumer consent step (to sign, agree to terms and conditions), an approval step- the last step of a successful credit application.</p>
+<ul>
+<li><code>/apply-credit</code> is the API's entry point.</li>
+</ul>
+<p>All other steps would be guided by the "application create" step in the <code>from</code> of links based on the captured data.
+For example a successful "create application" step would return the link to the next state of the application process <code>apply-sign</code>.</p>
+<ul>
+<li>An unsuccessful (application with incorrect data) <strong>MAY</strong> return only a link to send only the incorrect/missing data (e.g PATCH link).</li>
+</ul>
+<h4 id="pattern-3-api-without-a-top-level-entry-point">Pattern 3: API without a top level entry point</h4>
+<p>Consider an API that provides a set of independent controller style utility methods.
+For example, you want to build an identity API that provides the following utility methods.</p>
+<ul>
+<li>generate OTP (one time password)</li>
+<li>encrypt payload using a particular algorithm</li>
+<li>decrypt the payload, link tokens</li>
+</ul>
+<p>For such cases, the API <strong>MAY</strong> provide a separate resource /actions to return links to all resources that can be served by this API.
+<code>GET /actions</code> in the above example would return links to other api methods (<code>/generate-otp</code>,<code>/encrypt</code>,<code>/decrypt</code>,<code>/link-tokens</code>).</p>
+<h3 id="navigating-a-collection">Navigating A Collection</h3>
+<p>For collection resources, a service <strong>MAY</strong> automatically provide a paginated collection.
+The Client can also specify its pagination preferences, if the query resultset is quite large.
+In such cases, the resultset is returned as a paginated collection with appropriate pagination related links.
+The Client utilizes these links to navigate through the resultset back-and-forth.
+For more details on this linking pattern, please refer to Pagination and HATEOAS links.</p>
+<h3 id="error-resolution">Error Resolution</h3>
+<p>There are often use cases where an API wants to provide additional context in case of error along with other error details beyond simple HTTP status codes.
+(See Error Standards for more).
+An API could return additional resource links to provide more hints on the error in order to resolve it.
+Consider an example from the <code>/users</code> API where the user wants to update his address details.</p>
+<h4 id="request">Request:</h4>
+<pre><code class="language-json">PATCH /v1/users/ALT-JFWXHGUV7VI
+{
+  &quot;address&quot;: {
+    ...
+  }
+}
+</code></pre>
+<p>The service, however, finds that the user account is currently not active.
+It responds with an error explaining that an update of this account is not possible given the current state.
+It also returns an HATEOAS link in the response to activate the user account.</p>
+<h4 id="response">Response:</h4>
+<pre><code class="language-json">HTTP/1.1 422 Unprocessable Entity
+{
+  &quot;name&quot;:&quot;INVALID_OPERATION&quot;,
+  &quot;debug_id&quot;:&quot;123456789&quot;,
+  &quot;message&quot;:&quot;An update to an inactive account is not supported.&quot;,
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/customer/partner-referrals/ALT-JFWXHGUV7VI/activate&quot;,
+      &quot;rel&quot;: &quot;activate&quot;,
+      &quot;method&quot;: &quot;POST&quot;
+    }
+  ]
+}
+</code></pre>
+<p>The client can now prompt the user to first activate his account and then change his address details.</p>
+<h3 id="service-controlled-flow">Service-controlled Flow</h3>
+<p>In a complex business operation that has one or more sub-business operations and business rules govern the state transitions at run-time, using HATEOAS links to describe or emit the allowed state transitions prevents clients from embedding the service-specific business logic into their code.
+Loose coupling or no coupling with server's business logic enables better evolution for both client and server.</p>
+<p>For example, an order can be cancelled when it is in a PENDING state.
+The order cannot be cancelled once it moves to a COMPLETED state.
+Following example shows how a service can use HATEOAS links to guide clients about next possible step(s) in business process.</p>
+<h4 id="example-pending-order">Example: Pending Order</h4>
+<p>Order is in PENDING state, so the service returns the cancel HATEOAS link.</p>
+<h5 id="request_1">Request:</h5>
+<pre><code>GET v1/checkout/orders/52181732T9513405D HTTP/1.1
+Host: api.foo.com
+Content-Type: application/json
+Authorization: Bearer oauth2_token
+</code></pre>
+<h5 id="response_1">Response:</h5>
+<pre><code class="language-json">HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  &quot;payment_details&quot;:{
+    ...
+  },
+  &quot;status&quot;:&quot;PENDING&quot;,
+  &quot;links&quot;:[
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/checkout/orders/19S86694A9334040A&quot;,
+      &quot;rel&quot;: &quot;self&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/checkout/orders/19S86694A9334040A/cancel&quot;,
+      &quot;rel&quot;: &quot;cancel&quot;,
+      &quot;method&quot;: &quot;POST&quot;
+    }
+  ]
+}
+</code></pre>
+<h4 id="example-completed-order">Example: Completed Order</h4>
+<p>Order is in COMPLETED state so the services does not return the cancel link anymore.</p>
+<h5 id="request_2">Request:</h5>
+<pre><code>GET v1/checkout/orders/52181732T9513405D HTTP/1.1
+Host: api.foo.com
+Content-Type: application/json
+Authorization: Bearer oauth2_token
+</code></pre>
+<h5 id="response_2">Response:</h5>
+<pre><code class="language-json">HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  &quot;payment_details&quot;:{
+    ...
+  },
+  &quot;status&quot;:&quot;COMPLETED&quot;,
+  &quot;links&quot;:[
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/checkout/orders/19S86694A9334040A&quot;,
+      &quot;rel&quot;: &quot;self&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p>NOTE: The service <strong>MAY</strong> decide to support cancellation of orders (for orders with COMPLETED status) in some countries in future but that does not require the client to change anything in its code.
+All that a client knows or has coded when it first integrated with the service is the request body that is required to cancel an order.</p>
+</blockquote>
+<h3 id="asynchronous-operations">Asynchronous Operations</h3>
+<p>When an operation is carried out asynchronously, it is important to provide relevant links to client so that the client can find out more details about the operation such as finding out status or perform get, update and delete operations.
+Please refer to Asynchronous Operations to find how the HATEOAS links could be used in response of an asynchronous operation.</p>
+<h3 id="saving-bandwidth">Saving Bandwidth</h3>
+<p>Some services always return very large response because of the nature of the domain they address.
+APIs of such services are sometimes referred as Composite APIs (they accumulate data from various sources or an aggregate of more than one services).
+For such APIs, sending the entire response drastically impacts performance of the API consumer, API server and the underlying network.
+In such cases, the client can ask the service to return partial representation using <code>Prefer: return=minimal</code> HTTP header.
+A service could send response with relevant HATEOAS links with minimal data to improve the performance.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

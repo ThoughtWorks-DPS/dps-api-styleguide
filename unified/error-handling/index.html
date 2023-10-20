@@ -1,0 +1,1041 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../responses/">
+      
+      
+        <link rel="next" href="../security/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Error Handling - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#error-handling" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Error Handling
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Error Handling
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Error Handling
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#error-schema" class="md-nav__link">
+    Error Schema
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-of-json-pointer" class="md-nav__link">
+    Use of JSON Pointer
+  </a>
+  
+    <nav class="md-nav" aria-label="Use of JSON Pointer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-validation-errors" class="md-nav__link">
+    Input Validation Errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-samples" class="md-nav__link">
+    Error Samples
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation-error-response-single-field" class="md-nav__link">
+    Validation Error Response - Single Field
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-error-response-multiple-fields" class="md-nav__link">
+    Validation Error Response - Multiple Fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-error-response-bulk" class="md-nav__link">
+    Validation Error Response - Bulk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-validation-error-response" class="md-nav__link">
+    Semantic Validation Error Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-declaration-in-api-specification" class="md-nav__link">
+    Error Declaration In API Specification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-standards" class="md-nav__link">
+    Documentation Standards
+  </a>
+  
+    <nav class="md-nav" aria-label="Documentation Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#samples-with-error-scenarios-in-documentation" class="md-nav__link">
+    Samples with Error Scenarios in Documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#error-schema" class="md-nav__link">
+    Error Schema
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-of-json-pointer" class="md-nav__link">
+    Use of JSON Pointer
+  </a>
+  
+    <nav class="md-nav" aria-label="Use of JSON Pointer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-validation-errors" class="md-nav__link">
+    Input Validation Errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-samples" class="md-nav__link">
+    Error Samples
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation-error-response-single-field" class="md-nav__link">
+    Validation Error Response - Single Field
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-error-response-multiple-fields" class="md-nav__link">
+    Validation Error Response - Multiple Fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-error-response-bulk" class="md-nav__link">
+    Validation Error Response - Bulk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-validation-error-response" class="md-nav__link">
+    Semantic Validation Error Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-declaration-in-api-specification" class="md-nav__link">
+    Error Declaration In API Specification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-standards" class="md-nav__link">
+    Documentation Standards
+  </a>
+  
+    <nav class="md-nav" aria-label="Documentation Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#samples-with-error-scenarios-in-documentation" class="md-nav__link">
+    Samples with Error Scenarios in Documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="error-handling">Error Handling</h1>
+<hr />
+<p>As per HTTP specifications, the outcome of a request execution could be specified using an integer and a message.
+The number is known as the status code and the message as the reason phrase.
+The reason phrase is a human-readable message used to clarify the outcome of the response.
+The HTTP status codes in the 4xx range indicate client-side errors (validation or logic errors), while those in the 5xx range indicate server-side errors (usually defect or outage).
+However, these status codes and human-readable reason phrases are not sufficient to convey enough information about an error in a machine-readable manner.
+To resolve an error, non-human consumers of RESTful APIs need additional help.</p>
+<p>Therefore, APIs <strong>MUST</strong> return a JSON error representation that conforms to the schema defined in <a href="https://tools.ietf.org/html/rfc7807">RFC 7807</a>.
+Zalando have implemented a <a href="https://opensource.zalando.com/problem/schema.yaml#/Problem">JSON Schema definition of the RFC 7807 spec</a> which we use by reference. </p>
+<h2 id="error-schema">Error Schema</h2>
+<p>An error response following RFC 7807 schema <strong>MUST</strong> conform to the following structure:</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;https://api.example.com/types/&lt;namespace&gt;/errors/&lt;category&gt;/&lt;error&gt;&quot;,
+  &quot;title&quot;: &quot;Request data validation error&quot;,
+  &quot;status&quot;: 400,
+  &quot;detail&quot;: &quot;One or more fields failed validation&quot;,
+  &quot;instance&quot;: &quot;UUID&quot;,
+  &quot;invalidParams&quot;: [{
+    &quot;field&quot;: &quot;nickname&quot;,
+    &quot;code&quot;: &quot;https://api.example.com/types/&lt;namespace&gt;/errors/validations/missing&quot;,
+    &quot;message&quot;: &quot;The value for this field needs to be present.&quot;
+  }]
+}
+</code></pre>
+<p>The error response structure includes the following fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>A human-readable, unique URI for the error. The URI <strong>MAY</strong> be an endpoint which provides more information about the type of error.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>A human-readable message, describing the error. This message <strong>MUST</strong> be a description of the problem NOT a suggestion about how to fix it.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The HTTP Error Code response of this error.</td>
+</tr>
+<tr>
+<td>detail</td>
+<td>If present, the detail field <strong>SHOULD</strong> focus on helping the client correct the problem, rather than giving debugging information.</td>
+</tr>
+<tr>
+<td>instance</td>
+<td>A unique error identifier generated on the server-side and logged for correlation purposes. This could be trace / span identifiers.</td>
+</tr>
+<tr>
+<td>invalidParams</td>
+<td>An extension to the error payload.  An array that contains individual instance(s) of the error with specifics such as the following. This field is required for client side errors (4xx).</td>
+</tr>
+<tr>
+<td>field</td>
+<td>JSON Pointer to the field in error if in body, else name of the path parameter or query parameter.</td>
+</tr>
+<tr>
+<td>code</td>
+<td>A human-readable, unique name for the error.</td>
+</tr>
+<tr>
+<td>message</td>
+<td>A human-readable message, describing the error. This message <strong>MUST</strong> be a description of the problem NOT a suggestion about how to fix it.</td>
+</tr>
+<tr>
+<td>errors</td>
+<td>An array of individual request errors (or successes) when a bulk request fails.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>NOTE: The domain name for the error types should be reflective of your organization, not <code>example.com</code>.
+In this instance, it should be <code>twdps.io</code>.</p>
+</blockquote>
+<h2 id="use-of-json-pointer">Use of JSON Pointer</h2>
+<p>If you have used some other means to identify the field in an already released API, you could continue using your existing approach.
+However, if you plan to migrate to the approach suggested, you would want to bump up the major version of your API and provide migration assistance to your clients as this could be a potential breaking change for them.
+The JSON Pointer for the field <strong>SHOULD</strong> be a JSON string value.</p>
+<h3 id="input-validation-errors">Input Validation Errors</h3>
+<p>In validating requests, there are a variety of concerns that should be addressed in the following order:</p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Not well-formed JSON</td>
+<td><code>400 Bad Request</code></td>
+</tr>
+<tr>
+<td>Contains validation errors that the client can change.</td>
+<td><code>400 Bad Request</code></td>
+</tr>
+<tr>
+<td>Cannot be executed due to factors outside of the request body.</td>
+<td><code>422 Unprocessable Entity</code></td>
+</tr>
+<tr>
+<td>The request was well-formed but was unable to be followed due to semantic errors.</td>
+<td><code>409 Conflict</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="error-samples">Error Samples</h3>
+<p>This section provides some samples to describe usage of RFC 7807 in various scenarios.</p>
+<h4 id="validation-error-response-single-field">Validation Error Response - Single Field</h4>
+<p>The following sample shows a validation error in one field.
+Because this is a client error, a <code>400 Bad Request</code> HTTP status code should be returned.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;https://api.example.com/types/profile/errors/validations/invalid-user&quot;,
+  &quot;title&quot;: &quot;Invalid data provided&quot;,
+  &quot;status&quot;: 400,
+  &quot;detail&quot;: &quot;One or more fields failed validation&quot;,
+  &quot;instance&quot;: &quot;123456789&quot;,
+  &quot;invalidParams&quot;: [
+    {
+      &quot;field&quot;: &quot;customerId&quot;,
+      &quot;message&quot;: &quot;Required field is missing&quot;,
+      &quot;code&quot;: &quot;https://api.example.com/types/profile/errors/validations/too-long&quot;
+    }
+  ]
+}
+</code></pre>
+<h4 id="validation-error-response-multiple-fields">Validation Error Response - Multiple Fields</h4>
+<p>The following sample shows a validation error of the same type in two fields.
+Note that <code>invalidParams</code> is an array listing all the instances in the error.
+Because both these are a client errors, a <code>400 Bad Request</code> HTTP status code should be returned.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;https://api.example.com/types/profile/errors/validations/invalid-user&quot;,
+  &quot;title&quot;: &quot;Invalid data provided&quot;,
+  &quot;status&quot;: 400,
+  &quot;detail&quot;: &quot;One or more fields failed validation&quot;,
+  &quot;instance&quot;: &quot;123456789&quot;,
+  &quot;invalidParams&quot;: [
+    {
+      &quot;field&quot;: &quot;customerId&quot;,
+      &quot;message&quot;: &quot;Required field is missing&quot;,
+      &quot;code&quot;: &quot;https://api.example.com/types/profile/errors/validations/too-long&quot;
+    },
+    {
+      &quot;field&quot;:&quot;name&quot;,
+      &quot;message&quot;:&quot;Name must be &lt; 20 chars&quot;,
+      &quot;code&quot;: &quot;https://api.example.com/types/profile/errors/validations/too-long&quot;
+    }
+  ]
+}
+</code></pre>
+<h4 id="validation-error-response-bulk">Validation Error Response - Bulk</h4>
+<p>For heterogeneous types of client-side errors shown below resulting from a bulk request, the error payload includes an array named <code>errors</code>.
+Each error instance is represented as an item in this array.
+Because these are client validation errors, a <code>400 Bad Request</code> HTTP status code should be returned.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;https://api.example.com/types/profile/errors/bulk/failed&quot;,
+  &quot;title&quot;: &quot;Invalid data provided&quot;,
+  &quot;status&quot;: 400,
+  &quot;detail&quot;: &quot;One or more of the bulk requests failed.&quot;,
+  &quot;instance&quot;: &quot;123456789&quot;,
+  &quot;errors&quot;: [
+    {
+      &quot;type&quot;: &quot;error://api.example.com/types/profile/errors/validations/invalid-user&quot;,
+      &quot;title&quot;: &quot;Invalid data provided&quot;,
+      &quot;detail&quot;: &quot;One or more fields failed validation&quot;,
+      &quot;status&quot;: 400,
+      &quot;instance&quot;: &quot;123456789&quot;,
+      &quot;invalidParams&quot;: [
+        {
+          &quot;field&quot;: &quot;customerId&quot;,
+          &quot;message&quot;: &quot;Required field is missing&quot;,
+          &quot;code&quot;: &quot;error://api.example.com/types/profile/errors/validations/missing&quot;
+        },
+        {
+          &quot;field&quot;: &quot;name&quot;,
+          &quot;message&quot;: &quot;Name must be &lt; 20 chars&quot;,
+          &quot;code&quot;: &quot;error://api.example.com/types/profile/errors/validations/too-long&quot;
+        }
+      ]
+    },
+    {
+      &quot;type&quot;: &quot;error://api.example.com/types/profile/errors/bulk/success&quot;,
+      &quot;title&quot;: &quot;Individual request within bulk request succeeded&quot;,
+      &quot;detail&quot;: &quot;Request succeeded&quot;,
+      &quot;status&quot;: 200,
+      &quot;instance&quot;: &quot;123456789&quot;
+    },
+    { ... }
+  ]
+}
+</code></pre>
+<h4 id="semantic-validation-error-response">Semantic Validation Error Response</h4>
+<p>In cases where client input is well-formed and valid but the request action may require interaction with APIs or processes outside of this URI, an HTTP status code <code>422 Unprocessable Entity</code> should be returned.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;error://api.example.com/types/profile/errors/account/balance-error&quot;,
+  &quot;title&quot;: &quot;Insufficient balance.&quot;,
+  &quot;status&quot;: 409,
+  &quot;detail&quot;: &quot;The account balance is too low. Add balance to your account to proceed.&quot;,
+  &quot;instance&quot;: &quot;123456789&quot;
+}
+</code></pre>
+<h4 id="error-declaration-in-api-specification">Error Declaration In API Specification</h4>
+<p>It is important that documentation generation tools and client/server-side binding generation tools recognize RFC 7807.
+Following section shows how you could refer to the Zalando definition in an API specification confirming to OpenAPI.</p>
+<pre><code class="language-json">{
+  &quot;responses&quot;: {
+    &quot;200&quot;: {
+      &quot;title&quot;: &quot;Address successfully found and returned.&quot;,
+      &quot;schema&quot;: {
+        &quot;$ref&quot;: &quot;address.json&quot;
+      }
+    },
+    &quot;403&quot;: {
+      &quot;title&quot;: &quot;Unauthorized request. This error will occur if the SecurityContext header is not provided or does not include a party_id.&quot;,
+      &quot;schema&quot;: {
+        &quot;$ref&quot;: &quot;https://opensource.zalando.com/problem/schema.yaml#/Problem&quot;
+      }
+    },
+    &quot;404&quot;: {
+      &quot;title&quot;: &quot;Address does not exist.&quot;,
+      &quot;schema&quot;: {
+        &quot;$ref&quot;: &quot;https://opensource.zalando.com/problem/schema.yaml#/Problem&quot;
+      }
+    },
+    &quot;default&quot;: {
+      &quot;title&quot;: &quot;Unexpected error response.&quot;,
+      &quot;schema&quot;: {
+        &quot;$ref&quot;: &quot;https://opensource.zalando.com/problem/schema.yaml#/Problem&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="documentation-standards">Documentation Standards</h2>
+<p>Documentation of error conditions is just as important as the documentation of intended use.
+Since the range of failure modes is typically larger than success, efforts to provide comprehensive error documentation will  </p>
+<h3 id="samples-with-error-scenarios-in-documentation">Samples with Error Scenarios in Documentation</h3>
+<p>The User Guide of an API is a document that is exposed to API consumers.
+In addition to linking to samples showing successful execution for invocation on various methods exposed by the API, the API developer should also provide links to samples showing error scenarios.
+It is equally, or perhaps more, important to show the API consumers how an API would propagate errors in a machine-readable form in order to build applications that take necessary actions to handle errors gracefully and in a meaningful manner.
+In conclusion, we reiterate the message we started with that non-human consumers of RESTful APIs need more help to take necessary actions to resolve an error in a machine-readable manner.
+Therefore, a representation of errors following the schema described here <strong>MUST</strong> be returned by APIs for any HTTP status code that falls into the ranges of 4xx and 5xx.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

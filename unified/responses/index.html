@@ -1,0 +1,1143 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../payloads/">
+      
+      
+        <link rel="next" href="../error-handling/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>HTTP Response Standards - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#http-response-standards" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              HTTP Response Standards
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          HTTP Response Standards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        HTTP Response Standards
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#http-status-codes" class="md-nav__link">
+    HTTP Status Codes
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Status Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#status-code-ranges" class="md-nav__link">
+    Status Code Ranges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-reporting" class="md-nav__link">
+    Status Reporting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allowed-status-codes-list" class="md-nav__link">
+    Allowed Status Codes List
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-method-to-status-code-mapping" class="md-nav__link">
+    HTTP Method to Status Code Mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    GET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post" class="md-nav__link">
+    POST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#put" class="md-nav__link">
+    PUT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    DELETE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch" class="md-nav__link">
+    PATCH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-as-get" class="md-nav__link">
+    POST-as-GET
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#http-status-codes" class="md-nav__link">
+    HTTP Status Codes
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Status Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#status-code-ranges" class="md-nav__link">
+    Status Code Ranges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-reporting" class="md-nav__link">
+    Status Reporting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allowed-status-codes-list" class="md-nav__link">
+    Allowed Status Codes List
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-method-to-status-code-mapping" class="md-nav__link">
+    HTTP Method to Status Code Mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    GET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post" class="md-nav__link">
+    POST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#put" class="md-nav__link">
+    PUT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    DELETE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch" class="md-nav__link">
+    PATCH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-as-get" class="md-nav__link">
+    POST-as-GET
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="http-response-standards">HTTP Response Standards</h1>
+<hr />
+<h2 id="http-status-codes">HTTP Status Codes</h2>
+<p>RESTful services use HTTP status codes to specify the outcomes of HTTP method execution.
+HTTP protocol specifies the outcome of a request execution using an integer and a message.
+The number is known as the status code and the message as the reason phrase.
+The reason phrase is a human readable message used to clarify the outcome of the response.
+HTTP protocol categorizes status codes in ranges.</p>
+<h3 id="status-code-ranges">Status Code Ranges</h3>
+<p>When responding to API requests, the following status code ranges <strong>MUST</strong> be used.</p>
+<table>
+<thead>
+<tr>
+<th>Range</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2xx</td>
+<td>Successful execution. It is possible for a method execution to succeed in several ways. This status code specifies which way it succeeded.</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>Indicates that further action needs to be taken by the user agent in order to fulfill a request. The required action may be carried out by the user agent without interaction with the user, if and only if, the method used in the second request is GET or HEAD.</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>Usually these are problems with the request, the data in the request, invalid authentication or authorization, etc. In most cases the client can modify their request and resubmit.</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>Server error: The server was not able to execute the method due to site outage or software defect. 5xx range status codes <strong>SHOULD</strong> NOT be utilized for validation or logical error handling.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-reporting">Status Reporting</h3>
+<p>Success and failure apply to the whole operation not just to the SOA framework portion or to the business logic portion of code execution.</p>
+<p>Following are the guidelines for status codes and reason phrases.</p>
+<ul>
+<li>Success <strong>MUST</strong> be reported with a status code in the 2xx range.</li>
+<li>HTTP status codes in the 2xx range <strong>MUST</strong> be returned only if the complete code execution path is successful.
+  This includes any container/SOA framework code as well as the business logic code execution of the method.</li>
+<li>A server returning a status code in the 2xx or 3xx range <strong>MUST NOT</strong> return a response following <code>error.json</code>, or any kind of error code, as the response body.</li>
+<li>Failures <strong>MUST</strong> be reported in the 4xx or 5xx range for both system and application errors.</li>
+<li>There <strong>MUST</strong> be a consistent, JSON-formatted error response in the body as defined by the <code>error.json</code> schema.
+  This schema is used to qualify the kind of error.
+  Please refer to Error Handling guidelines for more details.</li>
+<li>A server returning a status code in the 4xx or 5xx range <strong>MUST</strong> return the <code>error.json</code> response body.</li>
+<li>For client errors in the 4xx code range, the reason phrase <strong>SHOULD</strong> provide enough information for the client to be able to determine what caused the error and how to fix it.</li>
+<li>For server errors in the 5xx code range, the reason phrase and an error response following <code>error.json</code> <strong>SHOULD</strong> limit the amount of information to avoid exposing internal service implementation details to clients.
+  This is true for both external facing and internal APIs.
+  Service developers should use logging and tracking utilities to provide additional information.</li>
+</ul>
+<h3 id="allowed-status-codes-list">Allowed Status Codes List</h3>
+<p>All REST APIs <strong>MUST</strong> use only the following <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">status codes</a>.</p>
+<p>The rest are primarily intended for web-services framework developers reporting framework-level errors related to security, content negotiation, etc.</p>
+<ul>
+<li>APIs <strong>MUST</strong> NOT return a status code that is not defined in this table.</li>
+<li>APIs <strong>MAY</strong> return only some of status codes defined in this table</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 OK</td>
+<td>General success message.</td>
+</tr>
+<tr>
+<td>201 Created</td>
+<td>Used as a response to POST method execution to indicate successful creation of a resource. If the resource was already created (by a previous execution of the same method, for example), then the server should return status code 200 OK.</td>
+</tr>
+<tr>
+<td>202 Accepted</td>
+<td>Used for asynchronous method execution to specify the server has accepted the request and will execute it at a later time. For more details, please refer Asynchronous Operations.</td>
+</tr>
+<tr>
+<td>204 No Content</td>
+<td>The server has successfully executed the method, but there is no entity body to return.</td>
+</tr>
+<tr>
+<td>301 Moved Permanently</td>
+<td>Used to indicate that the resource is located at a different path.  This is typically implemented at the Gateway or Service Mesh level.</td>
+</tr>
+<tr>
+<td>302 Found</td>
+<td>Used to indicate that the resource is temporarily located at a different path.  This is typically implemented at the Gateway or Service Mesh level.</td>
+</tr>
+<tr>
+<td>304 Not Modified</td>
+<td>Used in conditional GET operations as part of a caching strategy.</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request could not be understood by the server. Use this status code to specify if either a) The data as part of the payload cannot be converted to the underlying data type, b) The data is not in the expected data format, c) Required field is not available, or d) Simple data validation type of error.</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>The request requires authentication and none was provided. Note the difference between this and <code>403 Forbidden</code>.</td>
+</tr>
+<tr>
+<td>403 Forbidden</td>
+<td>The client is not authorized to access the resource, although it may have valid credentials. API could use this code in case business level authorization fails.</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available. For example, it may be that no data exists in the database at that key.</td>
+</tr>
+<tr>
+<td>405 Method Not Allowed</td>
+<td>The server has not implemented the requested HTTP method. This is typically default behavior for API frameworks.</td>
+</tr>
+<tr>
+<td>406 Not Acceptable</td>
+<td>The server <strong>MUST</strong> return this status code when it cannot return the payload of the response using the media type requested by the client. For example, if the client sends an <code>Accept: application/xml</code> header, and the API can only generate <code>application/json</code>, the server <strong>MUST</strong> return 406.</td>
+</tr>
+<tr>
+<td>409 Conflict</td>
+<td>Indicates that the request could not be processed because of conflict in the current state of the resource, such as an edit conflict between multiple simultaneous updates.</td>
+</tr>
+<tr>
+<td>415 Unsupported Media Type</td>
+<td>The server <strong>MUST</strong> return this status code when the media type of the request’s payload cannot be processed. For example, if the client sends a <code>Content-Type: application/xml</code> header, but the API can only accept <code>application/json</code>, the server <strong>MUST</strong> return 415.</td>
+</tr>
+<tr>
+<td>422 Unprocessable Entity</td>
+<td>The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.</td>
+</tr>
+<tr>
+<td>429 Too Many Requests</td>
+<td>The server must return this status code if the rate limit for the user, the application, or the token has exceeded a predefined value. Defined in Additional HTTP Status Codes <a href="https://tools.ietf.org/html/rfc6585">RFC 6585</a>.</td>
+</tr>
+<tr>
+<td>500 Internal Server Error</td>
+<td>This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server. A 500 response indicates a server-side software defect or site outage. 500 <strong>SHOULD</strong> NOT be utilized for client validation or logic error handling.</td>
+</tr>
+<tr>
+<td>501 Not Implemented</td>
+<td>The client made a request for functionality that is currently unsupported.</td>
+</tr>
+<tr>
+<td>503 Service Unavailable</td>
+<td>The server is unable to handle the request for a service due to temporary maintenance.</td>
+</tr>
+<tr>
+<td>504 Gateway Timeout</td>
+<td>A dependency failed to respond within a reasonable timeframe.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>NOTE: For <code>202 Accepted</code> response, the response body returned should include one or more URIs as hypermedia links, which could include:</p>
+<ul>
+<li>The final URI of the resource where it will be available in future if the ID and path are already known.
+  Clients can then make an HTTP GET request to that URI in order to obtain the completed resource.
+  Until the resource is ready, the final URI SHOULD return the HTTP status code 404 Not Found.<ul>
+<li>{ "rel": "self", "href": "/v1/namespace/resources/{resource_id}", "method": "GET" }</li>
+</ul>
+</li>
+<li>A temporary request queue URI where the status of the operation may be obtained via some temporary identifier.
+  Clients should make an HTTP GET request to obtain the status of the operation which MAY include such information as completion state, ETA, and final URI once it is completed.<ul>
+<li>{ "rel": "self", "href": "/v1/queue/requests/{request_id}, "method": "GET" }"</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="http-method-to-status-code-mapping">HTTP Method to Status Code Mapping</h3>
+<p>For each HTTP method, API developers <strong>SHOULD</strong> use only status codes marked as “X” in this table.
+If an API needs to return any of the status codes marked with an X, then the use case <strong>SHOULD</strong> be reviewed as part of API design review process and maturity level assessment.
+Most of these status codes are used to support very rare use cases.</p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>GET</th>
+<th>POST</th>
+<th>PUT</th>
+<th>PATCH</th>
+<th>DELETE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 – Success</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>201 – Created</td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>202 – Accepted</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>204 – No Content</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>301 – Moved Permanently</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>302 – Found</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>304 – Not Modified</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>400 – Bad Request</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>401 – Unauthorized</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>403 – Forbidden</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>404 – Not found</td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>405 – Method Not Allowed</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>406 – Not Acceptable</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>409 – Conflict</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>415 – Unsupported Media Type</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>422 – Unprocessable Entity</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>429 – Too Many Requests</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>500 – Internal server Error</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>503 – Service Unavailable</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get">GET</h3>
+<p>The purpose of the GET method is to retrieve a resource.
+On success, a status code <code>200 OK</code> and a response with the content of the resource is expected.
+In cases where resource collections are empty (0 items in /v1/namespace/resources), <code>200 OK</code> is the appropriate status (resource will contain an empty items array).
+If a resource item is ‘soft deleted’ in the underlying data, <code>200 OK</code> is not appropriate (<code>404 Not Found</code> is correct) unless the ‘DELETED’ status is intended to be exposed.</p>
+<h3 id="post">POST</h3>
+<p>The primary purpose of POST is to create a resource.
+If the resource did not exist and was created as part of the execution, then a status code <code>201 Created</code> <strong>SHOULD</strong> be returned.
+It is expected that on a successful execution, a reference to the resource created (in the form of a link or resource identifier) is returned in the response body.</p>
+<p>Idempotency semantics: If this is a subsequent execution of the same invocation (including the <code>Idempotency-Key</code> header) and the resource was already created, then a status code of <code>200 OK</code> <strong>SHOULD</strong> be returned.
+For more details on idempotency in APIs, refer to idempotency.</p>
+<p>If a sub-resource is utilized (‘controller’ or data resource), and the primary resource identifier is non-existent, <code>404 Not Found</code> is an appropriate response.
+POST can also be used while utilizing the controller pattern, <code>200 OK</code> is the appropriate status code.
+In rare cases, server generated values may need to be provided in the response, to optimize client flow (if the client necessarily has to perform a GET after PUT).
+In these cases, <code>200 OK</code> and a response body are appropriate.</p>
+<h3 id="put">PUT</h3>
+<p>Since a <code>PUT</code> request is a wholesale replacement, the client already has the full content of the entity, so <code>204 No Content</code> + no response body is appropriate in this context.
+<code>200 OK</code> + response body should be avoided, since responding with the entire resource can result in large bandwidth usage, especially for bandwidth-sensitive mobile clients.</p>
+<p>In rare cases, server generated values may need to be provided in the response, to optimize client flow (if the client necessarily has to perform a GET after PUT).
+In these cases, <code>200 OK</code> + response body are appropriate.</p>
+<h3 id="delete">DELETE</h3>
+<p>This method <strong>SHOULD</strong> return status code 204 as there is no need to return any content in most cases as the request is to delete a resource and it was successfully deleted.</p>
+<p>As the DELETE method <strong>MUST</strong> be idempotent as well, it <strong>SHOULD</strong> still return <code>204 No Content</code>, even if the resource was already deleted.
+Usually the API consumer does not care if the resource was deleted as part of this operation, or before.
+This is also the reason why <code>204 No Content</code> instead of <code>404 Not Found</code> should be returned.</p>
+<h3 id="patch">PATCH</h3>
+<p>This method should follow the same status/response semantics as PUT, <code>204 No Content</code> status and no response body.</p>
+<h3 id="post-as-get">POST-as-GET</h3>
+<p>There may be considerations that force us into an intentionally non-resourceful endpoint.
+This is particularly true when using PII as query parameters / filters.
+For example, you may decide to support searching by credit cards as a POST instead of a GET because we want to keep the credit card number off of the URL.
+In this case, we are clearly and intentionally breaking the Uniform Interface architectural constraint of REST.
+To indicate this as intentional, we should put a verb on the path to label this as RPC instead of RESTful.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

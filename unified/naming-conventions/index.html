@@ -1,0 +1,1457 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../controller-resources/">
+      
+      
+        <link rel="next" href="../requests/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Naming Conventions - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#naming-conventions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Naming Conventions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Naming Conventions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Naming Conventions
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#payload-naming-conventions" class="md-nav__link">
+    Payload Naming Conventions
+  </a>
+  
+    <nav class="md-nav" aria-label="Payload Naming Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-conventions" class="md-nav__link">
+    Case Conventions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-names" class="md-nav__link">
+    Field Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-names" class="md-nav__link">
+    Enum Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-relation-names" class="md-nav__link">
+    Link Relation Names
+  </a>
+  
+    <nav class="md-nav" aria-label="Link Relation Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-names" class="md-nav__link">
+    File Names
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uri-naming-conventions" class="md-nav__link">
+    URI Naming Conventions
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Naming Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-components" class="md-nav__link">
+    URI Components
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formal-definition" class="md-nav__link">
+    Formal Definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-component-names" class="md-nav__link">
+    URI Component Names
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Component Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-names" class="md-nav__link">
+    Resource Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameter-names" class="md-nav__link">
+    Query Parameter Names
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Parameter Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sub-resources" class="md-nav__link">
+    Sub-Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-identifiers" class="md-nav__link">
+    Resource Identifiers
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Identifiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-a-resource-collection" class="md-nav__link">
+    Filter a resource collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters-on-a-single-resource" class="md-nav__link">
+    Query parameters on a single resource
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-friendly-apis" class="md-nav__link">
+    Cache-friendly APIs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters-with-post" class="md-nav__link">
+    Query parameters with POST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-multiple-values-for-the-same-query-parameter" class="md-nav__link">
+    Passing multiple values for the same query parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-queries" class="md-nav__link">
+    Complex Queries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#payload-naming-conventions" class="md-nav__link">
+    Payload Naming Conventions
+  </a>
+  
+    <nav class="md-nav" aria-label="Payload Naming Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-conventions" class="md-nav__link">
+    Case Conventions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-names" class="md-nav__link">
+    Field Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-names" class="md-nav__link">
+    Enum Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-relation-names" class="md-nav__link">
+    Link Relation Names
+  </a>
+  
+    <nav class="md-nav" aria-label="Link Relation Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-names" class="md-nav__link">
+    File Names
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uri-naming-conventions" class="md-nav__link">
+    URI Naming Conventions
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Naming Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-components" class="md-nav__link">
+    URI Components
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formal-definition" class="md-nav__link">
+    Formal Definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-component-names" class="md-nav__link">
+    URI Component Names
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Component Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-names" class="md-nav__link">
+    Resource Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameter-names" class="md-nav__link">
+    Query Parameter Names
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Parameter Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sub-resources" class="md-nav__link">
+    Sub-Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-identifiers" class="md-nav__link">
+    Resource Identifiers
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Identifiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-a-resource-collection" class="md-nav__link">
+    Filter a resource collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters-on-a-single-resource" class="md-nav__link">
+    Query parameters on a single resource
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-friendly-apis" class="md-nav__link">
+    Cache-friendly APIs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters-with-post" class="md-nav__link">
+    Query parameters with POST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-multiple-values-for-the-same-query-parameter" class="md-nav__link">
+    Passing multiple values for the same query parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-queries" class="md-nav__link">
+    Complex Queries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="naming-conventions">Naming Conventions</h1>
+<p>Naming conventions for URIs, query parameters, resources, fields and enums are described in this section.
+Let us emphasize here that these guidelines are less about following the conventions exactly as described here but they are more about defining some naming conventions and sticking to them in a consistent manner while designing APIs.
+Adhering to a defined convention across APIs provides the best consumer experience.</p>
+<hr />
+<h2 id="payload-naming-conventions">Payload Naming Conventions</h2>
+<p>The data model for the representation <strong>MUST</strong> conform to JSON.
+The values may themselves be objects, strings, numbers, booleans, or arrays of objects.</p>
+<h3 id="case-conventions">Case Conventions</h3>
+<p>We have followed <a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a> for field property names, based on <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.158.9499">research</a>.
+We have followed <a href="https://en.wikipedia.org/wiki/Letter_case#Special_case_styles">kebab-case</a> for components of the URL path as that seems to be the predominant style.
+It is possible to use other forms such as <a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a> or something else that you have devised yourself.
+However, as noted above, any deviations from consistent API style erode the usability and effectiveness of the APIs as a whole.</p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Case Convention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URI</td>
+<td>kebab-case</td>
+</tr>
+<tr>
+<td>Query parameters</td>
+<td>camelCase</td>
+</tr>
+<tr>
+<td>JSON properties</td>
+<td>camelCase</td>
+</tr>
+<tr>
+<td>Enumerated values</td>
+<td>SNAKE_CASE_IN_CAPS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="field-names">Field Names</h3>
+<ul>
+<li>Key names <strong>MUST</strong> be lower-case words.
+If compound words, <strong>MUST</strong> follow camelCase.<ul>
+<li><code>foo</code></li>
+<li><code>barBaz</code></li>
+</ul>
+</li>
+<li>Prefix such as is* or has_ <strong>SHOULD NOT</strong> be used for keys of type boolean.</li>
+<li>Fields that represent arrays <strong>SHOULD</strong> be named using plural nouns<ul>
+<li><code>products</code> - contains one or more products.</li>
+</ul>
+</li>
+</ul>
+<h3 id="enum-names">Enum Names</h3>
+<p>Entries (values) of an enum <strong>SHOULD</strong> be composed of only upper-case alphanumeric characters and the underscore character, ( _ ).</p>
+<ul>
+<li><code>FIELD_10</code></li>
+<li><code>NOT_EQUAL</code></li>
+</ul>
+<p>If there is an industry standard that requires us to do otherwise, enums <strong>MAY</strong> contain other characters.</p>
+<h3 id="link-relation-names">Link Relation Names</h3>
+<p>A link relation type represented by rel must be in lower-case.</p>
+<h4 id="example">Example:</h4>
+<pre><code class="language-json">{
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://uri.example.com/v1/customer/partner-referrals/ALT-JFWXHGUV7VI/activate&quot;,
+      &quot;rel&quot;: &quot;activate&quot;,
+      &quot;method&quot;: &quot;POST&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="file-names">File Names</h2>
+<p>JSON schema for various types used by API <strong>SHOULD</strong> each be contained in separate files, referenced using the <code>$ref</code> syntax (e.g. <code>"$ref":"object.json"</code>).
+JSON Schema files <strong>SHOULD</strong> use underscore naming syntax, e.g. <code>transaction_history.json</code>.</p>
+<h2 id="uri-naming-conventions">URI Naming Conventions</h2>
+<p>URIs follow <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> specification.
+This specification simplifies REST API service development and consumption.
+The guidelines in this section govern your URI structure and semantics following the RFC 3986 constraints.</p>
+<h3 id="uri-components">URI Components</h3>
+<p>According to <a href="https://datatracker.ietf.org/doc/html/rfc3986">RFC 3986</a>, the generic URI syntax consists of a hierarchical sequence of components referred to as the scheme, authority, path, query, and fragment as shown in example below.</p>
+<p>An API’s resource path consists of URI’s path, query and fragment components.
+It would include API’s major version followed by namespace, resource name and optionally one or more sub-resources.
+For example, consider the following URI.</p>
+<pre><code>https://api.example.com/v1/vault/credit-cards/7LT50814996/charges?merchantId=8FW3C1AB
+\___/\________________/\________________________________________/\__________________/
+  |              |                        |                                |
+scheme       authority                   path                            query
+                       \_/\____/\___________/\__________/\______/\_________/\_______/
+                        |    |        |             |        |        |         |
+                     version |     resource        {id}      |    parameter   {value}
+                         namespace                      subresource
+</code></pre>
+<p>Following table lists various pieces of the above URI:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Path Piece</th>
+<th>Description</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scheme</td>
+<td>https</td>
+<td>Request protocol</td>
+<td>The protocol defines how the client and server communicate the request / reply.</td>
+</tr>
+<tr>
+<td>authority</td>
+<td>api.example.com</td>
+<td>Server</td>
+<td>The domain name of the server offering the service.</td>
+</tr>
+<tr>
+<td>path</td>
+<td>v1/..../charges</td>
+<td>Resource Path</td>
+<td>The location of the resource being queried.</td>
+</tr>
+<tr>
+<td>query</td>
+<td>merchantId=8F33C1AB</td>
+<td>Query filter</td>
+<td>The filter criteria we wish to use as the criteria for filtering results from the collection.</td>
+</tr>
+</tbody>
+</table>
+<p>Following table lists various pieces of the above URI's resource path (including the query):</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Path Piece</th>
+<th>Description</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>version</td>
+<td>v1</td>
+<td>Specifies major version 1 of the API</td>
+<td>The API major version is used to distinguish between two backward-incompatible versions of the same API. The API major version is an integer value which <strong>MUST</strong> be included as part of the URI.</td>
+</tr>
+<tr>
+<td>namespace</td>
+<td>vault</td>
+<td>Business Domain</td>
+<td>Namespace identifiers are used to provide a context and scope for resources. They are determined by logical boundaries in the business capability model implemented by the API platform.</td>
+</tr>
+<tr>
+<td>resource</td>
+<td>credit-cards</td>
+<td>Resource name</td>
+<td>If the resource name represents a collection of resources, then the GET method on the resource should retrieve the list of resources. Query parameters should be used to specify the search criteria.</td>
+</tr>
+<tr>
+<td>{id}</td>
+<td><code>7LT50814996</code></td>
+<td>Resource ID</td>
+<td>To retrieve a particular resource out of the collection, a resource ID <strong>MUST</strong> be specified as part of the URI. Sub-resources are discussed below.</td>
+</tr>
+<tr>
+<td>subresource</td>
+<td>charges</td>
+<td>Sub-Resource name</td>
+<td>If the sub-resource name represents a collection of resources, then the GET method on the resource should retrieve the list of resources. Query parameters should be used to specify the search criteria.</td>
+</tr>
+<tr>
+<td>parameter</td>
+<td>merchantId</td>
+<td>Property Name</td>
+<td>The property we wish to use as the criteria for filtering results from the collection.</td>
+</tr>
+<tr>
+<td>{value}</td>
+<td><code>8FW3C1AB</code></td>
+<td>Filter value</td>
+<td>To retrieve a particular set of resources out of the collection, a filter value <strong>MUST</strong> be specified as part of the URI to restrict the data included in the collection.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="formal-definition">Formal Definition</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URI</td>
+<td><code>[end-point] ‘/’ resource-path [’?'query]</code></td>
+</tr>
+<tr>
+<td>end-point</td>
+<td><code>[scheme “://”] host [’:’ port]]</code></td>
+</tr>
+<tr>
+<td>scheme</td>
+<td><code>http</code> or <code>https</code></td>
+</tr>
+<tr>
+<td>resource-path</td>
+<td><code>“/v” version ‘/’ namespace-name ‘/’ resource (’/’ resource)</code></td>
+</tr>
+<tr>
+<td>resource</td>
+<td><code>resource-name [’/’ resource-id]</code></td>
+</tr>
+<tr>
+<td>resource-name</td>
+<td><code>Alpha (Alpha | Digit | ‘-’)*</code></td>
+</tr>
+<tr>
+<td>resource-id</td>
+<td><code>value</code></td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>name ‘=’ value (’&amp;’ name = value)*</code></td>
+</tr>
+<tr>
+<td>name</td>
+<td><code>Alpha (Alpha | Digit | ‘_’)*</code></td>
+</tr>
+<tr>
+<td>value</td>
+<td>URI Percent encoded value</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Legend:</p>
+<ul>
+<li>' Surround a special character with single quotes</li>
+<li>" Surround strings with double quotes</li>
+<li>() Use parentheses for grouping</li>
+<li>[] Use brackets to specify optional expressions</li>
+<li>
+<ul>
+<li>An expression can be repeated zero or more times</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="uri-component-names">URI Component Names</h3>
+<p>Following is a brief description of the URI specific naming convention guidelines for APIs.
+This specification uses the following notation to denote special meaning:</p>
+<ul>
+<li>parentheses “( )” to group</li>
+<li>an asterisk " * " to specify zero or more occurrences</li>
+<li>brackets “[ ]” for optional fields.</li>
+</ul>
+<p><code>[scheme]://[host][':'port]]"v{major-version}/{namespace}/{resource}(/{sub-resource})* ?{query}</code></p>
+<ul>
+<li>URIs <strong>MUST</strong> start with a letter and use only lower-case letters.</li>
+<li>Literals/expressions in URI paths <strong>SHOULD</strong> be separated using a hyphen ( - ).</li>
+<li>Literals/expressions in query strings <strong>SHOULD</strong> be expressed in camelCase.</li>
+<li>URI paths and query strings <strong>MUST</strong> percent encode data into UTF-8 octets.</li>
+<li>Plural nouns <strong>SHOULD</strong> be used in the URI where appropriate to identify collections of data resources.<ul>
+<li><code>/invoices</code></li>
+<li><code>/statements</code></li>
+</ul>
+</li>
+<li>An individual resource in a collection of resources <strong>MAY</strong> exist directly beneath the collection URI.<ul>
+<li><code>/invoices/{invoiceId}</code></li>
+</ul>
+</li>
+<li>Sub-resource collections <strong>MAY</strong> exist directly beneath an individual resource.
+  This should convey a relationship to another collection of resources (invoice-items, in this example).<ul>
+<li><code>/invoices/{invoiceId}/items</code></li>
+</ul>
+</li>
+<li>Sub-resource individual resources <strong>MAY</strong> exist, but should be avoided in favor of top-level resources.<ul>
+<li><code>/invoices/{invoiceId}/items/{itemId}</code></li>
+<li>Better: <code>/invoice-items/{invoiceItemId}</code></li>
+</ul>
+</li>
+<li>Resource identifiers <strong>SHOULD</strong> follow recommendations described in the subsequent section.</li>
+</ul>
+<h4 id="examples">Examples:</h4>
+<pre><code>https://api.example.com/v1/vault/credit-cards
+https://api.example.com/v1/vault/credit-cards/CARD-7LT50814996943336KESEVWA
+https://api.example.com/v1/payments/billing-agreements/I-V8SSE9WLJGY6/re-activate
+</code></pre>
+<h3 id="resource-names">Resource Names</h3>
+<p>When modeling a service as a set of resources, developers <strong>MUST</strong> follow these principles:</p>
+<ul>
+<li>Nouns <strong>MUST</strong> be used, not verbs.</li>
+<li>Resource names <strong>MUST</strong> be singular for singletons; collections’ names <strong>MUST</strong> be plural.<ul>
+<li>Given a description of the automatic payments configuration on a user’s account<ul>
+<li><code>GET /autopay</code> returns the full representation</li>
+</ul>
+</li>
+<li>Given a collection of hypothetical charges:<ul>
+<li><code>GET /charges</code> returns a list of charges that have been made</li>
+<li><code>POST /charges</code> creates a new charge resource, /charges/1234</li>
+<li><code>GET /charges/1234</code> returns a full representation of a single charge</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Resource names <strong>MUST</strong> be lower-case and use only alphanumeric characters and hyphens.</li>
+<li>The hyphen character, ( - ), <strong>MUST</strong> be used as a word separator in URI path literals.
+  Note that this is the only place where hyphens are used as a word separator.
+  In nearly all other situations, camelCase formatting, <strong>MUST</strong> be used.</li>
+</ul>
+<h3 id="query-parameter-names">Query Parameter Names</h3>
+<ul>
+<li>Literals/expressions in query strings <strong>SHOULD</strong> be formatted using camelCase.</li>
+<li>Query parameters values <strong>MUST</strong> be percent-encoded.</li>
+<li>Query parameters <strong>MUST</strong> start with a letter.
+  Only alpha characters and digits character <strong>SHALL</strong> be used.</li>
+<li>Query parameters <strong>SHOULD</strong> be optional.</li>
+<li>Some query parameter names are reserved, as indicated in Resource Collections.
+  For more specific info on the query parameter usage, see URI Standards.</li>
+</ul>
+<h4 id="sub-resources">Sub-Resources</h4>
+<p>Sub-resources represent a relationship from one resource to another.
+The sub-resource name provides a meaning for the relationship.</p>
+<ul>
+<li>If cardinality is 1:1, then no additional information is required.
+Otherwise, the sub-resource <strong>SHOULD</strong> provide a sub-resource ID for unique identification.</li>
+<li>If cardinality is 1:many, then all the sub-resources will be returned.</li>
+<li>No more than two levels of sub-resources <strong>SHOULD</strong> be supported.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET https://api.example.com/v1/customer-support/disputes/ABCD1234/documents</code></td>
+<td>This call should return all the documents associated with dispute ABCD1234.</td>
+</tr>
+<tr>
+<td><code>GET https://api.example.com/v1/customer-support/disputes/ABCD1234/documents/102030</code></td>
+<td>This call should return only the details for a particular document associated with this dispute. Keep in mind that this is only an illustrative example to show how to use sub-resource IDs. In practice, two step invocations <strong>SHOULD</strong> be avoided. If the second identifier is unique, top-level resource (e.g. <code>/v1/customer-support/documents/102030</code>) is preferred.</td>
+</tr>
+<tr>
+<td><code>GET https://api.example.com/v1/customer-support/disputes/ABCD1234/transactions</code></td>
+<td>The following example should return all the transactions associated with this dispute and their details, so there <strong>SHOULD NOT</strong> be a need to specify a particular transaction ID. If specific transaction ID retrieval is needed, <code>/v1/customer-support/transactions/ABCD1234</code> is preferred (assuming IDs are unique).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-identifiers">Resource Identifiers</h4>
+<p>Resource identifiers identify a resource or a sub-resource.
+These <strong>MUST</strong> conform to the following guidelines.</p>
+<ul>
+<li>The lifecycle of a resource identifier <strong>MUST</strong> be owned by the resource’s domain model, where they can be guaranteed to uniquely identify a single resource.</li>
+<li>APIs <strong>MUST NOT</strong> use the database sequence number as the resource identifier.</li>
+<li>A UUID, Hashed Id (HMAC based) is preferred as a resource identifier.</li>
+<li>For security and data integrity reasons all sub-resource IDs <strong>MUST</strong> be scoped within the parent resource only.</li>
+</ul>
+<h5 id="example_1">Example:</h5>
+<p><code>/users/1234/linked-accounts/ABCD</code></p>
+<ul>
+<li>Even if account “ABCD” exists, it <strong>MUST NOT</strong> be returned unless it is linked to user: 1234.</li>
+<li>Enumeration values can be used as sub-resource IDs.
+  String representation of the enumeration value <strong>SHOULD</strong> be used.</li>
+<li>There <strong>MUST NOT</strong> be two resource identifiers one after the other.
+  Example: <code>https://api.example.com/v1/transactions/payments/12345/102030</code></li>
+<li>Resource IDs <strong>SHOULD</strong> try to use either Resource Identifier Characters or ASCII characters.
+  There <strong>SHOULD NOT</strong> be any ID using UTF-8 characters.</li>
+<li>Resource IDs and query parameter values <strong>MUST</strong> perform URI percent-encoding for any character other than URI unreserved characters.
+  Query parameter values using UTF-8 characters <strong>MUST</strong> be encoded.</li>
+</ul>
+<h3 id="query-parameters">Query Parameters</h3>
+<p>Query parameters are name/value pairs specified after the resource path, as prescribed in RFC 3986.</p>
+<p>Naming Conventions should also be followed when applying the following section.</p>
+<h4 id="filter-a-resource-collection">Filter a resource collection</h4>
+<ul>
+<li>Query parameters <strong>SHOULD</strong> be used only for the purpose of restricting the resource collection or as search or filtering criteria.</li>
+<li>The resource identifier in a collection <strong>SHOULD NOT</strong> be used to filter collection results, resource identifier should be in the URI.</li>
+<li>Parameters for pagination <strong>SHOULD</strong> follow standard naming convention guidelines.</li>
+<li>Default sort order <strong>SHOULD</strong> be considered as undefined and non-deterministic.
+  If an explicit sort order is desired, the query parameter sort <strong>SHOULD</strong> be used with the following general syntax: <code>{fieldName}|{asc|desc},{fieldName}|{asc|desc}</code>.
+  For instance: <code>/accounts?sort=dateOfBirth|asc,zipCode|desc</code></li>
+</ul>
+<h4 id="query-parameters-on-a-single-resource">Query parameters on a single resource</h4>
+<p>In typical cases where one resource is utilized (e.g. <code>/v1/payments/billing-plans/P-94458432VR012762KRWBZEUA</code>), query parameters <strong>SHOULD NOT</strong> be used.</p>
+<h4 id="cache-friendly-apis">Cache-friendly APIs</h4>
+<p>In rare cases where a resource needs to be highly cacheable (usually data with minimal change), query parameters <strong>MAY</strong> be utilized as opposed to POST + request body.
+As POST would make the response uncacheable, GET is preferred in these situations.
+This is the only scenario in which query parameters <strong>MAY</strong> be required.</p>
+<h4 id="query-parameters-with-post">Query parameters with POST</h4>
+<p>When POST is utilized for an operation, query parameters are usually <strong>NOT RECOMMENDED</strong> in favor of request body fields.
+In cases where POST provides paged results (typically in complex search APIs where GET is not appropriate), query parameters <strong>MAY</strong> be used in order to provide hypermedia links to the next page of results.</p>
+<h4 id="passing-multiple-values-for-the-same-query-parameter">Passing multiple values for the same query parameter</h4>
+<p>When using query parameters for search functionality, it is often necessary to pass multiple values.
+For instance, it might be the case that a resource could have many states, such as OPEN, CLOSED, and INVALID.
+What if an API client wants to find all items that are either CLOSED or INVALID?</p>
+<ul>
+<li>It is <strong>RECOMMENDED</strong> that APIs implement this functionality by repeating the query parameter.
+  This is inherently supported by HTTP standards and already built in to most client libraries.</li>
+<li>The query above would be implemented as <code>?status=CLOSED&amp;status=INVALID</code>.</li>
+<li>The parameter <strong>MUST</strong> be marked as repeatable in API specifications using <code>"repeated": true</code> in the parameter’s definition section.</li>
+<li>The parameter’s name <strong>SHOULD</strong> be singular.</li>
+</ul>
+<p>URIs have practical length limits that are quite low - most conservatively, about <a href="https://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url-in-different-browsers#417184">2,000 characters</a>.
+Therefore, there are situations where API designers <strong>MAY</strong> choose to use a single query parameter that accepts comma-separated values in order to accommodate more values in the <code>query-string</code>.
+Keep in mind that server and client libraries don’t consistently provide this functionality, which means that implementers will need to write additional string parsing code.
+Due to the additional complexity and divergence from HTTP standards, this solution is NOT RECOMMENDED unless justified.</p>
+<ul>
+<li>The query above would be implemented as <code>?statuses=CLOSED,INVALID</code>.</li>
+<li>The parameter <strong>MUST NOT</strong> be marked as repeatable in API specifications.</li>
+<li>The parameter <strong>MUST</strong> be marked as <code>"type": "string"</code> in API specifications in order to accommodate comma-separated values.
+  Any other type value <strong>MUST NOT</strong> be used.</li>
+<li>The parameter description <strong>SHOULD</strong> indicate that comma separated values are accepted.</li>
+<li>The <code>query-parameter</code> name <strong>SHOULD</strong> be plural, to provide a hint that this pattern is being employed.</li>
+<li>The comma character (Unicode U+002C) <strong>SHOULD</strong> be used as the separator between values.</li>
+<li>The API documentation <strong>MUST</strong> define how to escape the separator character, if necessary.</li>
+</ul>
+<h4 id="complex-queries">Complex Queries</h4>
+<p>The syntax defined above is sufficient to provide simple filter capabilities within the URL path.
+At a certain point, the complexity of desired queries grows beyond our ability to reasonably express within the URL.
+This complexity could be driven by a variety of domain, design, or organizational dynamics.</p>
+<p>No matter the cause, re-examine your API before embarking on the creation of a complex query model to include as a request payload.
+It may be possible to refactor the API, or provide more specialized endpoints suited to the use-case.
+It may also be possible to refactor the domain context, either splitting the domain, or identifying a higher-level concept better suited to the use-case.</p>
+<blockquote>
+<p>NOTE: The one exception to this rule is when considering the inclusion of PII in query parameters.
+For these cases, it is recommended to provide a simple query payload for use in a POST request.
+This provides a mechanism to avoid including PII in the URL (and the associated dangers of logging or otherwise accidentally exposing PII).</p>
+</blockquote>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

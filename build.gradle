@@ -1,0 +1,32 @@
+plugins {
+    id 'starter.java.doc-mkdocs-conventions'
+}
+
+tasks.register('generateMarkdownDoc') {
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    description = "(re)builds Markdown document from fragments and *.mdx file"
+    onlyIf { gitPresent && !System.getenv('GITHUB_ACTION') }
+    def indexExtensions = ['.mdx']
+    if (gitPresent) {
+        def extensions = ['.mdx', '.md']
+        inputs.files(filterProjectFiles(modifiedFiles, extensions))
+    }
+    //outputs.dir('build')
+    outputs.upToDateWhen { inputs.files.size() <= 0 }
+
+    doLast {
+        StringBuilder files = new StringBuilder()
+
+        FileCollection indexFiles = layout.files('styleguide.mdx')
+        indexFiles.each { f -> files.append(" ").append(f) }
+        def cmdLine = "${project.rootDir}/scripts/generate-doc.sh ${files.toString()}  "
+        logger.info("[{}]: {}", project.projectDir, cmdLine)
+        def proc = cmdLine.execute(null, project.projectDir)
+
+        proc.in.eachLine { line -> logger.quiet(line) }
+        proc.out.close()
+        proc.waitFor()
+        logger.quiet("Exit code: [{}]", proc.exitValue())
+    }
+}
+

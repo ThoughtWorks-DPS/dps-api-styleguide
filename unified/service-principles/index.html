@@ -1,0 +1,830 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../api-principles/">
+      
+      
+        <link rel="next" href="../methods/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Service Design Principles - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#service-design-principles" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Service Design Principles
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Service Design Principles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Service Design Principles
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loose-coupling" class="md-nav__link">
+    Loose Coupling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encapsulation" class="md-nav__link">
+    Encapsulation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stability" class="md-nav__link">
+    Stability
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable" class="md-nav__link">
+    Reusable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contract-based" class="md-nav__link">
+    Contract-based
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consistency" class="md-nav__link">
+    Consistency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ease-of-use" class="md-nav__link">
+    Ease Of Use
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#externalizable" class="md-nav__link">
+    Externalizable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    Observability
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loose-coupling" class="md-nav__link">
+    Loose Coupling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encapsulation" class="md-nav__link">
+    Encapsulation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stability" class="md-nav__link">
+    Stability
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable" class="md-nav__link">
+    Reusable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contract-based" class="md-nav__link">
+    Contract-based
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consistency" class="md-nav__link">
+    Consistency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ease-of-use" class="md-nav__link">
+    Ease Of Use
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#externalizable" class="md-nav__link">
+    Externalizable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    Observability
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="service-design-principles">Service Design Principles</h1>
+<hr />
+<p>This section captures the principles guiding the design of the services that expose APIs to internal and external developers, agencies, partners and affiliates.
+A service refers to functionality pertaining to a particular capability, exposed as an API.
+Following are the core design principles for a service.</p>
+<h2 id="loose-coupling">Loose Coupling</h2>
+<p>Services and consumers must be loosely coupled to each other.</p>
+<p>Coupling refers to a connection or relationship between two things.
+A measure of coupling is comparable to a level of dependency.
+This principle advocates the design of service contracts, with a constant emphasis on reducing (loosening) dependencies between the service contract, its implementation, and service consumers.</p>
+<p>The principle of Loose Coupling promotes the independent design and evolution of a service’s logic and implementation while still emphasizing baseline interoperability with consumers that have come to rely on the service’s capabilities.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>A service contract should not expose implementation details.</li>
+<li>A service contract can evolve without impacting existing consumers.</li>
+<li>A service in a particular domain can evolve independently of other domains.</li>
+</ul>
+<h2 id="encapsulation">Encapsulation</h2>
+<p>A domain service can access data and functionality it does not own only through other service contracts.</p>
+<p>A service exposes functionality that comprises the capability and data it owns and implements, as well as the capability and data it depends upon which it does not own.
+This principle advocates that any capability or data that a service depends on and which it does not own must only be accessed through service contracts.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>A service has a clear isolation boundary - a clear scope of ownership in terms of functionality and data.</li>
+<li>A service cannot expose the data it does not own directly.</li>
+</ul>
+<h2 id="stability">Stability</h2>
+<p>Service contracts must be stable.</p>
+<p>Services must be designed in such a way that the contract they expose remains valid for existing customers.
+Should the service contract need to evolve in an incompatible fashion for the consumer, this should be communicated clearly.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>Existing clients of a service must be supported for a documented period of time.</li>
+<li>Additional functionality must be introduced in a way that does not impact existing consumers.
+Deprecation and migration policies must be clearly stated to set consumers’ expectations.</li>
+</ul>
+<p>Results of applying this principle can be seen in the sections on API Versioning. </p>
+<h2 id="reusable">Reusable</h2>
+<p>Services must be developed to be reusable across multiple contexts and by multiple consumers.</p>
+<p>The main goal of an API platform is to enable applications to be developed quickly and cost effectively by using and combining services.
+This principle advocates that services be developed in a manner that enables them to be used by multiple consumers and in multiple contexts, some of which may evolve over time.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>A service contract should be designed for not just the immediate context, but with support and/or extensibility to be used by multiple consumers in different contexts.</li>
+<li>A service contract may need to incrementally evolve to support multiple contexts and consumers over time.</li>
+</ul>
+<h2 id="contract-based">Contract-based</h2>
+<p>Functionality and data must only be exposed through standardized service contracts.</p>
+<p>A service exposes its purpose and capabilities via a service contract.
+A service contract is comprised of functional aspects, non-functional aspects (such as availability, response-time), and business aspects (such as cost-per-call, terms and conditions).
+Standardized means that the service contracts must be compliant with the contract design standards.</p>
+<p>This principle advocates that all functionality and data must only be exposed through standardized service contracts.
+Consumers of services can, therefore, understand and access functionality and data only through service contracts.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>Functionality and data cannot be understood or accessed outside of service contracts.</li>
+<li>Each piece of data (such as that managed in a datastore) is owned by only one service.</li>
+</ul>
+<h2 id="consistency">Consistency</h2>
+<p>Services must follow a common set of rules, interaction styles, vocabulary and shared types.</p>
+<p>A set of rules prescribes the definition of services in order to expose those in a consistent manner.
+This principle increases the ease of use of the API platform by reducing the learning curve for consumers of new services.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>A set of standards is defined for services with which to comply.</li>
+<li>A service should use vocabulary from common and shared dictionaries.</li>
+<li>Compatible interaction styles, service granularity and shared types are key for full interoperability and ease of service compositions.</li>
+</ul>
+<h2 id="ease-of-use">Ease Of Use</h2>
+<p>Services must be easy to use and compose in consumers (and applications).</p>
+<p>A service that is difficult and time consuming to use reduces the benefits of a microservices architecture by encouraging consumers to find alternate mechanisms to access the same functionality.
+Composability means that services can be combined easily because the service contracts and access protocols are consistent, and each service contract does not have to be understood independently.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>A service contract is easily discoverable and understandable.
+Service contracts and protocols are consistent in all aspects that they can be - e.g. identification and authentication mechanisms, error semantics, common type usage, pagination, etc.</li>
+<li>A service has clear ownership, so that consumer providers can reach service owners regarding SLAs, requirements, and issues.</li>
+<li>A consumer provider can easily integrate, test, and deploy a consumer that uses this service.</li>
+<li>A consumer provider can easily understand the non-functional guarantees provided by a service.</li>
+</ul>
+<h2 id="externalizable">Externalizable</h2>
+<p>A service must be designed so that the functionality it provides is easily accessible to consumers outside the team.</p>
+<p>A service is developed for use by consumers that may be from another domain or team, another business unit or another company.
+In all of these cases, the functionality exposed is the same; what changes is the access mechanism or the policies enforced by a service, like authentication, authorization and rate-limiting.
+Since the functionality exposed is the same, the service should be designed once and then externalized based on business needs through appropriate policies.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>The service interface must be derived from the domain model and the intended use-cases it is meant to support.</li>
+<li>The service contract and access (binding) protocols supported must meet the consumer’s needs.</li>
+<li>The externalization of a service must not require reimplementation, or a change in service contract.</li>
+</ul>
+<h2 id="observability">Observability</h2>
+<p>A service must provide a way for consumers to understand its operational characteristics.</p>
+<p>Consumers need a way to understand the operational properties of a system in a (near) real-time manner.
+This is critical to a consumer's ability to support their own systems which are dependent upon the service.</p>
+<p>This principle implies the following:</p>
+<ul>
+<li>The service should provide a method for a consumer to view its health status.</li>
+<li>The service should provide access to metrics related to SLAs/SLOs.</li>
+<li>The consumer should be able to access some level of logging or response information related to their own specific queries.</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

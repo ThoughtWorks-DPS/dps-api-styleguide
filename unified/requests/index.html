@@ -1,0 +1,2617 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../naming-conventions/">
+      
+      
+        <link rel="next" href="../payloads/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>HTTP Request Standards - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#http-request-standards" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              HTTP Request Standards
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          HTTP Request Standards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        HTTP Request Standards
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#http-verb-semantics" class="md-nav__link">
+    HTTP Verb Semantics
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Verb Semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-idempotency" class="md-nav__link">
+    Safety and Idempotency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-operations-http-verbs-and-url-paths" class="md-nav__link">
+    Resource Operations - HTTP Verbs and URL Paths
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-querystring-operations" class="md-nav__link">
+    Standard Querystring Operations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-resource" class="md-nav__link">
+    Create Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Create Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    Example Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-new-resource-consumer-supplied-identifier" class="md-nav__link">
+    Create New Resource - Consumer Supplied Identifier
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collection-resource" class="md-nav__link">
+    Collection Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Collection Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-filtering" class="md-nav__link">
+    Resource Filtering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-selection" class="md-nav__link">
+    Time Selection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    Sorting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    Pagination
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-uri-path" class="md-nav__link">
+    Sample URI path:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-properties" class="md-nav__link">
+    Response Properties
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-navigation" class="md-nav__link">
+    Page Navigation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-single-resource" class="md-nav__link">
+    Read Single Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Single Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_1" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_1" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_1" class="md-nav__link">
+    Example Response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-status" class="md-nav__link">
+    HTTP Status:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-single-resource" class="md-nav__link">
+    Delete Single Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Delete Single Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_2" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_2" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-single-resource" class="md-nav__link">
+    Update Single Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Update Single Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_3" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_3" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-status_1" class="md-nav__link">
+    HTTP Status:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partially-update-single-resource" class="md-nav__link">
+    Partially Update Single Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Partially Update Single Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-parameter" class="md-nav__link">
+    path Parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-pointer-expression" class="md-nav__link">
+    JSON Pointer Expression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-array-examples" class="md-nav__link">
+    PATCH Array Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="PATCH Array Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    Example 1:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    Example 2:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-implementation-considerations-for-patch" class="md-nav__link">
+    Other Implementation Considerations For PATCH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responses-to-a-patch-request" class="md-nav__link">
+    Responses to a PATCH request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-examples" class="md-nav__link">
+    PATCH Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projected-response" class="md-nav__link">
+    Projected Response
+  </a>
+  
+    <nav class="md-nav" aria-label="Projected Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_1" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-resource-collection" class="md-nav__link">
+    Sub-Resource Collection
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-Resource Collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cautions" class="md-nav__link">
+    Cautions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-templates" class="md-nav__link">
+    URI Templates
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-resource-singleton" class="md-nav__link">
+    Sub-Resource Singleton
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-Resource Singleton">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_4" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency" class="md-nav__link">
+    Idempotency
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-for-post-requests" class="md-nav__link">
+    Idempotency For POST Requests
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency For POST Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-the-client-side" class="md-nav__link">
+    On the client side:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-server-side" class="md-nav__link">
+    On the server side:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-response" class="md-nav__link">
+    Sample response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-client-side_1" class="md-nav__link">
+    On the client side:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-server-side_1" class="md-nav__link">
+    On the server side:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-response_1" class="md-nav__link">
+    Sample response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniqueness-of-idempotency-key" class="md-nav__link">
+    Uniqueness of Idempotency Key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-scenarios" class="md-nav__link">
+    Error Scenarios
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-operations" class="md-nav__link">
+    Asynchronous Operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-post-requests" class="md-nav__link">
+    For POST requests:
+  </a>
+  
+    <nav class="md-nav" aria-label="For POST requests:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-putpatchdeleteget-requests" class="md-nav__link">
+    For PUT/PATCH/DELETE/GET requests:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hypermedia/" class="md-nav__link">
+        Hypermedia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#http-verb-semantics" class="md-nav__link">
+    HTTP Verb Semantics
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Verb Semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-idempotency" class="md-nav__link">
+    Safety and Idempotency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-operations-http-verbs-and-url-paths" class="md-nav__link">
+    Resource Operations - HTTP Verbs and URL Paths
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-querystring-operations" class="md-nav__link">
+    Standard Querystring Operations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-resource" class="md-nav__link">
+    Create Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Create Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    Example Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-new-resource-consumer-supplied-identifier" class="md-nav__link">
+    Create New Resource - Consumer Supplied Identifier
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collection-resource" class="md-nav__link">
+    Collection Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Collection Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-filtering" class="md-nav__link">
+    Resource Filtering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-selection" class="md-nav__link">
+    Time Selection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    Sorting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    Pagination
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-uri-path" class="md-nav__link">
+    Sample URI path:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-properties" class="md-nav__link">
+    Response Properties
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-navigation" class="md-nav__link">
+    Page Navigation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-single-resource" class="md-nav__link">
+    Read Single Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Single Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_1" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_1" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_1" class="md-nav__link">
+    Example Response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-status" class="md-nav__link">
+    HTTP Status:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-single-resource" class="md-nav__link">
+    Delete Single Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Delete Single Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_2" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_2" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-single-resource" class="md-nav__link">
+    Update Single Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Update Single Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_3" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_3" class="md-nav__link">
+    Example Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-status_1" class="md-nav__link">
+    HTTP Status:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partially-update-single-resource" class="md-nav__link">
+    Partially Update Single Resource
+  </a>
+  
+    <nav class="md-nav" aria-label="Partially Update Single Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-parameter" class="md-nav__link">
+    path Parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-pointer-expression" class="md-nav__link">
+    JSON Pointer Expression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-array-examples" class="md-nav__link">
+    PATCH Array Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="PATCH Array Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    Example 1:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    Example 2:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-implementation-considerations-for-patch" class="md-nav__link">
+    Other Implementation Considerations For PATCH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responses-to-a-patch-request" class="md-nav__link">
+    Responses to a PATCH request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-examples" class="md-nav__link">
+    PATCH Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projected-response" class="md-nav__link">
+    Projected Response
+  </a>
+  
+    <nav class="md-nav" aria-label="Projected Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_1" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-resource-collection" class="md-nav__link">
+    Sub-Resource Collection
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-Resource Collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cautions" class="md-nav__link">
+    Cautions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uri-templates" class="md-nav__link">
+    URI Templates
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-resource-singleton" class="md-nav__link">
+    Sub-Resource Singleton
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-Resource Singleton">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uri-template_4" class="md-nav__link">
+    URI Template
+  </a>
+  
+    <nav class="md-nav" aria-label="URI Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency" class="md-nav__link">
+    Idempotency
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-for-post-requests" class="md-nav__link">
+    Idempotency For POST Requests
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency For POST Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-the-client-side" class="md-nav__link">
+    On the client side:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-server-side" class="md-nav__link">
+    On the server side:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-response" class="md-nav__link">
+    Sample response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-client-side_1" class="md-nav__link">
+    On the client side:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-server-side_1" class="md-nav__link">
+    On the server side:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-response_1" class="md-nav__link">
+    Sample response:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniqueness-of-idempotency-key" class="md-nav__link">
+    Uniqueness of Idempotency Key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-scenarios" class="md-nav__link">
+    Error Scenarios
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-operations" class="md-nav__link">
+    Asynchronous Operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-post-requests" class="md-nav__link">
+    For POST requests:
+  </a>
+  
+    <nav class="md-nav" aria-label="For POST requests:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-putpatchdeleteget-requests" class="md-nav__link">
+    For PUT/PATCH/DELETE/GET requests:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="http-request-standards">HTTP Request Standards</h1>
+<hr />
+<p>This section defines how HTTP Requests should be constructed.
+It includes definitions and examples for each of the HTTP verbs.
+It also defines how URLs are constructed, and how the URL structure communicates request semantics to the server.</p>
+<h2 id="http-verb-semantics">HTTP Verb Semantics</h2>
+<p>API calls may fail for a number of reasons, and the client may not always know if the server failed or if the client simply didn’t get notified of success.
+For example, there may be a temporary network failure preventing the server’s response from getting back to the client, or the server may have responded but the client HTTP connection already timed out before receiving the response.
+The following two characteristics help us think about these failure conditions:</p>
+<ul>
+<li><em>Safety</em> - Safe calls have no client-visible side effects (in other words, writing to a server-side log file is fine, but changing resource state is not).
+  Read-only APIs should be safe.</li>
+<li><em>Idempotency</em> - Idempotent APIs are those where the end result of two or more (identical) successful API calls is the same as the end result of one successful call.
+  Idempotent APIs are therefore retry-able when the client does not know if the call succeeded on the server or not.</li>
+</ul>
+<h3 id="safety-and-idempotency">Safety and Idempotency</h3>
+<p>These two characteristics allow us to reason about failure scenarios with HTTP verb semantics:</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Verb</th>
+<th>Safe?</th>
+<th>Idempotent?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>No</td>
+<td>Maybe - sending multiple POST requests will result in multiple resources unless both client and server implement idempotency logic via the value of the <code>Idempotency-Key</code> HTTP header property.</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>No</td>
+<td>Maybe - overwriting a resource with the same state twice is fine, provided there is a way to fail the retry if the resource has been further modified by another actor in the meantime</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>No</td>
+<td>No - updating a few fields twice may not result in the same resource state as other fields may change between the two updates</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>No</td>
+<td>Yes - deleting a resource that’s already deleted is fine</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note: The above analysis is true only for the resource in question.
+If the service triggers other workflows as a result of an API call, then the service must implement logic to maintain the safety and/or idempotency of the API request.
+For example, in the case where changing a resource triggers a workflow, systems of record should only be notified if a PUT <em>actually changes the resource</em>.</p>
+</blockquote>
+<h3 id="resource-operations-http-verbs-and-url-paths">Resource Operations - HTTP Verbs and URL Paths</h3>
+<p>The HTTP verbs to support endpoint requests should follow standard HTTP semantics.</p>
+<table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Collection</th>
+<th>Singular</th>
+<th>Reified</th>
+<th>Non-resourceful</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>Search</td>
+<td>Read</td>
+<td>Status of workflow request</td>
+<td>Not applicable</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>Create (server returns new resource id)</td>
+<td>Tunnel</td>
+<td>Create</td>
+<td>Tunnel</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>Overwrite all</td>
+<td>Overwrite (or create with client provided id)</td>
+<td>Not applicable</td>
+<td>Not applicable</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>Bulk update</td>
+<td>Partial update</td>
+<td>Not applicable</td>
+<td>Not applicable</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Delete all</td>
+<td>Delete</td>
+<td>Cancel a workflow request</td>
+<td>Not applicable</td>
+</tr>
+</tbody>
+</table>
+<p>"Tunnel" refers to taking any action not otherwise represented in the table.
+It is a way of bypassing the Uniform Interface of REST to take some action that requires more than standard HTTP semantics.
+HTTP supports two standard ways of updating a resource through the PUT and PATCH verbs.
+PUT is more common, but expects the client to pass all fields back.
+PATCH supports partial updates, allowing the client to only send changed fields back.
+Our recommendation is to use PUT wherever possible, as it’s easier to understand and generally provides a better client experience.
+PATCH has complicated semantics and is more prone to errors and race conditions.</p>
+<p>Prefer POST over PUT-with-id for creation of resources.
+Supporting PUT-with-id requires extra overhead for synchronization and ensuring an id is unique.
+This can have an impact on performance and reliability.
+It also adds complexity on the client-side implementation in the form of handling an additional set of error conditions.</p>
+<p>This style guide does not dictate whether DELETEs are hard deletes or soft.
+Those semantics will be defined within each API as appropriate to the business.</p>
+<h3 id="standard-querystring-operations">Standard Querystring Operations</h3>
+<p>Where a standard operation isn’t listed below, prefer JSON API format where feasible.</p>
+<h2 id="create-resource">Create Resource</h2>
+<p>For creating a new resource, use POST method. The request body for POST may be somewhat different than for GET/PUT response/request (typically fewer fields as the server will generate some values).
+In most cases, the service produces an identifier for the resource.
+In cases where identifier is supplied by the API consumer, use Create New Resource - Client Supplied ID</p>
+<p>Once the POST has successfully completed, a new resource will be created.
+Hypermedia links provide an easy way to get the URL of the newly created resource, using the rel: self, in addition to other links for operations that are allowed on the newly created resource.
+You may provide complete representation of the resource or partial with just <a href="../hypermedia/">HATEOAS</a> links to retrieve the complete representation.</p>
+<h3 id="uri-template">URI Template</h3>
+<p><code>POST /{version}/{namespace}/{resource}</code></p>
+<h5 id="example-request">Example Request:</h5>
+<p>Note that server-generated values are not provided in the request.</p>
+<p><code>POST /v1/vault/credit-cards</code></p>
+<pre><code class="language-json">{
+  &quot;payer_id&quot;: &quot;user12345&quot;,
+  &quot;type&quot;: &quot;visa&quot;,
+  &quot;number&quot;: &quot;4417119669820331&quot;,
+  &quot;expire_month&quot;: &quot;11&quot;,
+  &quot;expire_year&quot;: &quot;2018&quot;,
+  &quot;first_name&quot;: &quot;Betsy&quot;,
+  &quot;last_name&quot;: &quot;Buyer&quot;,
+  &quot;billing_address&quot;: {
+    &quot;line1&quot;: &quot;111 First Street&quot;,
+    &quot;city&quot;: &quot;Saratoga&quot;,
+    &quot;country_code&quot;: &quot;US&quot;,
+    &quot;state&quot;: &quot;CA&quot;,
+    &quot;postal_code&quot;: &quot;95070&quot;
+  }
+}
+</code></pre>
+<h5 id="example-response">Example Response</h5>
+<p>On successful execution, the method returns with status code 201.</p>
+<p><code>201 Created</code></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;CARD-1MD19612EW4364010KGFNJQI&quot;,
+  &quot;valid_until&quot;: &quot;2016-05-07T00:00:00Z&quot;,
+  &quot;state&quot;: &quot;ok&quot;,
+  &quot;payer_id&quot;: &quot;user12345&quot;,
+  &quot;type&quot;: &quot;visa&quot;,
+  &quot;number&quot;: &quot;xxxxxxxxxxxx0331&quot;,
+  &quot;expire_month&quot;: &quot;11&quot;,
+  &quot;expire_year&quot;: &quot;2018&quot;,
+  &quot;first_name&quot;: &quot;Betsy&quot;,
+  &quot;last_name&quot;: &quot;Buyer&quot;,
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.sandbox.example.com/v1/vault/credit-cards/CARD-1MD19612EW4364010KGFNJQI&quot;,
+      &quot;rel&quot;: &quot;self&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.sandbox.example.com/v1/vault/credit-cards/CARD-1MD19612EW4364010KGFNJQI&quot;,
+      &quot;rel&quot;: &quot;delete&quot;,
+      &quot;method&quot;: &quot;DELETE&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="create-new-resource-consumer-supplied-identifier">Create New Resource - Consumer Supplied Identifier</h3>
+<p>When an API consumer provides the resource identifier, PUT method <strong>SHOULD</strong> be utilized, as the operation is idempotent, even during creation.
+The same interaction as Create Resource is used here.
+<code>201 Created</code> + response body on resource creation, and <code>204 No Content</code> + no response body when an existing resource is updated.</p>
+<h2 id="collection-resource">Collection Resource</h2>
+<p>A collection resource should return a list of representation of all of the given resources (instances), including any related metadata.
+An array of resources should be in the <code>items</code> field.
+Consistent naming of collection resource fields allows API clients to create generic handling for using the provided data across various resource collections.</p>
+<p>The GET verb should not affect the system, and should not change the response on subsequent requests (unless the underlying data changes), i.e. it should be idempotent.
+Exceptions to 'changing the system' are typically instrumentation/logging-related.
+The list of data is presumed to be filtered based on the privileges available to the API client.
+In other words, it should not be a list of all resources in the domain.
+It should only be resources for which the client has authorization to view within its current context.
+Providing a summarized, or minimized version of the data representation can reduce the bandwidth footprint, in cases where individual resources contain a large object.</p>
+<p>If the service allows partial retrieval of the set, the following patterns <strong>MUST</strong> be followed.</p>
+<h3 id="resource-filtering">Resource Filtering</h3>
+<p>Often it is desired to be able to filter the set of resources based on a resource property.
+The filter is defined based on the following conventions and behaviors:</p>
+<ul>
+<li>filter query argument: <code>?filter=&lt;filter-def&gt;</code></li>
+<li>filter-def: <code>&lt;filter-spec&gt;,...,&lt;filter-spec&gt;</code></li>
+<li>filter-spec: <code>&lt;property&gt;&lt;operator&gt;&lt;value&gt;</code></li>
+<li>property: the name of a property within the resource.</li>
+<li>value: the value to use in the comparison operation</li>
+<li>operator: a character which indicates the type of operations<ul>
+<li>equals: <code>:</code></li>
+<li>less than: <code>&lt;</code></li>
+<li>less than or equal: <code>&lt;:</code></li>
+<li>greater than: <code>&gt;</code></li>
+<li>greater than or equal: <code>&gt;:</code></li>
+<li>like: <code>~</code>  NOTE: there must be leading and/or trailing <code>*</code> character(s) in the value string</li>
+<li>negation: <code>!</code> added before the operator</li>
+</ul>
+</li>
+<li>Ensure that query definitions are URL-encoded properly</li>
+<li>Resources matching the filter <strong>MUST</strong> match all of the <code>&lt;filter-spec&gt;</code> definitions.<ul>
+<li>Except: specifying the same property to be equal to two values is an implicit 'IN' operation.
+  For example: <code>GET /v1/movies?filter=genre:Comedy,genre:RomCom</code> will provide a list of all Comedy or RomCom movies.</li>
+</ul>
+</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><code>GET /v1/movies?filter=gross&gt;=1000000</code> would get all movies grossing $1M or more</li>
+<li><code>GET /v1/movies?filter=genre!~*edy</code> would get all movies not Comedy or Romantic Comedy or Dramedy</li>
+<li><code>GET /v1/movies?filter=genre:Comedy,gross&gt;=500000,origin!:us</code> would get all successful (over $500K) foreign comedies</li>
+</ul>
+<p>This is not meant to be an exhaustive API, but rather a set of simple rules which are generally useful for all APIs.
+APIs supporting any type of filtering on Collection resources <strong>MUST</strong> support the above conventions.</p>
+<p>APIs which need additional capabilities <strong>MAY</strong> augment the above definitions provided the consumer expectations are not violated, and the meaning of the basic filter definition is not changed.
+For example, an API may choose to support a more complicated method of filtering based on properties of related resources, as in the following example:</p>
+<p><code>GET /v1/movies?filter=actor.name:Kevin%20DBacon</code> might get all movies in which Kevin Bacon played a role.</p>
+<h3 id="time-selection">Time Selection</h3>
+<p>Query parameters with regard to time range could be used to select a subset of items in the following manner:</p>
+<ul>
+<li><code>startTime</code> or <code>{propertyName}After</code>
+A timestamp (in either Unix time or <a href="https://www.w3.org/TR/NOTE-datetime">ISO-8601</a> format) indicating the non-inclusive start of a temporal range.
+<code>startTime</code> may be used when there is only one unambiguous time dimension; otherwise, the property name should be used (e.g., processedAfter, updatedAfter).
+The property <strong>SHOULD</strong> map to a time field in the representation.</li>
+<li><code>endTime</code> or <code>{propertyName}Before</code>
+A timestamp (in either Unix time or <a href="https://www.w3.org/TR/NOTE-datetime">ISO-8601</a> format) indicating the non-inclusive end of a temporal range.
+<code>endTime</code> may be used when there is only one unambiguous time dimension; otherwise, the property name should be used (e.g., processed_before, updated_before).
+The property <strong>SHOULD</strong> map to a time field in the representation.</li>
+</ul>
+<h3 id="sorting">Sorting</h3>
+<p>Results could be ordered according to sorting related instructions given by the client.
+This includes sorting by a specific field's value and sorting order as described in the query parameters below.</p>
+<ul>
+<li><code>sortBy</code>
+A dimension by which items should be sorted; the dimensions <strong>SHOULD</strong> be an attribute in the item's representation; the default (ascending or descending) is left to the implementation and <strong>MUST</strong> be specified in the documentation.</li>
+<li><code>sortOrder</code>
+The order, one of <code>asc</code> or <code>desc</code>, indicating ascending or descending order.</li>
+</ul>
+<h3 id="pagination">Pagination</h3>
+<p>Any resource that could return a large, potentially unbounded list of resources in its GET response <strong>MUST</strong> implement pagination using the patterns described here.</p>
+<h4 id="sample-uri-path">Sample URI path:</h4>
+<p><code>/accounts?pageSize={pageSize}&amp;page={page}</code></p>
+<p>Clients <strong>MUST</strong> assume no inherent ordering of results unless a default sort order has been specified for this collection.
+It is RECOMMENDED that service implementers specify a default sort order whenever it would be useful.</p>
+<h3 id="query-parameters">Query Parameters</h3>
+<ul>
+<li><code>pageSize</code>:
+A non-negative, non-zero integer indicating the maximum number of results to return at one time.
+This parameter:<ul>
+<li><strong>MUST</strong> be optional for the client to provide.</li>
+<li><strong>MUST</strong> have a default value, for when the client does not provide a value.</li>
+</ul>
+</li>
+<li><code>page</code>:
+A non-zero integer representing the page of the results.
+This parameter:<ul>
+<li><strong>MUST</strong> be optional for the client to provide.</li>
+<li><strong>MUST</strong> have a default value of 1 for when the client does not provide a value.</li>
+<li><strong>MUST</strong> respond to a semantically invalid page count, such as zero, with the HTTP status code <code>400 Bad Request</code>.</li>
+<li>If a page number is too large -- for instance, if there are only 50 results, but the client requests <code>pageSize=100&amp;page=3</code> -- the resource <strong>MUST</strong> respond with the HTTP status code <code>200 OK</code> and an empty result list.</li>
+</ul>
+</li>
+<li><code>pageToken</code>:
+In certain cases such as querying on a large data set, in order to optimize the query execution while paginating, querying and retrieving the data based on result set of previous page migh be appropriate.
+Such a <code>pageToken</code> could be an encrypted value of primary keys to navigate next and previous page along with the directions.</li>
+<li><code>totalRequired</code>:
+A boolean indicating total number of items (<code>totalItems</code>) and pages (<code>totalPages</code>) are expected to be returned in the response.
+This parameter:<ul>
+<li><strong>SHOULD</strong> be optional for the client to provide.</li>
+<li><strong>SHOULD</strong> have a default value of false.</li>
+<li><strong>MAY</strong> be used by the client in the very first request.
+  The client <strong>MAY</strong> then cache the values returned in the response to help build subsequent requests.</li>
+<li><strong>SHOULD</strong> only be implemented when it will improve API performance and/or it is necessary for front-end pagination display.</li>
+</ul>
+</li>
+</ul>
+<h3 id="response-properties">Response Properties</h3>
+<p>JSON response to a request of this type <strong>SHOULD</strong> be an object containing the following properties:</p>
+<ul>
+<li><code>items</code> <strong>MUST</strong> be an array containing the current page of the result list.</li>
+<li>Unless there are performance or implementation limitations:<ul>
+<li><code>totalItems</code> <strong>SHOULD</strong> be used to indicate the total number of items in the full result list, not just this page.<ul>
+<li>If <code>totalRequired</code> has been implemented by an API, then the value <strong>SHOULD</strong> only be returned when totalRequired is set to true.</li>
+<li>If <code>totalRequired</code> has not been implemented by an API, then the value <strong>MAY</strong> be returned in every response if necessary, useful, and performant.</li>
+<li>If present, this parameter <strong>MUST</strong> be a non-negative integer.</li>
+<li>Clients <strong>MUST NOT</strong> assume that the value of <code>totalItems</code> is constant.
+  The value <strong>MAY</strong> change from one request to the next.</li>
+</ul>
+</li>
+<li><code>totalPages</code> <strong>SHOULD</strong> be used to indicate how many pages are available, in total.<ul>
+<li>If <code>totalRequired</code> has been implemented by an API, then the value <strong>SHOULD</strong> only be returned when totalRequired is set to true.</li>
+<li>If <code>totalRequired</code> has not been implemented by an API, then the value <strong>MAY</strong> be returned in every response if necessary, useful, and performant.</li>
+<li>If present, this parameter <strong>MUST</strong> be a non-negative, non-zero integer.</li>
+<li>Clients <strong>MUST NOT</strong> assume that the value of <code>totalPages</code> is constant.
+  The value <strong>MAY</strong> change from one request to the next.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>links</code> <strong>SHOULD</strong> be an array containing one or more <a href="../hypermedia/">HATEOAS</a> link relations that are relevant for traversing the result list.</li>
+</ul>
+<h3 id="page-navigation">Page Navigation</h3>
+<table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>Refers to the current page of the result list.</td>
+</tr>
+<tr>
+<td>first</td>
+<td>Refers to the first page of the result list. If you are using <code>pageToken</code>, you may not return this link.</td>
+</tr>
+<tr>
+<td>last</td>
+<td>Refers to the last page of the result list. Returning of this link is optional. You need to return this link only if <code>totalRequired</code> is specified as a query parameter. If you are using <code>pageToken</code>, you may not return this link.</td>
+</tr>
+<tr>
+<td>next</td>
+<td>Refers to the next page of the result list.</td>
+</tr>
+<tr>
+<td>prev</td>
+<td>Refers to the previous page of the result list.</td>
+</tr>
+</tbody>
+</table>
+<p>This is a sample JSON schema that returns a collection of resources with pagination:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;plan_list:v1&quot;,
+  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+  &quot;description&quot;: &quot;Resource representing a list of billing plans with basic information.&quot;,
+  &quot;name&quot;: &quot;plan_list Resource&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: true,
+  &quot;properties&quot;: {
+    &quot;plans&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;description&quot;: &quot;Array of billing plans.&quot;,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;description&quot;: &quot;Billing plan details.&quot;,
+        &quot;$ref&quot;: &quot;plan.json&quot;
+      }
+    },
+    &quot;totalItems&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;readonly&quot;: true,
+      &quot;description&quot;: &quot;Total number of items.&quot;
+    },
+    &quot;totalPages&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;readonly&quot;: true,
+      &quot;description&quot;: &quot;Total number of pages.&quot;
+    },
+    &quot;links&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+        &quot;$ref&quot;: &quot;http://json-schema.org/draft-04/hyper-schema#&quot;
+      }
+    }
+  },
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize={pageSize}&amp;page={page}&amp;status={status}&quot;,
+      &quot;rel&quot;: &quot;self&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize={pageSize}&amp;page={page}&amp;start={start_id}&amp;status={status}&quot;,
+      &quot;rel&quot;: &quot;first&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize={pageSize}&amp;page={page+1}&amp;status={status}&quot;,
+      &quot;rel&quot;: &quot;next&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize={pageSize}&amp;page={page-1}&amp;status={status}&quot;,
+      &quot;rel&quot;: &quot;prev&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize={pageSize}&amp;page={last}&amp;status={status}&quot;,
+      &quot;rel&quot;: &quot;last&quot;
+    }
+  ]
+}
+</code></pre>
+<p>This is a sample JSON response that returns a collection of resources with pagination:</p>
+<pre><code class="language-json">{
+  &quot;totalItems&quot;: &quot;166&quot;,
+  &quot;totalPages&quot;: &quot;83&quot;,
+  &quot;plans&quot;: [
+    {
+      &quot;id&quot;: &quot;P-6EM196669U062173D7QCVDRA&quot;,
+      &quot;state&quot;: &quot;ACTIVE&quot;,
+      &quot;name&quot;: &quot;Testing1-Regular3&quot;,
+      &quot;description&quot;: &quot;Create Plan for Regular&quot;,
+      &quot;type&quot;: &quot;FIXED&quot;,
+      &quot;create_time&quot;: &quot;2014-08-22T04:41:52.836Z&quot;,
+      &quot;update_time&quot;: &quot;2014-08-22T04:41:53.169Z&quot;,
+      &quot;links&quot;: [
+        {
+          &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans/P-6EM196669U062173D7QCVDRA&quot;,
+          &quot;rel&quot;: &quot;self&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;P-83567698LH138572V7QCVZJY&quot;,
+      &quot;state&quot;: &quot;ACTIVE&quot;,
+      &quot;name&quot;: &quot;Testing1-Regular4&quot;,
+      &quot;description&quot;: &quot;Create Plan for Regular&quot;,
+      &quot;type&quot;: &quot;INFINITE&quot;,
+      &quot;create_time&quot;: &quot;2014-08-22T04:41:55.623Z&quot;,
+      &quot;update_time&quot;: &quot;2014-08-22T04:41:56.055Z&quot;,
+      &quot;links&quot;: [
+        {
+          &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans/P-83567698LH138572V7QCVZJY&quot;,
+          &quot;rel&quot;: &quot;self&quot;
+        }
+      ]
+    }
+  ],
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize=2&amp;page=3&amp;status=active&quot;,
+      &quot;rel&quot;: &quot;self&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize=2&amp;page=1&amp;first=3&amp;status=active&quot;,
+      &quot;rel&quot;: &quot;first&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize=2&amp;page=2&amp;status=active&quot;,
+      &quot;rel&quot;: &quot;prev&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize=2&amp;page=4&amp;status=active&quot;,
+      &quot;rel&quot;: &quot;next&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.foo.com/v1/payments/billing-plans?pageSize=2&amp;page=82&amp;status=active&quot;,
+      &quot;rel&quot;: &quot;last&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="read-single-resource">Read Single Resource</h2>
+<p>A single resource is typically derived from the parent collection of resources, often more detailed than an item in the representation of a collection resource.
+Executing GET should never affect the system, and should not change response on subsequent requests, i.e. it should be idempotent.</p>
+<p>All identifiers for sensitive data should be non-sequential, and preferably non-numeric.
+In scenarios where this data might be used as a subordinate to other data, immutable string identifiers should be utilized for easier readability and debugging (i.e. <code>NAME_OF_VALUE</code> vs <code>1421321</code>).</p>
+<h3 id="uri-template_1">URI Template</h3>
+<p><code>GET /{version}/{namespace}/{resource}/{resourceId}</code></p>
+<h4 id="example-request_1">Example Request:</h4>
+<p><code>GET /v1/vault/customers/CUSTOMER-66W27667YB813414MKQ4AKDY</code></p>
+<h4 id="example-response_1">Example Response:</h4>
+<pre><code class="language-json">{
+  &quot;merchant_customer_id&quot;: &quot;merchant-1&quot;,
+  &quot;merchant_id&quot;: &quot;target&quot;,
+  &quot;create_time&quot;: &quot;2014-10-10T16:10:55Z&quot;,
+  &quot;update_time&quot;: &quot;2014-10-10T16:10:55Z&quot;,
+  &quot;first_name&quot;: &quot;Kartik&quot;,
+  &quot;last_name&quot;: &quot;Hattangadi&quot;
+}
+</code></pre>
+<h4 id="http-status">HTTP Status:</h4>
+<p>If the provided resource identifier is not found, the response <code>404 Not Found</code> HTTP status should be returned (even with ’soft deleted’ records in data sources).
+Otherwise, <code>200 OK</code> HTTP status should be utilized when data is found.</p>
+<h2 id="delete-single-resource">Delete Single Resource</h2>
+<p>In order to enable retries (e.g., poor connectivity), DELETE is treated as idempotent, so it should always respond with a <code>204 No Content</code> HTTP status.
+<code>404 Not Found</code> HTTP status should not be utilized here, as on a second retry a client might mistakenly think the resource never existed at all.
+GET can be utilized to verify the resources exists prior to DELETE.</p>
+<p>For a number of reasons, some data exposed as a resource <strong>MAY</strong> disappear: because it has been specifically deleted, because it expired, because of a policy (e.g., only transactions less than 2 years old are available), etc.
+Services <strong>MAY</strong> return a <code>410 Gone</code> error to a request related to a resource that no longer exists.
+However, there may be significant costs associated with doing so.
+Service designers are advised to weigh in those costs and ways to reduce them (e.g., using resource identifiers that can be validated without access to a data store), and <strong>MAY</strong> return a <code>404 Not Found</code> instead if those costs are prohibitive.</p>
+<h3 id="uri-template_2">URI Template</h3>
+<p><code>DELETE /{version}/{namespace}/{resource}/{resourceId}</code></p>
+<h4 id="example-request_2">Example Request:</h4>
+<p><code>DELETE /v1/vault/customers/CUSTOMER-66W27667YB813414MKQ4AKDY</code>
+<code>204 No Content</code></p>
+<h2 id="update-single-resource">Update Single Resource</h2>
+<p>To perform an update to an entire resource, PUT method <strong>MUST</strong> be utilized.
+The same response body supplied in the resource's GET should be provided in the resource's PUT request body.</p>
+<p>If the update is successful, a <code>204 No Content</code> HTTP status code (with no response body) is appropriate.
+Where there is a justifying use case (typically to optimize some client interaction), a <code>200 OK</code> HTTP status code with a response body can be utilized.
+While the entire resource's representation must be supplied with the PUT method, the APIs validation logic can enforce constraints regarding fields that are allowed to be updated.
+These fields can be specified as readOnly in the JSON schema.
+Fields in the request body can be optional or ignored during deserialization, such as create_time or other system-calculated values.
+Typical error handling, utilizing the <code>400 Bad Request</code> status code, should be applied in cases where the client attempts to update fields which are not allowed or if the resource is in a non-updateable state.</p>
+<p>See Sample Input Validation Error Response for examples of error handling.</p>
+<h3 id="uri-template_3">URI Template</h3>
+<p><code>PUT /{version}/{namespace}/{resource}/{resourceId}</code></p>
+<h4 id="example-request_3">Example Request:</h4>
+<p><code>PUT /v1/vault/customers/CUSTOMER-66W27667YB813414MKQ4AKDY</code></p>
+<pre><code class="language-json">{
+  &quot;merchant_customer_id&quot;: &quot;merchant-1&quot;,
+  &quot;merchant_id&quot;: &quot;target&quot;,
+  &quot;create_time&quot;: &quot;2014-10-10T16:10:55Z&quot;,
+  &quot;update_time&quot;: &quot;2014-10-10T16:10:55Z&quot;,
+  &quot;first_name&quot;: &quot;Kartik&quot;,
+  &quot;last_name&quot;: &quot;Hattangadi&quot;
+}
+</code></pre>
+<h4 id="http-status_1">HTTP Status:</h4>
+<p>Any failed request validation <strong>MUST</strong> respond with <code>400 Bad Request</code> HTTP status.
+If clients attempt to modify read-only fields, this <strong>MUST</strong> also result in a <code>400 Bad Request</code>.
+If there are business rules (more than simple data-type or length constraints), the system <strong>SHOULD</strong> provide a specific error code and message (in addition to the <code>400 Bad Request</code>) for that validation.</p>
+<p>For situations which require interaction with APIs or processes outside of the current request, the <code>422 Unprocessable Entity</code> status code is appropriate.</p>
+<p>After successful update, PUT operations <strong>SHOULD</strong> respond with <code>204 No Content</code> status, with no response body.</p>
+<h2 id="partially-update-single-resource">Partially Update Single Resource</h2>
+<p>Often, previously created resources need to be updated based on customer or facilitator-initiated interactions (like adding items to a cart).
+In such cases, APIs <strong>SHOULD</strong> provide an <a href="http://tools.ietf.org/html/rfc6902">RFC 6902</a> JSON Patch compatible solution.
+JSON patch uses the HTTP PATCH method defined in <a href="http://tools.ietf.org/html/rfc5789">RFC 5789</a> to enable partial updates to resources.</p>
+<p>A JSON patch expresses a sequence of operations to apply to a target JSON document.
+The operations defined by the JSON patch specification include add, remove, replace, move, copy, and test.
+To support partial updates to resources, APIs <strong>SHOULD</strong> support add, remove and replace operations.
+Support for the other operations (move, copy, and test) is left to the individual API owner based on needs.</p>
+<p>Below is a sample PATCH request to do partial updates to a resource:</p>
+<pre><code>PATCH /v1/namespace/resources/:id HTTP/1.1
+Host: api.foo.com
+Content-Length: 326
+Content-Type: application/json-patch+json
+If-Match: &quot;etag-value&quot;
+</code></pre>
+<pre><code class="language-json">[
+  {
+    &quot;op&quot;: &quot;remove&quot;,
+    &quot;path&quot;: &quot;/a/b/c&quot;
+  },
+  {
+    &quot;op&quot;: &quot;add&quot;,
+    &quot;path&quot;: &quot;/a/b/c&quot;,
+    &quot;value&quot;: [ &quot;foo&quot;, &quot;bar&quot; ]
+  },
+  {
+    &quot;op&quot;: &quot;replace&quot;,
+    &quot;path&quot;: &quot;/a/b/c&quot;,
+    &quot;value&quot;: 42
+  }
+]
+</code></pre>
+<p>The value of path is a string containing a <a href="https://tools.ietf.org/html/rfc6901">RFC 6901</a> JSON Pointer that references a location within the target document where the operation is performed.
+For example, the value /a/b/c refers to the element c in the sample JSON below:</p>
+<pre><code class="language-json">{
+  &quot;a&quot;: {
+    &quot;b&quot;: {
+      &quot;c&quot;: &quot;&quot;,
+      &quot;d&quot;: &quot;&quot;
+    },
+    &quot;e&quot;: &quot;&quot;
+  }
+}
+</code></pre>
+<h4 id="path-parameter">path Parameter</h4>
+<p>When JSON Pointer is used with arrays, concurrency protection is best implemented with ETags.
+In many cases, ETags are not an option:
+It is expensive to calculate ETags because the API collates data from multiple data sources or has very large response objects.
+The response data are frequently modified.</p>
+<h3 id="json-pointer-expression">JSON Pointer Expression</h3>
+<p>In cases where ETags are not available to provide concurrency protection when updating arrays, it is recommended to use an extension to RFC 6901 which provides expressions of the following form.</p>
+<p><code>"path": "/object-name/@filter-expression/attribute-name"</code></p>
+<ul>
+<li><code>object-name</code> is the name of the collection.The symbol “@” refers to the current object.
+It also signals the beginning of a filter-expression.</li>
+<li>The filter-expression <strong>SHOULD</strong> only contain the following operators: a comparison operator (== for equality) or a Logical AND (&amp;&amp;) operator or both.
+For example: <code>/address/@id==123/streetName</code>, <code>address/@id==123 &amp;&amp; primary==true</code> are valid filter expressions.</li>
+<li>The right hand side operand for the operator “==” <strong>MUST</strong> have a value that matches the type of the left hand side operand.
+For example: <code>addresss/@integer_id == 123</code>,<code>/address/@string_name == ‘james’</code>,<code>/address/@boolean_primary == true</code>,<code>/address/@decimal_number == 12.1</code> are valid expressions.</li>
+<li>If the right hand operand of "==" is a string then it <strong>SHOULD NOT</strong> contain any of the following escape sequences: a Line Continuation or a Unicode Escape Sequence.</li>
+<li><code>attribute-name</code> is the name of the attribute to which a PATCH operation is applied if the filter condition is met.</li>
+</ul>
+<h3 id="patch-array-examples">PATCH Array Examples</h3>
+<h4 id="example-1">Example 1:</h4>
+<p><code>"op": "replace","path": “/address/@id==12345/primary”,"value": true</code></p>
+<p>This would set the array element "primary" to true if the element "id" has a value "12345".</p>
+<h4 id="example-2">Example 2:</h4>
+<p><code>"op": "replace","path": “/address/@countryCode==’GB’ &amp;&amp; type==’office’/active”,"value": true</code></p>
+<p>This would set the array element "active" to true if the element "countryCode" equals to "GB" and type equals to "office".</p>
+<h4 id="other-implementation-considerations-for-patch">Other Implementation Considerations For PATCH</h4>
+<p>It is not necessary that an API support the updating of all attributes via a PATCH operation.
+An API implementer <strong>SHOULD</strong> make an informed decision to support PATCH updates only for a subset of attributes through a specific resource operation.</p>
+<h4 id="responses-to-a-patch-request">Responses to a PATCH request</h4>
+<ul>
+<li>Note that the operations are applied sequentially in the order they appear in the payload.
+If the update is successful, a <code>204 No Content</code> HTTP status code (with no response body) is appropriate.
+Where there is a justifying use case (typically to optimize some client interaction) and the request has the header <code>Prefer:return=representation</code>, a <code>200 OK</code> HTTP status code with a response body can be utilized.</li>
+<li>Responses body with <code>200 OK</code> <strong>SHOULD</strong> return the entire resource representation unless the client uses the fields parameter to reduce the response size.</li>
+<li>If a PATCH request results in a new resource state that is invalid, the API <strong>SHOULD</strong> return a <code>400 Bad Request</code> or <code>422 Unprocessable</code> Entity.</li>
+</ul>
+<p>See Sample Input Validation Error Response for examples of error handling.</p>
+<h4 id="patch-examples">PATCH Examples</h4>
+<p>PATCH examples for modifying objects can be found in <a href="http://tools.ietf.org/html/rfc6902">RFC 6902</a>.</p>
+<h2 id="projected-response">Projected Response</h2>
+<p>An API typically responds with full representation of a resource after processing requests for methods such as GET.
+For efficiency, the client can ask the service to return partial representation using <code>Prefer: return=minimal</code> HTTP header.
+Here, The determination of what constitutes an appropriate "minimal" response is solely at the discretion of the service.</p>
+<p>To request partial representation with specific field(s), a client can use the fields query parameter.
+For selecting multiple fields, a comma-separated list of fields <strong>SHOULD</strong> be used.</p>
+<p>The following example shows the use of the fields parameter with users API.</p>
+<h4 id="request">Request:</h4>
+<p>HTTP GET without fields parameter</p>
+<pre><code>GET https://api.foo.com/v1/users/dbrown
+Authorization: Bearer your_auth_token
+</code></pre>
+<h4 id="response">Response:</h4>
+<p>The complete resource representation is returned in the response.</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;dbrown&quot;,
+  &quot;given_name&quot;: &quot;David&quot;,
+  &quot;sn&quot;: &quot;Brown&quot;,
+  &quot;location&quot;: &quot;Austin&quot;,
+  &quot;department&quot;: &quot;RISK&quot;,
+  &quot;title&quot;: &quot;Manager&quot;,
+  &quot;manager&quot;: &quot;ipivin&quot;,
+  &quot;email&quot;: &quot;dbrown@foo.com&quot;,
+  &quot;employeeId&quot;: &quot;234167&quot;
+}
+</code></pre>
+<h4 id="request_1">Request:</h4>
+<p>HTTP GET request specifies a subset of the fields.</p>
+<pre><code>GET https://api.foo.com/v1/users/dbrown?fields=department,title,location
+Authorization: Bearer your_auth_token
+</code></pre>
+<h4 id="response_1">Response:</h4>
+<p>The response has only fields specified by the fields query parameter as well as mandatory fields.</p>
+<pre><code class="language-json">200 OK
+{
+  &quot;uid&quot;: &quot;dbrown&quot;,
+  &quot;department&quot;: &quot;RISK&quot;,
+  &quot;title&quot;: &quot;Manager&quot;,
+  &quot;location&quot;: &quot;Austin&quot;
+}
+</code></pre>
+<p>You could use the same pattern for Collection Resource as well as following.</p>
+<p><code>GET https://api.foo.com/v1/users?fields=department,title,location</code></p>
+<p>The response will have entries with the fields specified in request as well as mandatory fields.</p>
+<h2 id="sub-resource-collection">Sub-Resource Collection</h2>
+<p>Sometimes, multiple identifiers are required ('composite keys', in the database lexicon) to identify a given resource.
+In these scenarios, all behaviors of a Collection Resource are implemented, as a subordinate of another resource.
+It is always implied that the <code>resourceId</code> in the URL must be the parent of the sub-resources.</p>
+<h3 id="cautions">Cautions</h3>
+<ul>
+<li>The need to maintain multiple identifiers can create a burden on client developers.<ul>
+<li>Look for opportunities to promote resources with unique identifiers (i.e. there is no need to identify the parent resource) to a first-level resource.</li>
+</ul>
+</li>
+<li>Caution should be used in identifying the name of the sub-resource, as to not interfere with the identifier naming conventions of the base resource.
+In other words, <code>/{version}/{namespace}/{resource}/{resourceId}/{subResourceId}</code> is not appropriate, as the <code>subResourceId</code> has ambiguous meaning.</li>
+<li>Two levels is a practical limit for resource identifiers</li>
+<li>API client usability suffers, as the need for clients to maintain state about identifier hierarchy increases complexity.</li>
+<li>Server developers must validate each level of identifiers in order to verify that they are allowed access, and that they relate to each other, thus increasing risk and complexity.</li>
+</ul>
+<p>Note these templates/examples are brief: for more detail on the Collection Resource style, see above.
+Although this section explains the sub-resource collection, all interactions should be the same, simply with the addition of a parent identifier.</p>
+<h3 id="uri-templates">URI Templates</h3>
+<pre><code>POST /{version}/{namespace}/{resource}/{resourceId}/{sub-resource}
+GET /{version}/{namespace}/{resource}/{resourceId}/{sub-resource}
+GET /{version}/{namespace}/{resource}/{resourceId}/{sub-resource}/{subResourceId}
+PUT /{version}/{namespace}/{resource}/{resourceId}/{sub-resource}/{subResourceId}
+DELETE /{version}/{namespace}/{resource}/{resourceId}/{sub-resource}/{subResourceId}
+</code></pre>
+<h4 id="examples">Examples:</h4>
+<pre><code>GET /v1/notifications/webhooks/{webhook-id}/event-types
+POST /v1/factory/widgets/PART-4312/sub-assemblies
+GET /v1/factory/widgets/PART-4312/sub-assemblies/INNER-COG
+PUT /v1/factory/widgets/PART-4312/sub-assemblies/INNER-COG
+DELETE /v1/factory/widgets/PART-4312/sub-assemblies/INNER-COG
+</code></pre>
+<h2 id="sub-resource-singleton">Sub-Resource Singleton</h2>
+<p>When a <code>sub-resource</code> has a one-to-one relationship with the parent resource, it could be modeled as a <code>singleton sub-resource</code>.
+This approach is usually used as a means to reduce the size of a resource, when use cases support segmenting a large resource into smaller resources.</p>
+<p>For a <code>singleton sub-resource</code>, the name should be a singular noun.
+As often as possible, that single resource should always be present (i.e. does not respond with 404).</p>
+<p>The <code>sub-resource</code> should be owned by the parent resource; otherwise this sub-resource should probably be promoted to its own collection resource, and relationships represented with <code>sub-resource</code> collections in the other direction.
+Sub-resource singletons should not duplicate a resource from another collection.</p>
+<p>If the <code>singleton sub-resource</code> needs to be created, PUT should be used, as the operation is idempotent, on creation or update.
+PATCH can be used for partial updates, but should not be available on creation (in part because it is not idempotent).</p>
+<p>This should not be used as a mechanism to update single or subsets of fields with PUT.
+The resource should remain intact, and PATCH should be utilized for partial update.
+Creating sub-resource singletons for each use case of updates is not a scalable design approach, as many endpoints could result long-term.</p>
+<h3 id="uri-template_4">URI Template</h3>
+<p><code>GET/PUT /{version}/{namespace}/{resource}/{resourceId}/{sub-resource}</code></p>
+<h4 id="examples_1">Examples:</h4>
+<p><code>GET /v1/customers/devices/DEV-FDU233FDSE213f)/vendor-information</code></p>
+<h2 id="idempotency">Idempotency</h2>
+<p>Idempotency is an important aspect of building a fault-tolerant API.
+Idempotent APIs enable clients to safely retry an operation without worrying about the side-effects that the operation can cause.
+For example, a client can safely retry an idempotent request in the event of a request failing due to a network connection error.</p>
+<p>Per <a href="https://tools.ietf.org/html/rfc2616#section-9.1.2">HTTP Specification</a>, a method is idempotent if the side-effects of more than one identical requests are the same as those for a single request.
+Methods GET, HEAD, PUT and DELETE (additionally, TRACE and OPTIONS) are defined idempotent.</p>
+<p>POST operations by definition are neither safe nor idempotent.</p>
+<p>All service implementations <strong>MUST</strong> ensure that safe and idempotent behaviour of HTTP methods is implemented as per HTTP specifications.
+Services that require idempotency for POST operations <strong>MUST</strong> be implemented as per the following guidelines.</p>
+<h3 id="idempotency-for-post-requests">Idempotency For POST Requests</h3>
+<p>POST operations by definition are not idempotent which means that executing POST more than once with the same input creates as many resources.
+To avoid creation of duplicate resources, an API <strong>SHOULD</strong> implement the protocol defined in the section below.
+This guarantees that only one record is created for the same input payload.</p>
+<p>For many use cases that require idempotency for POST requests, creation of a duplicate record is a severe problem.
+For example, duplicate records for the use cases that create or execute a payment on an account are not allowed by definition.</p>
+<p>To track an idempotent request, a unique idempotency key is used and sent in every request.
+By convention, the API Styleguide defines a header <code>Idempotency-Key</code> for use as an idempotency key for any request that supports idempotency.</p>
+<p>For the very first request from the client:</p>
+<h4 id="on-the-client-side">On the client side:</h4>
+<p>The API client sends a new POST request with the <code>Idempotency-Key</code> header that contains the idempotency key.</p>
+<pre><code class="language-json">POST /v1/payments/referenced-payouts-items HTTP/1.1
+Host: api.foo.com
+Content-Type: application/json
+Authorization: Bearer oauth2_token
+Idempotency-Key: 123e4567-e89b-12d3-a456-426655440000
+{
+  &quot;reference_id&quot;: &quot;4766687568468&quot;,
+  &quot;reference_type&quot;: &quot;egflf465vbk7468mvnb&quot;
+}
+</code></pre>
+<h4 id="on-the-server-side">On the server side:</h4>
+<p>If the call is successful and leads to a resource creation, the service <strong>MUST</strong> return a <code>201 Created</code> response to indicate both success and a change of state.</p>
+<h4 id="sample-response">Sample response:</h4>
+<pre><code class="language-json">HTTP/1.1 201 CREATED
+Content-Type: application/json
+{
+  &quot;item_id&quot;: &quot;CDZEC5MJ8R5HY&quot;,
+  &quot;links&quot;: [{
+    &quot;href&quot;: &quot;https://api.foo.com/v1/payments/referenced-payouts-items/CDZEC5MJ8R5HY&quot;,
+    &quot;rel&quot;: &quot;self&quot;,
+    &quot;method&quot;: &quot;GET&quot;
+  }]
+}
+</code></pre>
+<p>The service <strong>MAY</strong> send back the idempotency key as part of <code>Idempotency-Key</code> header in the response.</p>
+<p>For subsequent requests from the client with same input payload:</p>
+<h4 id="on-the-client-side_1">On the client side:</h4>
+<p>The API client sends a POST request with the same idempotency key and input body as before.</p>
+<pre><code class="language-json">POST /v1/payments/referenced-payouts-items HTTP/1.1
+Host: api.foo.com
+Content-Type: application/json
+Authorization: Bearer oauth2_token
+Idempotency-Key: 123e4567-e89b-12d3-a456-426655440000
+{
+  &quot;reference_id&quot;: &quot;4766687568468&quot;,
+  &quot;reference_type&quot;: &quot;egflf465vbk7468mvnb&quot;
+}
+</code></pre>
+<h4 id="on-the-server-side_1">On the server side:</h4>
+<p>The server, after checking that the call is identical to the first execution, <strong>MUST</strong> return a <code>200 OK</code> response with a representation of the resource to indicate that the request has already been processed successfully.</p>
+<h4 id="sample-response_1">Sample response:</h4>
+<pre><code class="language-json">HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  &quot;item_id&quot;: &quot;CDZEC5MJ8R5HY&quot;,
+  &quot;processing_state&quot;: {
+    &quot;status&quot;: &quot;PROCESSING&quot;
+  },
+  &quot;reference_id&quot;: &quot;4766687568468&quot;,
+  &quot;reference_type&quot;: &quot;egflf465vbk7468mvnb&quot;,
+  &quot;payout_amount&quot;: {
+    &quot;currency_code&quot;: &quot;USD&quot;,
+    &quot;value&quot;: &quot;2.0&quot;
+  },
+  &quot;payout_destination&quot;: &quot;9C8SEAESMWFKA&quot;,
+  &quot;payout_transaction_id&quot;: &quot;35257aef-54f7-43cf-a258-3b45caf3293&quot;,
+  &quot;links&quot;: [{
+    &quot;href&quot;: &quot;https://api.foo.com/v1/payments/referenced-payouts-items/CDZEC5MJ8R5HY&quot;,
+    &quot;rel&quot;: &quot;self&quot;,
+    &quot;method&quot;: &quot;GET&quot;
+  }]
+}
+</code></pre>
+<h3 id="uniqueness-of-idempotency-key">Uniqueness of Idempotency Key</h3>
+<p>The idempotency key that is supplied as part of every POST request <strong>MUST</strong> be unique and can not be reused with another request with a different input payload.
+See error scenarios described below to understand the server behavior for repeating idempotency keys in requests.</p>
+<p>How to make the key unique is up to the client and its agreed protocol with the server.
+It is recommended that a <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a> or a similar random identifier be used as the idempotency key.
+It is also recommended that the server implements the idempotency keys to be time-based and, thus, be able to purge or delete a key upon its expiry.</p>
+<h3 id="error-scenarios">Error Scenarios</h3>
+<ul>
+<li>If the <code>Idempotency-Key</code> header is missing for an idempotent request, the service <strong>MUST</strong> reply with a <code>400 Bad Request</code> error with a link pointing to the public documentation about this pattern.</li>
+<li>If there is an attempt to reuse an idempotency key with a different request payload, the service <strong>MUST</strong> reply with a <code>422 Unprocessable Entity</code> error with a link pointing to the public documentation about this pattern.</li>
+<li>For other errors, the service <strong>MUST</strong> return the appropriate error message.</li>
+</ul>
+<h2 id="asynchronous-operations">Asynchronous Operations</h2>
+<p>Certain types of operations might require processing of the request in an asynchronous manner (e.g. validating a bank account, processing an image, etc.) in order to avoid long delays on the client side and prevent long-standing open client connections waiting for the operations to complete.
+For such use cases, APIs <strong>MUST</strong> employ the following pattern:</p>
+<h3 id="for-post-requests">For POST requests:</h3>
+<ul>
+<li>Return the <code>202 Accepted</code> HTTP response code.</li>
+<li>In the response body, include one or more URIs as hypermedia links, which could include:<ul>
+<li>The final URI of the resource where it will be available in future if the ID and path are already known.</li>
+</ul>
+</li>
+</ul>
+<p>Clients can then make an HTTP GET request to that URI in order to obtain the completed resource.
+Until the resource is ready, the final URI <strong>SHOULD</strong> return the HTTP status code <code>404 Not Found</code>.</p>
+<pre><code class="language-json">{
+  &quot;href&quot;: &quot;/v1/namespace/resources/{resourceId}&quot;,
+  &quot;rel&quot;: &quot;self&quot;,
+  &quot;method&quot;: &quot;GET&quot;
+}
+</code></pre>
+<ul>
+<li>A temporary request queue URI where the status of the operation may be obtained via some temporary identifier.</li>
+<li>Clients <strong>SHOULD</strong> make an HTTP GET request to obtain the status of the operation which <strong>MAY</strong> include such information as completion state, ETA, and final URI once it is completed.</li>
+<li>Implementations <strong>MAY</strong> provide additional functionality in the form of job control (via PUT / DELETE) if such capabilities are useful to consumers.</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;href&quot;: &quot;/v1/queue/requests/{requestId}&quot;,
+  &quot;rel&quot;: &quot;self&quot;,
+  &quot;method&quot;: &quot;GET&quot;
+}
+</code></pre>
+<h4 id="for-putpatchdeleteget-requests">For PUT/PATCH/DELETE/GET requests:</h4>
+<p>Like POST, you can support PUT/PATCH/DELETE/GET to be asynchronous.
+The behaviour would be as follows:</p>
+<ul>
+<li>Return the <code>202 Accepted</code> HTTP response code.</li>
+<li>In the response body, include one or more URIs as hypermedia links, which could include:<ul>
+<li>A temporary request queue URI where the status of the operation may be obtained via some temporary identifier.</li>
+</ul>
+</li>
+<li>Clients <strong>SHOULD</strong> make an HTTP GET request to obtain the status of the operation which <strong>MAY</strong> include such information as completion state, ETA, and final URI once it is completed.</li>
+<li>Implementations <strong>MAY</strong> provide additional functionality in the form of job control (via PUT / DELETE) if such capabilities are useful to consumers.</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;href&quot;: &quot;/v1/queue/requests/{requestId}&quot;,
+  &quot;rel&quot;: &quot;self&quot;,
+  &quot;method&quot;: &quot;GET&quot;
+}
+</code></pre>
+<p>APIs that support both synchronous and asynchronous operations for a particular URI and an HTTP method combination, <strong>MUST</strong> recognize the <code>Prefer</code> header and exhibit following behavior:</p>
+<ul>
+<li>If the request contains a <code>Prefer=respond-async</code> header, the service <strong>MUST</strong> switch the processing to asynchronous mode.</li>
+<li>If the request doesn't contain a <code>Prefer=respond-async</code> header, the service <strong>MUST</strong> process the request synchronously.</li>
+</ul>
+<p>It is desirable that all APIs that implement asynchronous processing, also support <a href="https://en.wikipedia.org/wiki/Webhook">webhooks</a> as a mechanism of pushing the processing status to the client.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

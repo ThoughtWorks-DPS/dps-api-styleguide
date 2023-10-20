@@ -1,0 +1,1207 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Standards and Best Practices for providing business capabilities as API">
+      
+      
+      
+      
+        <link rel="prev" href="../bulk/">
+      
+      
+        <link rel="next" href="../glossary/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Hypermedia - API Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hypermedia" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="API Standards" class="md-header__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hypermedia
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="API Standards" class="md-nav__button md-logo" aria-label="API Standards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thoughtworks-dps/dps-api-styleguide/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" tabindex="0" aria-expanded="true">
+          API Style / Design Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Style / Design Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          API Style / Design Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        General Guidelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-principles/" class="md-nav__link">
+        API Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-principles/" class="md-nav__link">
+        Service Design Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods, Headers, and Statuses
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resource Identifiers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controller-resources/" class="md-nav__link">
+        Controller Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming-conventions/" class="md-nav__link">
+        Naming Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        HTTP Request Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payloads/" class="md-nav__link">
+        HTTP Payload Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responses/" class="md-nav__link">
+        HTTP Response Standards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bulk/" class="md-nav__link">
+        Bulk Operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Hypermedia
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Hypermedia
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hateoas" class="md-nav__link">
+    HATEOAS
+  </a>
+  
+    <nav class="md-nav" aria-label="HATEOAS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hypermedia-compliant-api" class="md-nav__link">
+    Hypermedia Compliant API
+  </a>
+  
+    <nav class="md-nav" aria-label="Hypermedia Compliant API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_1" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_2" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_3" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#link-description-object" class="md-nav__link">
+    Link Description Object
+  </a>
+  
+    <nav class="md-nav" aria-label="Link Description Object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#href" class="md-nav__link">
+    href:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rel" class="md-nav__link">
+    rel:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    method:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title" class="md-nav__link">
+    title:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-using-http-headers-for-ldo" class="md-nav__link">
+    Not Using HTTP Headers For LDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links-array" class="md-nav__link">
+    Links Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-the-links-array" class="md-nav__link">
+    Specifying the Links array
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#link-relation-type" class="md-nav__link">
+    Link Relation Type
+  </a>
+  
+    <nav class="md-nav" aria-label="Link Relation Type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    Use Cases
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation Requirements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hateoas" class="md-nav__link">
+    HATEOAS
+  </a>
+  
+    <nav class="md-nav" aria-label="HATEOAS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hypermedia-compliant-api" class="md-nav__link">
+    Hypermedia Compliant API
+  </a>
+  
+    <nav class="md-nav" aria-label="Hypermedia Compliant API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_1" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    Response:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_2" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_3" class="md-nav__link">
+    Request:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#link-description-object" class="md-nav__link">
+    Link Description Object
+  </a>
+  
+    <nav class="md-nav" aria-label="Link Description Object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#href" class="md-nav__link">
+    href:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rel" class="md-nav__link">
+    rel:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    method:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#title" class="md-nav__link">
+    title:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-using-http-headers-for-ldo" class="md-nav__link">
+    Not Using HTTP Headers For LDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links-array" class="md-nav__link">
+    Links Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-the-links-array" class="md-nav__link">
+    Specifying the Links array
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#link-relation-type" class="md-nav__link">
+    Link Relation Type
+  </a>
+  
+    <nav class="md-nav" aria-label="Link Relation Type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    Use Cases
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="hypermedia">Hypermedia</h1>
+<hr />
+<h2 id="hateoas">HATEOAS</h2>
+<p>Hypermedia, an extension of the term <a href="https://en.wikipedia.org/wiki/Hypertext">hypertext</a>, is a nonlinear medium of information which includes graphics, audio, video, plain text and hyperlinks according to <a href="https://en.wikipedia.org/wiki/Hypermedia">wikipedia</a>.
+Hypermedia As The Engine Of Application State (<a href="https://en.wikipedia.org/wiki/HATEOAS">HATEOAS</a>) is a constraint of the REST application architecture described by Roy Fielding in his dissertation.</p>
+<p>In the context of RESTful APIs, a client could interact with a service entirely through hypermedia provided dynamically by the service.
+A hypermedia-driven service provides representation of resource(s) to its clients to navigate the API dynamically by including hypermedia links in the responses.
+This is different than other form of SOA, where servers and clients interact based on WSDL-based specification defined somewhere on the web or exchanged off-band.</p>
+<h3 id="hypermedia-compliant-api">Hypermedia Compliant API</h3>
+<p>A hypermedia compliant API exposes a finite state machine of a service.
+Here, requests such as DELETE and POST typically initiate a transition in state while responses indicate the change in the state.
+Let's take an example of an API that exposes a set of operations to manage a user account lifecycle and implements the HATEOAS interface constraint.
+A client starts interaction with a service through a fixed URI <code>/users</code>.
+This fixed URI supports both GET and POST operations.
+The client decides to do a POST operation to create a user in the system.</p>
+<h4 id="request">Request:</h4>
+<pre><code>POST https://api.example.com/v1/customer/users
+{
+  &quot;given_name&quot;: &quot;James&quot;,
+  &quot;surname&quot; : &quot;Greenwood&quot;,
+  ...
+}
+</code></pre>
+<h4 id="response">Response:</h4>
+<p>The API creates a new user from the input and returns the following links to the client in the response.</p>
+<ul>
+<li>A link to retrieve the complete representation of the user (aka self link) (GET).</li>
+<li>A link to delete the user (DELETE).</li>
+</ul>
+<pre><code>HTTP/1.1 201 CREATED
+Content-Type: application/json
+...
+{
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/ALT-JFWXHGUV7VI&quot;,
+      &quot;rel&quot;: &quot;self&quot;,
+    },
+    {
+      &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/ALT-JFWXHGUV7VI&quot;,
+      &quot;rel&quot;: &quot;delete&quot;,
+      &quot;method&quot;: &quot;DELETE&quot;
+    }
+  ]
+}
+</code></pre>
+<p>A client can store these links in its database for later use.</p>
+<p>A client may then want to display a set of users and their details before the admin decides to delete one of the users.
+So the client does a GET to the same fixed URI <code>/users</code>.</p>
+<h4 id="request_1">Request:</h4>
+<p><code>GET https://api.example.com/v1/customer/users</code></p>
+<p>The API returns all the users in the system with respective self links.</p>
+<h4 id="response_1">Response:</h4>
+<pre><code class="language-json">{
+  &quot;total_items&quot;: &quot;166&quot;,
+  &quot;total_pages&quot;: &quot;83&quot;,
+  &quot;users&quot;: [
+    {
+      &quot;given_name&quot;: &quot;James&quot;,
+      &quot;surname&quot;: &quot;Greenwood&quot;,
+      ...
+      &quot;links&quot;: [
+        {
+          &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/ALT-JFWXHGUV7VI&quot;,
+          &quot;rel&quot;: &quot;self&quot;
+        }
+      ]
+    },
+    {
+      &quot;given_name&quot;: &quot;David&quot;,
+      &quot;surname&quot;: &quot;Brown&quot;,
+      ...
+      &quot;links&quot;: [
+        {
+          &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/ALT-MDFSKFGIFJ86DSF&quot;,
+          &quot;rel&quot;: &quot;self&quot;
+        }
+      ],
+      ...
+    }
+  ]
+}
+</code></pre>
+<p>The client <strong>MAY</strong> follow the self link of the user and figure out all the possible operations that it can perform on the user resource.</p>
+<h4 id="request_2">Request:</h4>
+<p><code>GET https://api.example.com/v1/customer/users/ALT-JFWXHGUV7VI</code></p>
+<pre><code class="language-json">Response:
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  &quot;given_name&quot;: &quot;James&quot;,
+  &quot;surname&quot;: &quot;Greenwood&quot;,
+  ...
+
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/ALT-JFWXHGUV7VI&quot;,
+      &quot;rel&quot;: &quot;self&quot;,
+    },
+    {
+      &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/ALT-JFWXHGUV7VI&quot;,
+      &quot;rel&quot;: &quot;delete&quot;,
+      &quot;method&quot;: &quot;DELETE&quot;
+    }
+  ]
+}
+</code></pre>
+<p>To delete the user, the client retrieves the URI of the link relation type delete from its data store and performs a delete operation on the URI.</p>
+<h4 id="request_3">Request:</h4>
+<p><code>DELETE https://api.example.com/v1/customer/users/ALT-JFWXHGUV7VI</code></p>
+<p>Summary</p>
+<ul>
+<li>There is a well defined entry point for an API which a client navigates to in order to access all other resources.</li>
+<li>The client does not need to build the logic of composing URIs to execute different requests or code any kind of business rule by looking into the response details (more in detail is described in the later sections) that may be associated with the URIs and state changes.</li>
+<li>The client acknowledges the fact that the process of creating URIs belongs to the server.</li>
+<li>Client treats URIs as opaque identifiers.
+  There is no semantic meaning to be inferred by the value of the identifier.
+  For example, resources added consecutively do not have consecutive identifiers.</li>
+<li>APIs using hypermedia in representations could be extended seamlessly.
+  As new methods are introduced, responses could be extended with relevant HATEOAS links.
+  In this way, clients could take advantage of the functionality in incremental fashion.
+  For example, if the API starts supporting a new PATCH operation then clients could use it to do partial updates.</li>
+</ul>
+<p>The mere presence of links does not decouple a client from having to learn the data required to make requests for a transition and all associated link semantics, particularly for POST/PUT/PATCH operations.
+An API <strong>MUST</strong> provide documentation to clearly describe all the links, link relation types and request response formats for each of the URIs.</p>
+<p>Subsequent sections provide more details about the structure of a link and what different relationship types mean.</p>
+<h2 id="link-description-object">Link Description Object</h2>
+<p>Links <strong>MUST</strong> be described using the [Link Description Object (LDO)] [4] schema.
+An LDO describes a single link relation in the links array.
+Following is a brief description for properties of Link Description Object.</p>
+<h3 id="href">href:</h3>
+<ul>
+<li>A value for the href property <strong>MUST</strong> be provided.</li>
+<li>The value of the href property <strong>MUST</strong> be a [URI template] and used to determine the target URI of the related resource.
+  It <strong>SHOULD</strong> be resolved as a URI template per RFC 6570.</li>
+<li>Use ONLY absolute URIs as a value for href property.
+  Clients usually bookmark the absolute URI of a link relation type from the representation to make API requests later.
+  Developers <strong>MUST</strong> use the URI Component Naming Conventions to construct absolute URIs.
+  The value from the incoming Host header (e.g. api.example.com) <strong>MUST</strong> be used as the host field of the absolute URI.</li>
+</ul>
+<h3 id="rel">rel:</h3>
+<ul>
+<li><code>rel</code> stands for relation as defined in Link Relation Type</li>
+<li>The value of the rel property indicates the name of the relation to the target resource.</li>
+<li>A value for the <code>rel</code> property <strong>MUST</strong> be provided.</li>
+</ul>
+<h3 id="method">method:</h3>
+<ul>
+<li>The <code>method</code> property identifies the HTTP verb that <strong>MUST</strong> be used to make a request to the target of the link.
+  The <code>method</code> property assumes a default value of GET if it is omitted.</li>
+</ul>
+<h3 id="title">title:</h3>
+<ul>
+<li>The <code>title</code> property provides a title for the link and is a helpful documentation tool to facilitate understanding by the end clients.
+  This property is NOT REQUIRED.</li>
+</ul>
+<h3 id="not-using-http-headers-for-ldo">Not Using HTTP Headers For LDO</h3>
+<p>Note that these API guidelines do not recommend using the HTTP Location header to provide a link.
+Also, they do not recommend using the Link header as described in <a href="https://java.net/projects/jax-rs-spec/pages/Hypermedia">JAX-RS</a>.
+The scope of HTTP header is limited to point-to-point interaction between a client and a service.
+Since responses might be passed around to other layers and components on the client side which may not directly interact with the service, any information that is stored in a header may not be available.
+Therefore, we recommend returning Link Description Object(s) in HTTP response body.</p>
+<h3 id="links-array">Links Array</h3>
+<p>The links array property of schemas is used to associate a Link Description Objects with a [JSON hyper-schema draft-04] [3] instance.</p>
+<ul>
+<li>This property <strong>MUST</strong> be an array.</li>
+<li>Items in the array <strong>MUST</strong> be of type Link Description Object.</li>
+</ul>
+<h3 id="specifying-the-links-array">Specifying the Links array</h3>
+<p>Here’s an example of how you would describe links in the schema.</p>
+<ul>
+<li>A links array similar to the one defined in the sample JSON schema below <strong>MUST</strong> be provided as part of the API resource schema definition.
+  Please note that the links array needs to be declared within the <code>properties</code> keyword of an object.
+  This is required for code generators to add setter/getter methods for the links array in the generated object.</li>
+<li>All possible links that an API returns as part of the response <strong>MUST</strong> be declared in the response schema using a URI template.
+  The links array of URI templates <strong>MUST</strong> be declared outside the <code>properties</code> keyword.</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/hyper-schema#&quot;,
+  &quot;description&quot;: &quot;A sample resource representing a customer name.&quot;,
+  &quot;properties&quot;: {
+    &quot;id&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Unique ID to identify a customer.&quot;
+    },
+    &quot;first_name&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Customer's first name.&quot;
+    },
+    &quot;last_name&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Customer's last name.&quot;
+    },
+    &quot;links&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;http://json-schema.org/draft-04/hyper-schema#definitions/linkDescription&quot;
+    }
+  }
+},
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/{id}&quot;,
+      &quot;rel&quot;: &quot;self&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/{id}&quot;,
+      &quot;rel&quot;: &quot;delete&quot;,
+      &quot;method&quot;: &quot;DELETE&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Below is an example response that is compliant with the above schema.</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;ALT-JFWXHGUV7VI&quot;,
+  &quot;first_name&quot;: &quot;John&quot;,
+  &quot;last_name&quot;: &quot;Doe&quot;,
+  &quot;links&quot;: [
+    {
+      &quot;href&quot;: &quot;https://api.example.com/v1/cusommer/users/ALT-JFWXHGUV7VI&quot;,
+      &quot;rel&quot;: &quot;self&quot;
+    },
+    {
+      &quot;href&quot;: &quot;https://api.example.com/v1/customer/users/ALT-JFWXHGUV7VI&quot;,
+      &quot;rel&quot;: &quot;delete&quot;,
+      &quot;method&quot;: &quot;DELETE&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="link-relation-type">Link Relation Type</h2>
+<p>A Link Relation Type serves as an identifier for a link.
+An API <strong>MUST</strong> assign a meaningful link relation type that unambiguously describes the semantics of the link.
+Clients use the relevant Link Relation Type in order to identify the link to use from a representation.</p>
+<p>When the semantics of a Link Relation Type defined in [IANA’s list of standardized link relations] matches with the one you want to define, then it <strong>MUST</strong> be used.
+The table below describes some of the commonly used link relation types.
+It also lists some additional lin relation types defined by these guidelines.</p>
+<p>For all controller style complex operations, the controller action name must be used as the link relation type (e.g. activate,cancel,refund).</p>
+<table>
+<thead>
+<tr>
+<th>Link Relation Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>Conveys an identifier for the link’s context. Usually a link pointing to the resource itself.</td>
+</tr>
+<tr>
+<td>create</td>
+<td>Refers to a link that can be used to create a new resource.</td>
+</tr>
+<tr>
+<td>edit</td>
+<td>Refers to editing (or partially updating) the representation identified by the link. Use this to represent a PATCH operation link.</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>Refers to deleting a resource identified by the link. Use this Extended link relation type to represent a DELETE operation link.</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>Refers to completely update (or replace) the representation identified by the link. Use this Extended link relation type to represent a PUT operation link.</td>
+</tr>
+<tr>
+<td>first</td>
+<td>Refers to the first page of the result list.</td>
+</tr>
+<tr>
+<td>last</td>
+<td>Refers to the last page of the result list provided <code>total_required</code> is specified as a query parameter.</td>
+</tr>
+<tr>
+<td>next</td>
+<td>Refers to the next page of the result list.</td>
+</tr>
+<tr>
+<td>prev</td>
+<td>Refers to the previous page of the result list.</td>
+</tr>
+<tr>
+<td>collection</td>
+<td>Refers to a collections resource (e.g /v1/users).</td>
+</tr>
+<tr>
+<td>latest-version</td>
+<td>Points to a resource containing the latest (e.g.  current) version.</td>
+</tr>
+<tr>
+<td>search</td>
+<td>Refers to a resource that can be used to search through the link’s context and related resources.</td>
+</tr>
+<tr>
+<td>up</td>
+<td>Refers to a parent resource in a hierarchy of resources.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="use-cases">Use Cases</h3>
+<p>See <a href="../controller-resources/">HATEOAS Use Cases</a> to find where HATEOAS could be used.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>
